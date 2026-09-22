@@ -99,6 +99,21 @@ tr.play td{background:#0c2418}
 footer{color:var(--dim);font-size:12px;text-align:center;padding:26px 20px 0;line-height:1.7}
 @media(max-width:560px){.rec div b{font-size:28px}.slip h3{font-size:23px}.facts{grid-template-columns:1fr}}
 
+/* ---- chart crosshair ---- */
+.curvebox{position:relative}
+.curve{touch-action:none;cursor:crosshair}
+.tip{position:absolute;pointer-events:none;opacity:0;transition:opacity .12s;
+  background:rgba(8,14,24,.97);border:1px solid #24405f;border-radius:9px;padding:8px 10px;
+  font-size:11.5px;line-height:1.45;white-space:nowrap;z-index:5;
+  box-shadow:0 10px 26px -12px #000;transform:translate(-50%,-115%)}
+.tip.on{opacity:1}
+.tip b{display:block;font-size:13px;font-weight:800;letter-spacing:-.2px;margin-bottom:2px}
+.tip .wk{color:#5f7590;font-size:9px;letter-spacing:.16em;font-weight:800;text-transform:uppercase}
+.tip .rowt{display:flex;justify-content:space-between;gap:14px;margin-top:3px}
+.tip .rowt span{color:#7d93ad}
+.tip .w{color:#5ef2a5;font-weight:700}.tip .l{color:#ff6b6b;font-weight:700}
+.tip .p{color:#8fa8c0;font-weight:700}
+
 /* ============ A3 · BROADCAST PRO+ ============ */
 body{background:#05080e;font-family:'Helvetica Neue',Inter,-apple-system,sans-serif;
   padding-bottom:148px}
@@ -286,7 +301,7 @@ footer{color:#4c6076;font-size:11.5px}
 /* logo support — real crests when the files exist, colour badges otherwise */
 .badge img{position:relative;z-index:3;width:74%;height:74%;object-fit:contain;
   filter:drop-shadow(0 2px 4px rgba(0,0,0,.7))}
-.badge.has img + em,.badge.has s{display:none}
+.badge.has em,.badge.has s{display:none}
 .badge.has{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.16)}
 
 /* slate rows expand */
@@ -302,6 +317,14 @@ tr.dr td{padding:0;border-bottom:1px solid #111f2f;background:#0a121d}
 .drawer .mini .t i{position:absolute;top:0;bottom:0;border-radius:3px}
 .drawer .mini b{font-size:12px;font-variant-numeric:tabular-nums;width:48px;text-align:right}
 .drawer .note{font-size:11.5px;color:#7d93ad;line-height:1.5}
+/* once both crests are real logos the codes beside them are noise */
+.gm.logos > span:last-child{display:none}
+.gm.logos{gap:9px}
+.gm.logos .badge{width:30px;height:30px}
+.matchup.logos{font-size:0;gap:10px}
+.matchup.logos .at{font-size:10.5px}
+.matchup.logos .badge{width:30px;height:30px}
+.headline.logos .badge{width:50px;height:50px}
 
 /* edge heat */
 td.n b.heat1{color:#5ef2a5}
@@ -313,7 +336,7 @@ td.n b.heat0{color:#8fa8c0}
 </style></head><body>
 
 <div id="stale" class="stale"></div>
-<div class="navbar"><b>🏈 NFL MODEL</b><span class="wk">Tue Sep 22, 7:41 PM ET</span>
+<div class="navbar"><b>🏈 NFL MODEL</b><span class="wk">Tue Sep 22, 7:47 PM ET</span>
   <div class="burger" onclick="menu()"><i></i><i></i><i></i></div></div>
 <nav class="menu">
   <a onclick="go('bets')">Today's bets <span>1 play</span></a>
@@ -692,7 +715,7 @@ td.n b.heat0{color:#8fa8c0}
 
  <section id="record" class="view">
    <h2>Units over time</h2>
-   <div class="curvebox"><svg class="curve" viewBox="0 0 320 90" preserveAspectRatio="none" role="img" aria-label="units over time"><polygon points="6,26.5 6.0,26.5 25.2,37.2 44.5,17.7 63.8,39.2 83.0,60.6 102.2,82.1 121.5,62.6 140.8,84.0 160.0,74.2 179.2,54.8 198.5,45.0 217.8,25.5 237.0,6.0 256.2,27.5 275.5,8.0 294.8,18.7 314.0,8.9 314.0,26.5" fill="#34d67f" opacity=".13"/><line x1="6" y1="26.5" x2="314" y2="26.5" stroke="#2a3c52" stroke-width="1" stroke-dasharray="3 3"/><polyline points="6.0,26.5 25.2,37.2 44.5,17.7 63.8,39.2 83.0,60.6 102.2,82.1 121.5,62.6 140.8,84.0 160.0,74.2 179.2,54.8 198.5,45.0 217.8,25.5 237.0,6.0 256.2,27.5 275.5,8.0 294.8,18.7 314.0,8.9" fill="none" stroke="#34d67f" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/><circle cx="314.0" cy="8.9" r="3.5" fill="#34d67f"/></svg>
+   <div class="curvebox"><svg class="curve" viewBox="0 0 320 90" preserveAspectRatio="none" role="img" aria-label="units over time" data-xs="6.0,25.2,44.5,63.8,83.0,102.2,121.5,140.8,160.0,179.2,198.5,217.8,237.0,256.2,275.5,294.8,314.0" data-ys="46.5,26.3,48.5,70.8,50.6,72.9,84.0,84.0,63.7,43.5,33.4,13.1,35.4,15.1,26.3,16.1,6.0" data-w="320" data-pts='[{"w": 1, "p": "DEN +2.0", "r": "L", "u": -2.2, "t": -2.2, "d": "Mon 9/14"}, {"w": 1, "p": "PIT -6.5", "r": "W", "u": 2, "t": -0.2, "d": "Sun 9/13"}, {"w": 1, "p": "TEN -1.5", "r": "L", "u": -2.2, "t": -2.4, "d": "Sun 9/13"}, {"w": 1, "p": "PHI -6.0", "r": "L", "u": -2.2, "t": -4.6, "d": "Sun 9/13"}, {"w": 1, "p": "Under 41", "r": "W", "u": 2, "t": -2.6, "d": "Sun 9/13"}, {"w": 1, "p": "Over 38.5", "r": "L", "u": -2.2, "t": -4.8, "d": "Sun 9/13"}, {"w": 1, "p": "LAR -3.5", "r": "L", "u": -1.1, "t": -5.9, "d": "Thu 9/10"}, {"w": 1, "p": "SEA -3.0", "r": "P", "u": 0, "t": -5.9, "d": "Wed 9/9"}, {"w": 2, "p": "LAR -6.5", "r": "W", "u": 2, "t": -3.9, "d": "Mon 9/21"}, {"w": 2, "p": "CLE +8.5", "r": "W", "u": 2, "t": -1.9, "d": "Sun 9/20"}, {"w": 2, "p": "DEN -2.5", "r": "W", "u": 1, "t": -0.9, "d": "Sun 9/20"}, {"w": 2, "p": "DAL -4.0", "r": "W", "u": 2, "t": 1.1, "d": "Sun 9/20"}, {"w": 2, "p": "Over 46", "r": "L", "u": -2.2, "t": -1.1, "d": "Sun 9/20"}, {"w": 2, "p": "Under 48.5", "r": "W", "u": 2, "t": 0.9, "d": "Sun 9/20"}, {"w": 2, "p": "Over 41.5", "r": "L", "u": -1.1, "t": -0.2, "d": "Sun 9/20"}, {"w": 2, "p": "Over 39.5", "r": "W", "u": 1, "t": 0.8, "d": "Sun 9/20"}, {"w": 2, "p": "BUF -5.5", "r": "W", "u": 1, "t": 1.8, "d": "Thu 9/17"}]'><polygon points="6,24.2 6.0,46.5 25.2,26.3 44.5,48.5 63.8,70.8 83.0,50.6 102.2,72.9 121.5,84.0 140.8,84.0 160.0,63.7 179.2,43.5 198.5,33.4 217.8,13.1 237.0,35.4 256.2,15.1 275.5,26.3 294.8,16.1 314.0,6.0 314.0,24.2" fill="#34d67f" opacity=".13"/><line x1="6" y1="24.2" x2="314" y2="24.2" stroke="#2a3c52" stroke-width="1" stroke-dasharray="3 3"/><polyline points="6.0,46.5 25.2,26.3 44.5,48.5 63.8,70.8 83.0,50.6 102.2,72.9 121.5,84.0 140.8,84.0 160.0,63.7 179.2,43.5 198.5,33.4 217.8,13.1 237.0,35.4 256.2,15.1 275.5,26.3 294.8,16.1 314.0,6.0" fill="none" stroke="#34d67f" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/><line class="cross" x1="0" y1="0" x2="0" y2="90" stroke="#8fa8c0" stroke-width="1" opacity="0"/><circle class="dot" cx="0" cy="0" r="4" fill="#34d67f" stroke="#05080e" stroke-width="1.5" opacity="0"/><circle cx="314.0" cy="6.0" r="3.5" fill="#34d67f"/></svg>
      <div class="curvefoot"><span>17 bets</span>
        <b class="up">+1.8u</b></div>
    </div>
@@ -1069,11 +1092,11 @@ td.n b.heat0{color:#8fa8c0}
   <a data-t="more" onclick="menu()"><b>☰</b>More</a>
 </div>
 
-<footer>Updated Tue Sep 22, 7:41 PM ET · rebuilt every morning at 11:00 ET<br>
+<footer>Updated Tue Sep 22, 7:47 PM ET · rebuilt every morning at 11:00 ET<br>
 Model output, not advice. Units are bet-to-win: STRONG 2u, SOLID 1u.</footer>
 
 <script>
-var BUILT = 1790120463;
+var BUILT = 1790120821;
 function fmt(sec){
   var d=Math.floor(sec/86400), h=Math.floor(sec%86400/3600), m=Math.floor(sec%3600/60);
   if(d>0) return 'in '+d+'d '+h+'h';
@@ -1104,6 +1127,47 @@ function go(id){
 try{ var t = localStorage.getItem('tab'); if(t && document.getElementById(t)) go(t); }catch(e){}
 </script>
 <script>var TC={"ARI": ["#97233F", "#000000"], "ATL": ["#A71930", "#000000"], "BAL": ["#241773", "#9E7C0C"], "BUF": ["#00338D", "#C60C30"], "CAR": ["#0085CA", "#101820"], "CHI": ["#0B162A", "#C83803"], "CIN": ["#FB4F14", "#000000"], "CLE": ["#FF3C00", "#311D00"], "DAL": ["#041E42", "#869397"], "DEN": ["#FB4F14", "#002244"], "DET": ["#0076B6", "#B0B7BC"], "GB": ["#203731", "#FFB612"], "HOU": ["#03202F", "#A71930"], "IND": ["#002C5F", "#A2AAAD"], "JAX": ["#006778", "#D7A22A"], "KC": ["#E31837", "#FFB81C"], "LV": ["#000000", "#A5ACAF"], "LAC": ["#0080C6", "#FFC20E"], "LAR": ["#003594", "#FFA300"], "MIA": ["#008E97", "#FC4C02"], "MIN": ["#4F2683", "#FFC62F"], "NE": ["#002244", "#C60C30"], "NO": ["#101820", "#D3BC8D"], "NYG": ["#0B2265", "#A71930"], "NYJ": ["#125740", "#FFFFFF"], "PHI": ["#004C54", "#A5ACAF"], "PIT": ["#FFB612", "#101820"], "SF": ["#AA0000", "#B3995D"], "SEA": ["#002244", "#69BE28"], "TB": ["#D50A0A", "#FF7900"], "TEN": ["#0C2340", "#4B92DB"], "WAS": ["#5A1414", "#FFB612"]};
+/* ---------- stock-chart crosshair on the profit curve ---------- */
+(function(){
+  var svg=document.querySelector('.curve'); if(!svg||!svg.dataset.pts) return;
+  var box=svg.parentNode, pts=JSON.parse(svg.dataset.pts),
+      xs=svg.dataset.xs.split(',').map(Number), ys=svg.dataset.ys.split(',').map(Number),
+      VW=+svg.dataset.w, cross=svg.querySelector('.cross'), dot=svg.querySelector('.dot');
+  if(!pts.length) return;
+  var tip=document.createElement('div'); tip.className='tip'; box.appendChild(tip);
+
+  function at(clientX){
+    var r=svg.getBoundingClientRect();
+    var vx=(clientX-r.left)/r.width*VW;                    // page px -> viewBox units
+    var i=0,best=1e9;
+    for(var k=0;k<xs.length;k++){var d=Math.abs(xs[k]-vx); if(d<best){best=d;i=k;}}
+    var p=pts[i], cls=p.r==='W'?'w':(p.r==='L'?'l':'p'),
+        res=p.r==='W'?'WON':(p.r==='L'?'LOST':'PUSH');
+    cross.setAttribute('x1',xs[i]); cross.setAttribute('x2',xs[i]);
+    cross.setAttribute('opacity','.45');
+    dot.setAttribute('cx',xs[i]); dot.setAttribute('cy',ys[i]); dot.setAttribute('opacity','1');
+    tip.innerHTML='<span class="wk">Week '+p.w+' · '+(p.d||'')+'</span>'+
+      '<b>'+(p.p||'')+'</b>'+
+      '<div class="rowt"><span>Result</span><span class="'+cls+'">'+res+
+      ' '+(p.u>0?'+':'')+p.u+'u</span></div>'+
+      '<div class="rowt"><span>Running</span><span class="'+(p.t>=0?'w':'l')+'">'+
+      (p.t>0?'+':'')+p.t.toFixed(2)+'u</span></div>';
+    // keep the bubble inside the card
+    var px=xs[i]/VW*r.width, half=tip.offsetWidth/2+6;
+    tip.style.left=Math.max(half,Math.min(r.width-half,px))+'px';
+    tip.style.top=(ys[i]/90*svg.clientHeight)+'px';
+    tip.classList.add('on');
+  }
+  function off(){tip.classList.remove('on'); cross.setAttribute('opacity','0');
+                 dot.setAttribute('opacity','0');}
+
+  svg.addEventListener('mousemove',function(e){at(e.clientX);});
+  svg.addEventListener('mouseleave',off);
+  svg.addEventListener('touchstart',function(e){at(e.touches[0].clientX);},{passive:true});
+  svg.addEventListener('touchmove',function(e){at(e.touches[0].clientX);},{passive:true});
+  svg.addEventListener('touchend',off);
+})();
+
 function code(t){var m=(t||'').match(/\b([A-Z]{2,3})\b/);return m&&TC[m[1]]?m[1]:null;}
 function num(t){var m=(t||'').match(/-?\d+(\.\d+)?/);return m?parseFloat(m[0]):null;}
 function badge(t,sm){var c=TC[t]||['#243244','#111'];
@@ -1226,7 +1290,13 @@ document.querySelectorAll('.tabbar a').forEach(function(a){
 document.querySelectorAll('.badge').forEach(function(b){
   var t=(b.querySelector('em')||{}).textContent; if(!t) return;
   var im=new Image();
-  im.onload=function(){b.classList.add('has'); b.appendChild(im);};
+  im.onload=function(){
+    b.classList.add('has'); b.appendChild(im);
+    // a strip whose crests are ALL real logos doesn't need the codes spelled out
+    var p=b.parentNode; if(!p) return;
+    var all=p.querySelectorAll('.badge'), done=p.querySelectorAll('.badge.has');
+    if(all.length && all.length===done.length) p.classList.add('logos');
+  };
   im.src='logos/'+t.toLowerCase()+'.png';
 });
 
