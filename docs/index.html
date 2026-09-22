@@ -2,7 +2,13 @@
 <html lang="en"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#080c14">
+<meta name="theme-color" content="#0b3d2c">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon.png">
+<link rel="icon" href="icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="NFL Model">
 <title>NFL Model</title>
 <meta name="description" content="A self-updating NFL betting model: spreads, totals, touchdowns, teasers and a graded record.">
 <style>
@@ -61,6 +67,18 @@ tr.play td{background:#0c2418}
 .pill{display:inline-block;font-size:11px;font-weight:700;padding:4px 9px;border-radius:7px;background:#12301f;color:var(--up)}
 .pill.off{background:#131c28;color:var(--dim)}
 .res.w{color:var(--up)}.res.l{color:var(--dn)}.res.p{color:var(--mut)}
+.stale{display:none;background:#3a2c08;color:var(--gold);font-size:13px;font-weight:600;padding:10px 18px;text-align:center}
+.stale.on{display:block}
+.clock{font-style:normal;color:var(--blue);font-weight:600}
+.clock.live{color:var(--dn)}
+.clock.done{color:var(--dim);font-weight:400}
+.curvebox{background:var(--card2);border:1px solid var(--line);border-radius:14px;padding:12px 12px 8px}
+.curve{width:100%;height:92px;display:block}
+.curvefoot{display:flex;justify-content:space-between;align-items:baseline;font-size:12px;color:var(--dim);padding-top:4px}
+.curvefoot b{font-size:16px}
+.barcell{width:34%}
+.bar{display:block;height:8px;border-radius:4px}
+.bar.up{background:var(--up)}.bar.dn{background:var(--dn)}
 .exp{background:linear-gradient(180deg,var(--card),var(--card2));border:1px solid var(--line);border-radius:14px;margin-bottom:10px;overflow:hidden}
 .exp summary{padding:14px 16px;cursor:pointer;list-style:none;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .exp summary::-webkit-details-marker{display:none}
@@ -80,9 +98,222 @@ tr.play td{background:#0c2418}
 .tabbar a.on{color:#7ee2a8}
 footer{color:var(--dim);font-size:12px;text-align:center;padding:26px 20px 0;line-height:1.7}
 @media(max-width:560px){.rec div b{font-size:28px}.slip h3{font-size:23px}.facts{grid-template-columns:1fr}}
+
+/* ============ A3 · BROADCAST PRO+ ============ */
+body{background:#05080e;font-family:'Helvetica Neue',Inter,-apple-system,sans-serif;
+  padding-bottom:148px}
+body:before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.35;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/></filter><rect width='140' height='140' filter='url(%23n)' opacity='.5'/></svg>")}
+.wrap,.navbar,.hero,.tabbar,.menu{position:relative;z-index:1}
+
+.navbar{background:rgba(5,8,14,.86);backdrop-filter:blur(16px) saturate(150%);
+  border-bottom:1px solid #16243a;padding:13px 18px}
+.navbar b{font-size:13px;letter-spacing:.24em;color:#fff;font-weight:800;display:flex;
+  align-items:center;gap:9px}
+.navbar b:before{content:'';width:4px;height:15px;border-radius:2px;
+  background:linear-gradient(180deg,#5ef2a5,#12a45f);box-shadow:0 0 12px rgba(52,214,127,.7)}
+.navbar .wk{font-size:11px;color:#6b8199}
+.burger i{background:#8fa8c0}
+
+/* ---------- FEATURED PLAY HERO ---------- */
+.feat{position:relative;overflow:hidden;border-bottom:1px solid #16243a;
+  background:linear-gradient(165deg,
+    color-mix(in srgb,var(--t1) 55%,#07101c) 0%,
+    color-mix(in srgb,var(--t1) 22%,#070d16) 45%,#05080e 100%)}
+.feat:after{content:'';position:absolute;inset:0;pointer-events:none;
+  background:repeating-linear-gradient(90deg,transparent 0 46px,rgba(255,255,255,.05) 46px 47px)}
+.feat .fin{position:relative;z-index:2;padding:18px 20px 22px}
+.feat .why summary{color:#fff;opacity:.9}
+.feat .facts span{color:rgba(255,255,255,.55)}
+.feat .tag{display:inline-flex;align-items:center;gap:7px;font-size:9px;letter-spacing:.22em;
+  font-weight:800;color:#0a1b12;background:#5ef2a5;padding:5px 10px;border-radius:5px;
+  text-transform:uppercase}
+.vs{display:flex;align-items:center;justify-content:center;gap:16px;margin:16px 0 4px}
+.vs .x{font-size:11px;letter-spacing:.2em;font-weight:800;color:rgba(255,255,255,.55)}
+.badge{width:54px;height:54px;border-radius:50%;position:relative;overflow:hidden;flex:none;
+  border:2px solid rgba(255,255,255,.28);box-shadow:0 8px 20px -8px #000;
+  display:flex;align-items:center;justify-content:center}
+.badge s{position:absolute;inset:0;text-decoration:none}
+.badge s:before{content:'';position:absolute;inset:0;background:var(--b1)}
+.badge s:after{content:'';position:absolute;inset:0;background:var(--b2);
+  clip-path:polygon(100% 0,100% 100%,0 100%)}
+.badge em{position:relative;z-index:2;font-style:normal;font-size:13px;font-weight:900;
+  color:#fff;letter-spacing:-.4px;text-shadow:0 1px 4px rgba(0,0,0,.85)}
+.badge.sm{width:26px;height:26px;border-width:1.5px}
+.badge.sm em{font-size:8px}
+.feat h1{font-size:40px;font-weight:900;letter-spacing:-2px;text-align:center;
+  text-transform:uppercase;margin:6px 0 2px;text-shadow:0 4px 22px rgba(0,0,0,.6)}
+.feat .meta{text-align:center;color:rgba(232,240,255,.72);font-size:12px;letter-spacing:.03em}
+.feat .row{display:flex;align-items:center;justify-content:center;gap:22px;margin-top:16px}
+.feat .stat{text-align:center}
+.feat .stat span{display:block;font-size:8.5px;letter-spacing:.2em;font-weight:800;
+  color:rgba(232,240,255,.6)}
+.feat .stat b{font-size:19px;font-weight:800;letter-spacing:-.5px;font-variant-numeric:tabular-nums}
+
+/* ---------- ring ---------- */
+.ring{position:relative;flex:none}
+.ring svg{transform:rotate(-90deg);display:block}
+.ring .arc{stroke-dasharray:var(--C);stroke-dashoffset:var(--C);
+  animation:draw 1.1s cubic-bezier(.22,1,.36,1) .15s forwards}
+@keyframes draw{to{stroke-dashoffset:var(--O)}}
+.ring i{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;font-style:normal}
+.ring i b{font-size:17px;font-weight:800;letter-spacing:-.5px;line-height:1}
+.ring i s{text-decoration:none;font-size:7px;letter-spacing:.16em;color:#8fa8c0;font-weight:800}
+.ring.sm i b{font-size:13px}.ring.sm i s{font-size:6px}
+
+/* ---------- record strip ---------- */
+.hero{background:linear-gradient(180deg,#0a1220,#05080e);padding:16px 20px;
+  border-bottom:1px solid #16243a}
+.rec{display:grid;grid-template-columns:repeat(4,1fr)}
+.rec div{border-right:1px solid rgba(255,255,255,.07);padding-right:10px}
+.rec div:last-child{border-right:0}
+.rec div span{font-size:8.5px;letter-spacing:.2em;color:#6b8199;font-weight:800}
+.rec div b{font-size:24px;font-weight:800;letter-spacing:-1px;margin-top:2px;
+  font-variant-numeric:tabular-nums}
+
+h2{font-size:10px;letter-spacing:.26em;color:#7d93ad;font-weight:800;margin:28px 0 13px;
+  display:flex;align-items:center;gap:10px}
+h2:after{content:'';flex:1;height:1px;background:linear-gradient(90deg,#24405f,transparent)}
+
+/* ---------- pick cards ---------- */
+.slip{background:linear-gradient(180deg,rgba(18,31,48,.92),rgba(9,17,27,.92));
+  border:1px solid #1b3050;border-radius:16px;padding:0;overflow:hidden;position:relative;
+  margin-bottom:14px;box-shadow:0 14px 34px -20px #000;backdrop-filter:blur(6px)}
+.slip.hot:before{display:none}
+.slip.tm{border-color:color-mix(in srgb,var(--t1) 40%,#1b3050)}
+.slip .band{position:absolute;left:0;right:0;top:0;height:4px;
+  background:linear-gradient(90deg,var(--t1),var(--t2) 72%,transparent)}
+.slip .glow{position:absolute;right:-80px;top:-80px;width:230px;height:230px;border-radius:50%;
+  background:radial-gradient(circle,var(--t1),transparent 68%);opacity:.14;filter:blur(16px)}
+.slip .inner{position:relative;z-index:2;padding:16px 18px 18px}
+.matchup{display:flex;align-items:center;gap:9px;font-size:10.5px;letter-spacing:.14em;
+  font-weight:800;color:#8fa8c0;text-transform:uppercase;margin-bottom:14px}
+.matchup .at{color:#45607d}
+.slip-top{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.headline{display:flex;align-items:center;gap:13px;margin:12px 0 4px}
+.slip h3{font-size:30px;font-weight:900;letter-spacing:-1.2px;text-transform:uppercase;
+  margin:0;line-height:1}
+.sub{color:#7d93ad;font-size:12px}
+.chip{border-radius:6px;letter-spacing:.14em;text-transform:uppercase;font-size:9.5px;
+  font-weight:800;padding:6px 10px;background:#12301f;color:#5ef2a5}
+.chip.gold{background:linear-gradient(180deg,#4a3a0d,#322607);color:#ffcf5c;
+  border:1px solid rgba(255,207,92,.35)}
+.gauge{margin-top:14px;padding-top:13px;border-top:1px solid #172b44}
+.gauge .lbl{display:flex;justify-content:space-between;font-size:9px;letter-spacing:.16em;
+  color:#7d93ad;font-weight:800;text-transform:uppercase;margin-bottom:7px}
+.gauge .lbl b{color:#e8edf5;font-size:11px;letter-spacing:0}
+.track{height:7px;border-radius:4px;background:#132134;position:relative;overflow:hidden}
+.track i{position:absolute;top:0;bottom:0;left:0;border-radius:4px;width:0;
+  background:linear-gradient(90deg,#1f9e63,#5ef2a5);box-shadow:0 0 12px rgba(94,242,165,.5);
+  animation:grow 1s cubic-bezier(.22,1,.36,1) .2s forwards}
+@keyframes grow{to{width:var(--w)}}
+.track u{position:absolute;top:-3px;bottom:-3px;width:2px;background:#8fa8c0;opacity:.65}
+.gauge .ends{display:flex;justify-content:space-between;font-size:10px;color:#5f7590;
+  margin-top:6px;font-variant-numeric:tabular-nums}
+.why{margin-top:14px;border-top:1px solid #172b44;padding-top:12px}
+.why summary{color:#5ec8ff;font-size:12px;font-weight:700}
+.facts span{letter-spacing:.14em;font-size:9px;color:#5f7590;font-weight:800}
+
+/* ---------- tiles with mini rings ---------- */
+.tiles{gap:11px}
+.tile{background:linear-gradient(180deg,#0f1b2b,#0a121d);border:1px solid #1b3050;
+  border-radius:13px;padding:14px;position:relative;overflow:hidden;
+  display:flex;align-items:center;gap:12px}
+.tile:before{content:'';position:absolute;left:0;top:0;width:100%;height:1px;
+  background:linear-gradient(90deg,rgba(94,242,165,.5),transparent)}
+.tile .txt{min-width:0}
+.tile span{font-size:9px;letter-spacing:.18em;color:#5f7590;font-weight:800;display:block}
+.tile b{font-size:24px;font-weight:800;letter-spacing:-1px;margin-top:5px;display:block;
+  font-variant-numeric:tabular-nums}
+
+/* ---------- tables ---------- */
+table{font-size:13.5px}
+th{letter-spacing:.18em;font-size:9px;color:#5f7590;font-weight:800;padding:10px 6px;
+  border-bottom:1px solid #1b3050}
+td{border-bottom:1px solid #111f2f;padding:12px 6px}
+td .gm{display:flex;align-items:center;gap:7px}
+tr.play td{background:linear-gradient(90deg,rgba(52,214,127,.15),rgba(52,214,127,.02));
+  box-shadow:inset 3px 0 0 #34d67f}
+.pill{border-radius:6px;font-size:10px;letter-spacing:.08em;font-weight:800;
+  text-transform:uppercase;background:#12301f;color:#5ef2a5}
+.pill.off{background:#121d2b;color:#5f7590}
+.clock{color:#5ec8ff;font-weight:700;font-variant-numeric:tabular-nums}
+.clock.live{color:#ff6b6b}
+.clock.live:before{content:'';display:inline-block;width:6px;height:6px;border-radius:50%;
+  background:#ff6b6b;margin-right:5px;animation:bl 1.2s infinite}
+@keyframes bl{50%{opacity:.25}}
+
+.curvebox{background:linear-gradient(180deg,#0f1b2b,#0a121d);border:1px solid #1b3050;
+  border-radius:14px}
+.exp{background:linear-gradient(180deg,#101d2e,#0a121d);border:1px solid #1b3050;
+  border-radius:14px}
+.exp summary b{font-size:16px;font-weight:800}
+.reasons span{color:#5ef2a5;letter-spacing:.16em;font-size:9px;font-weight:800}
+
+.tabbar{background:rgba(5,8,14,.96);backdrop-filter:blur(16px);border-top:1px solid #16243a;
+  padding:9px 0 max(11px,env(safe-area-inset-bottom))}
+.tabbar a{font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:800;
+  color:#5f7590;position:relative;padding-top:4px}
+.tabbar a b svg{width:21px;height:21px;display:block;margin:0 auto 4px;stroke-width:1.9}
+.tabbar a.on{color:#5ef2a5}
+.tabbar a.on:before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:24px;height:3px;border-radius:0 0 3px 3px;background:#5ef2a5;
+  box-shadow:0 0 14px rgba(94,242,165,.8)}
+footer{color:#4c6076;font-size:11.5px}
+@media(max-width:560px){.feat h1{font-size:34px}.rec div b{font-size:21px}.slip h3{font-size:26px}}
+
+/* ============ v4 additions ============ */
+/* live kickoff ticker under the navbar */
+.tick{position:sticky;top:49px;z-index:35;display:flex;align-items:center;gap:10px;
+  padding:9px 18px;background:rgba(9,14,22,.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid #16243a;font-size:11px;letter-spacing:.06em;color:#8fa8c0;
+  overflow:hidden;white-space:nowrap}
+.tick .k{color:#5ef2a5;font-weight:800;letter-spacing:.18em;font-size:9px;flex:none;
+  display:flex;align-items:center;gap:6px}
+.tick .k:before{content:'';width:6px;height:6px;border-radius:50%;background:#5ef2a5;
+  box-shadow:0 0 8px #5ef2a5;animation:bl 1.6s infinite}
+.tick .scroller{flex:1;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,#000 85%,transparent)}
+.tick .scroller div{display:inline-block;animation:slide 26s linear infinite}
+.tick b{color:#e8edf5;font-weight:700}
+.tick .sep{color:#2c4258}
+@keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* view transitions */
+.view.on{animation:fade .28s cubic-bezier(.22,1,.36,1)}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* logo support — real crests when the files exist, colour badges otherwise */
+.badge img{position:relative;z-index:3;width:74%;height:74%;object-fit:contain;
+  filter:drop-shadow(0 2px 4px rgba(0,0,0,.7))}
+.badge.has img + em,.badge.has s{display:none}
+.badge.has{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.16)}
+
+/* slate rows expand */
+tr.gm{cursor:pointer}
+tr.gm.open td{background:rgba(94,242,165,.05)}
+tr.dr td{padding:0;border-bottom:1px solid #111f2f;background:#0a121d}
+.drawer{padding:14px 10px 16px;display:grid;gap:12px}
+.drawer .mini{display:flex;align-items:center;gap:10px}
+.drawer .mini span{font-size:9px;letter-spacing:.16em;color:#5f7590;font-weight:800;width:54px;
+  flex:none}
+.drawer .mini .t{flex:1;height:6px;border-radius:3px;background:#132134;position:relative;
+  overflow:hidden}
+.drawer .mini .t i{position:absolute;top:0;bottom:0;border-radius:3px}
+.drawer .mini b{font-size:12px;font-variant-numeric:tabular-nums;width:48px;text-align:right}
+.drawer .note{font-size:11.5px;color:#7d93ad;line-height:1.5}
+
+/* edge heat */
+td.n b.heat1{color:#5ef2a5}
+td.n b.heat2{color:#ffcf5c}
+td.n b.heat0{color:#8fa8c0}
+
+/* count-up numbers get tabular spacing so they don't jitter */
+.rec div b,.feat .stat b{font-variant-numeric:tabular-nums}
 </style></head><body>
 
-<div class="navbar"><b>🏈 NFL MODEL</b><span class="wk">Tue Sep 22, 11:54 AM</span>
+<div id="stale" class="stale"></div>
+<div class="navbar"><b>🏈 NFL MODEL</b><span class="wk">Tue Sep 22, 7:41 PM ET</span>
   <div class="burger" onclick="menu()"><i></i><i></i><i></i></div></div>
 <nav class="menu">
   <a onclick="go('bets')">Today's bets <span>1 play</span></a>
@@ -112,7 +343,8 @@ footer{color:var(--dim);font-size:12px;text-align:center;padding:26px 20px 0;lin
           <span class="cover">66% <small>cover</small></span>
         </div>
         <h3>GB -6.5</h3>
-        <p class="sub">ATL @ GB · Thu 9/24 8:15 PM · Spread</p>
+        <p class="sub">ATL @ GB · Thu 9/24 8:15 PM · Spread
+           <em class="clock" data-k="1790295300"></em></p>
         <details class="why"><summary>Why this pick</summary><ul class="facts"><li><span>Model line</span><b>-12.0</b></li><li><span>Book line</span><b>-6.5</b></li><li><span>Edge</span><b class="big">+5.5 pts</b></li><li><span>Cover chance</span><b>66%</b></li><li><span>Line moved</span><b>-6.5 → -6.5</b></li><li><span>Sharp vs public</span><b>-6.5 vs -6.0 <small>sharps lower</small></b></li><li><span>ATL</span><b>#32 power · Tua / Penix (TBD)</b></li><li><span>GB</span><b>#16 power · Jordan Love</b></li><li class="wide"><span>Injuries counted</span><b>ATL Tua Tagovailoa (QB) DOUBTFUL -6.0 · ATL Michael Penix Jr. (QB) OUT -1.5 · ATL Billy Bowman Jr. (CB) OUT -1.0 · GB Josh Jacobs (RB) OUT -2.0 · GB Javon Hargrave (DT) DOUBTFUL -0.8 · GB Warren Brinson (DT) OUT -0.8</b></li></ul>
         <p class="sub" style="margin-top:10px"><a onclick="go('why')" style="color:var(--blue);cursor:pointer">Read the full write-up →</a></p></details>
       </article>
@@ -129,7 +361,8 @@ footer{color:var(--dim);font-size:12px;text-align:center;padding:26px 20px 0;lin
    <h2>Full slate</h2>
    <table><tr><th>Game</th><th class="n">Model<small>total</small></th><th class="n">Book<small>total</small></th><th class="n">Edge<small>total</small></th><th>Call</th></tr>
       <tr class="play">
-        <td><b>ATL @ GB</b><small>Thu 9/24 8:15 PM</small></td>
+        <td><b>ATL @ GB</b><small>Thu 9/24 8:15 PM
+            <em class="clock" data-k="1790295300"></em></small></td>
         <td class="n">-12.0<small>42.5</small></td>
         <td class="n">-6.5<small>44.5</small></td>
         <td class="n"><span class="big">+5.5</span>
@@ -137,7 +370,8 @@ footer{color:var(--dim);font-size:12px;text-align:center;padding:26px 20px 0;lin
         <td class="call"><span class="pill">SPREAD</span></td>
       </tr>
       <tr class="">
-        <td><b>LAC @ BUF</b><small>Sun 9/27 1:00 PM</small></td>
+        <td><b>LAC @ BUF</b><small>Sun 9/27 1:00 PM
+            <em class="clock" data-k="1790528400"></em></small></td>
         <td class="n">-11.5<small>48.5</small></td>
         <td class="n">-7.0<small>50.0</small></td>
         <td class="n"><span class="big">+4.5</span>
@@ -145,7 +379,8 @@ footer{color:var(--dim);font-size:12px;text-align:center;padding:26px 20px 0;lin
         <td class="call"><span class="pill off">—</span></td>
       </tr>
       <tr class="">
-        <td><b>CAR @ CLE</b><small>Sun 9/27 1:00 PM</small></td>
+        <td><b>CAR @ CLE</b><small>Sun 9/27 1:00 PM
+            <em class="clock" data-k="1790528400"></em></small></td>
         <td class="n">0.0<small>40.0</small></td>
         <td class="n">3.0<small>42.0</small></td>
         <td class="n"><span class="">+3.0</span>
@@ -153,7 +388,8 @@ footer{color:var(--dim);font-size:12px;text-align:center;padding:26px 20px 0;lin
         <td class="call"><span class="pill off">—</span></td>
       </tr>
       <tr class="">
-        <td><b>NYJ @ DET</b><small>Sun 9/27 1:00 PM</small></td>
+        <td><b>NYJ @ DET</b><small>Sun 9/27 1:00 PM
+            <em class="clock" data-k="1790528400"></em></small></td>
         <td class="n">-8.0<small>53.0</small></td>
         <td class="n">-6.5<small>48.0</small></td>
         <td class="n"><span class="">+1.5</span>
@@ -161,7 +397,8 @@ footer{color:var(--dim);font-size:12px;text-align:center;padding:26px 20px 0;lin
         <td class="call"><span class="pill off">—</span></td>
       </tr>
       <tr class="">
-        <td><b>HOU @ IND</b><small>Sun 9/27 1:00 PM</small></td>
+        <td><b>HOU @ IND</b><small>Sun 9/27 1:00 PM
+            <em class="clock" data-k="1790528400"></em></small></td>
         <td class="n">0.5<small>42.5</small></td>
         <td class="n">2.5<small>43.5</small></td>
         <td class="n"><span class="">+2.0</span>
@@ -169,7 +406,8 @@ footer{color:var(--dim);font-size:12px;text-align:center;padding:26px 20px 0;lin
         <td class="call"><span class="pill off">—</span></td>
       </tr>
       <tr class="">
-        <td><b>NE @ JAX</b><small>Sun 9/27 1:00 PM</small></td>
+        <td><b>NE @ JAX</b><small>Sun 9/27 1:00 PM
+            <em class="clock" data-k="1790528400"></em></small></td>
         <td class="n">-7.0<small>50.0</small></td>
         <td class="n">-3.0<small>45.5</small></td>
         <td class="n"><span class="big">+4.0</span>
@@ -177,7 +415,8 @@ footer{color:var(--dim);font-size:12px;text-align:center;padding:26px 20px 0;lin
         <td class="call"><span class="pill off">—</span></td>
       </tr>
       <tr class="">
-        <td><b>KC @ MIA</b><small>Sun 9/27 1:00 PM</small></td>
+        <td><b>KC @ MIA</b><small>Sun 9/27 1:00 PM
+            <em class="clock" data-k="1790528400"></em></small></td>
         <td class="n">9.0<small>45.5</small></td>
         <td class="n">11.5<small>46.0</small></td>
         <td class="n"><span class="">+2.5</span>
@@ -185,7 +424,8 @@ footer{color:var(--dim);font-size:12px;text-align:center;padding:26px 20px 0;lin
         <td class="call"><span class="pill off">—</span></td>
       </tr>
       <tr class="">
-        <td><b>TEN @ NYG</b><small>Sun 9/27 1:00 PM</small></td>
+        <td><b>TEN @ NYG</b><small>Sun 9/27 1:00 PM
+            <em class="clock" data-k="1790528400"></em></small></td>
         <td class="n">-4.0<small>45.0</small></td>
         <td class="n">-3.0<small>40.5</small></td>
         <td class="n"><span class="">+1.0</span>
@@ -193,7 +433,8 @@ footer{color:var(--dim);font-size:12px;text-align:center;padding:26px 20px 0;lin
         <td class="call"><span class="pill off">—</span></td>
       </tr>
       <tr class="">
-        <td><b>CIN @ PIT</b><small>Sun 9/27 1:00 PM</small></td>
+        <td><b>CIN @ PIT</b><small>Sun 9/27 1:00 PM
+            <em class="clock" data-k="1790528400"></em></small></td>
         <td class="n">-2.0<small>49.5</small></td>
         <td class="n">3.5<small>42.5</small></td>
         <td class="n"><span class="big">+5.5</span>
@@ -201,7 +442,8 @@ footer{color:var(--dim);font-size:12px;text-align:center;padding:26px 20px 0;lin
         <td class="call"><span class="pill off">—</span></td>
       </tr>
       <tr class="">
-        <td><b>SEA @ WAS</b><small>Sun 9/27 1:00 PM</small></td>
+        <td><b>SEA @ WAS</b><small>Sun 9/27 1:00 PM
+            <em class="clock" data-k="1790528400"></em></small></td>
         <td class="n">7.5<small>42.5</small></td>
         <td class="n">7.0<small>40.0</small></td>
         <td class="n"><span class="">-0.5</span>
@@ -209,7 +451,8 @@ footer{color:var(--dim);font-size:12px;text-align:center;padding:26px 20px 0;lin
         <td class="call"><span class="pill off">—</span></td>
       </tr>
       <tr class="">
-        <td><b>ARI @ SF</b><small>Sun 9/27 4:05 PM</small></td>
+        <td><b>ARI @ SF</b><small>Sun 9/27 4:05 PM
+            <em class="clock" data-k="1790539500"></em></small></td>
         <td class="n">-8.5<small>47.5</small></td>
         <td class="n">-8.5<small>47.5</small></td>
         <td class="n"><span class="">+0.0</span>
@@ -217,7 +460,8 @@ footer{color:var(--dim);font-size:12px;text-align:center;padding:26px 20px 0;lin
         <td class="call"><span class="pill off">—</span></td>
       </tr>
       <tr class="">
-        <td><b>MIN @ TB</b><small>Sun 9/27 4:05 PM</small></td>
+        <td><b>MIN @ TB</b><small>Sun 9/27 4:05 PM
+            <em class="clock" data-k="1790539500"></em></small></td>
         <td class="n">-4.0<small>36.5</small></td>
         <td class="n">1.5<small>42.5</small></td>
         <td class="n"><span class="big">+5.5</span>
@@ -225,7 +469,8 @@ footer{color:var(--dim);font-size:12px;text-align:center;padding:26px 20px 0;lin
         <td class="call"><span class="pill off">—</span></td>
       </tr>
       <tr class="">
-        <td><b>BAL @ DAL</b><small>Sun 9/27 4:25 PM</small></td>
+        <td><b>BAL @ DAL</b><small>Sun 9/27 4:25 PM
+            <em class="clock" data-k="1790540700"></em></small></td>
         <td class="n">2.0<small>52.0</small></td>
         <td class="n">3.0<small>52.5</small></td>
         <td class="n"><span class="">+1.0</span>
@@ -233,7 +478,8 @@ footer{color:var(--dim);font-size:12px;text-align:center;padding:26px 20px 0;lin
         <td class="call"><span class="pill off">—</span></td>
       </tr>
       <tr class="">
-        <td><b>LV @ NO</b><small>Sun 9/27 4:25 PM</small></td>
+        <td><b>LV @ NO</b><small>Sun 9/27 4:25 PM
+            <em class="clock" data-k="1790540700"></em></small></td>
         <td class="n">-6.0<small>47.5</small></td>
         <td class="n">-3.0<small>44.0</small></td>
         <td class="n"><span class="">+3.0</span>
@@ -241,7 +487,8 @@ footer{color:var(--dim);font-size:12px;text-align:center;padding:26px 20px 0;lin
         <td class="call"><span class="pill off">—</span></td>
       </tr>
       <tr class="">
-        <td><b>LAR @ DEN</b><small>Sun 9/27 8:20 PM</small></td>
+        <td><b>LAR @ DEN</b><small>Sun 9/27 8:20 PM
+            <em class="clock" data-k="1790554800"></em></small></td>
         <td class="n">-3.5<small>44.0</small></td>
         <td class="n">2.5<small>45.5</small></td>
         <td class="n"><span class="big">+6.0</span>
@@ -249,7 +496,8 @@ footer{color:var(--dim);font-size:12px;text-align:center;padding:26px 20px 0;lin
         <td class="call"><span class="pill off">—</span></td>
       </tr>
       <tr class="">
-        <td><b>PHI @ CHI</b><small>Mon 9/28 8:15 PM</small></td>
+        <td><b>PHI @ CHI</b><small>Mon 9/28 8:15 PM
+            <em class="clock" data-k="1790640900"></em></small></td>
         <td class="n">6.0<small>41.0</small></td>
         <td class="n">3.0<small>43.5</small></td>
         <td class="n"><span class="">-3.0</span>
@@ -443,12 +691,19 @@ footer{color:var(--dim);font-size:12px;text-align:center;padding:26px 20px 0;lin
  </section>
 
  <section id="record" class="view">
+   <h2>Units over time</h2>
+   <div class="curvebox"><svg class="curve" viewBox="0 0 320 90" preserveAspectRatio="none" role="img" aria-label="units over time"><polygon points="6,26.5 6.0,26.5 25.2,37.2 44.5,17.7 63.8,39.2 83.0,60.6 102.2,82.1 121.5,62.6 140.8,84.0 160.0,74.2 179.2,54.8 198.5,45.0 217.8,25.5 237.0,6.0 256.2,27.5 275.5,8.0 294.8,18.7 314.0,8.9 314.0,26.5" fill="#34d67f" opacity=".13"/><line x1="6" y1="26.5" x2="314" y2="26.5" stroke="#2a3c52" stroke-width="1" stroke-dasharray="3 3"/><polyline points="6.0,26.5 25.2,37.2 44.5,17.7 63.8,39.2 83.0,60.6 102.2,82.1 121.5,62.6 140.8,84.0 160.0,74.2 179.2,54.8 198.5,45.0 217.8,25.5 237.0,6.0 256.2,27.5 275.5,8.0 294.8,18.7 314.0,8.9" fill="none" stroke="#34d67f" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/><circle cx="314.0" cy="8.9" r="3.5" fill="#34d67f"/></svg>
+     <div class="curvefoot"><span>17 bets</span>
+       <b class="up">+1.8u</b></div>
+   </div>
    <h2>Week by week</h2>
-   <table><tr><th>Week</th><th class="n">Record</th><th class="n">Units</th></tr>
+   <table><tr><th>Week</th><th class="n">Record</th><th class="n">Units</th><th></th></tr>
       <tr><td><b>Week 1</b></td><td class="n">2-5-1</td>
-      <td class="n dn">-5.9u</td></tr>
+      <td class="n dn">-5.9u</td>
+      <td class="barcell"><i class="bar dn" style="width:77%"></i></td></tr>
       <tr><td><b>Week 2</b></td><td class="n">7-2</td>
-      <td class="n up">+7.7u</td></tr></table>
+      <td class="n up">+7.7u</td>
+      <td class="barcell"><i class="bar up" style="width:100%"></i></td></tr></table>
    <h2>Model vs the market</h2>
    <div class="tiles">
      <div class="tile"><span>Games</span><b>32</b></div>
@@ -814,10 +1069,30 @@ footer{color:var(--dim);font-size:12px;text-align:center;padding:26px 20px 0;lin
   <a data-t="more" onclick="menu()"><b>☰</b>More</a>
 </div>
 
-<footer>Updated Tue Sep 22, 11:54 AM · rebuilt every morning at 11:00 ET<br>
+<footer>Updated Tue Sep 22, 7:41 PM ET · rebuilt every morning at 11:00 ET<br>
 Model output, not advice. Units are bet-to-win: STRONG 2u, SOLID 1u.</footer>
 
 <script>
+var BUILT = 1790120463;
+function fmt(sec){
+  var d=Math.floor(sec/86400), h=Math.floor(sec%86400/3600), m=Math.floor(sec%3600/60);
+  if(d>0) return 'in '+d+'d '+h+'h';
+  if(h>0) return 'in '+h+'h '+m+'m';
+  return 'in '+Math.max(1,m)+'m';
+}
+function clocks(){
+  var now=Date.now()/1000;
+  document.querySelectorAll('.clock').forEach(function(el){
+    var k=parseInt(el.dataset.k||'0',10); if(!k){ el.textContent=''; return; }
+    el.classList.remove('live','done');
+    if(now < k){ el.textContent='· '+fmt(k-now); }
+    else if(now < k+12600){ el.textContent='· LIVE'; el.classList.add('live'); }
+    else { el.textContent='· final'; el.classList.add('done'); }
+  });
+  var age=(Date.now()/1000-BUILT)/3600, s=document.getElementById('stale');
+  if(age>24){ s.textContent='⚠ This board is '+Math.floor(age/24)+' day(s) old — the model has not run since. Numbers below are stale.'; s.classList.add('on'); }
+}
+clocks(); setInterval(clocks, 30000);
 function menu(){ document.querySelector('.menu').classList.toggle('open'); }
 function go(id){
   document.querySelectorAll('.view').forEach(function(v){ v.classList.toggle('on', v.id===id); });
@@ -828,4 +1103,223 @@ function go(id){
 }
 try{ var t = localStorage.getItem('tab'); if(t && document.getElementById(t)) go(t); }catch(e){}
 </script>
-</body></html>
+<script>var TC={"ARI": ["#97233F", "#000000"], "ATL": ["#A71930", "#000000"], "BAL": ["#241773", "#9E7C0C"], "BUF": ["#00338D", "#C60C30"], "CAR": ["#0085CA", "#101820"], "CHI": ["#0B162A", "#C83803"], "CIN": ["#FB4F14", "#000000"], "CLE": ["#FF3C00", "#311D00"], "DAL": ["#041E42", "#869397"], "DEN": ["#FB4F14", "#002244"], "DET": ["#0076B6", "#B0B7BC"], "GB": ["#203731", "#FFB612"], "HOU": ["#03202F", "#A71930"], "IND": ["#002C5F", "#A2AAAD"], "JAX": ["#006778", "#D7A22A"], "KC": ["#E31837", "#FFB81C"], "LV": ["#000000", "#A5ACAF"], "LAC": ["#0080C6", "#FFC20E"], "LAR": ["#003594", "#FFA300"], "MIA": ["#008E97", "#FC4C02"], "MIN": ["#4F2683", "#FFC62F"], "NE": ["#002244", "#C60C30"], "NO": ["#101820", "#D3BC8D"], "NYG": ["#0B2265", "#A71930"], "NYJ": ["#125740", "#FFFFFF"], "PHI": ["#004C54", "#A5ACAF"], "PIT": ["#FFB612", "#101820"], "SF": ["#AA0000", "#B3995D"], "SEA": ["#002244", "#69BE28"], "TB": ["#D50A0A", "#FF7900"], "TEN": ["#0C2340", "#4B92DB"], "WAS": ["#5A1414", "#FFB612"]};
+function code(t){var m=(t||'').match(/\b([A-Z]{2,3})\b/);return m&&TC[m[1]]?m[1]:null;}
+function num(t){var m=(t||'').match(/-?\d+(\.\d+)?/);return m?parseFloat(m[0]):null;}
+function badge(t,sm){var c=TC[t]||['#243244','#111'];
+  return '<div class="badge'+(sm?' sm':'')+'" style="--b1:'+c[0]+';--b2:'+c[1]+'">'+
+         '<s></s><em>'+t+'</em></div>';}
+function ring(p,size,sm){var r=size/2-4,C=2*Math.PI*r,O=C*(1-p/100),id='r'+Math.random().toString(36).slice(2,7);
+  return '<div class="ring'+(sm?' sm':'')+'" style="width:'+size+'px;height:'+size+'px;--C:'+C+';--O:'+O+'">'+
+   '<svg width="'+size+'" height="'+size+'"><circle cx="'+size/2+'" cy="'+size/2+'" r="'+r+
+   '" fill="none" stroke="#172b44" stroke-width="'+(sm?4:6)+'"/><circle class="arc" cx="'+size/2+
+   '" cy="'+size/2+'" r="'+r+'" fill="none" stroke="url(#'+id+')" stroke-width="'+(sm?4:6)+
+   '" stroke-linecap="round"/><defs><linearGradient id="'+id+'" x1="0" y1="0" x2="1" y2="1">'+
+   '<stop offset="0" stop-color="#1f9e63"/><stop offset="1" stop-color="#5ef2a5"/></linearGradient>'+
+   '</defs></svg><i><b>'+Math.round(p)+'%</b><s>COVER</s></i></div>';}
+
+var slips=[].slice.call(document.querySelectorAll('.slip'));
+slips.forEach(function(s,idx){
+  var h=s.querySelector('h3'); if(!h) return;
+  var t=code(h.textContent); if(!t) return;
+  var c=TC[t]; s.classList.add('tm');
+  s.style.setProperty('--t1',c[0]); s.style.setProperty('--t2',c[1]);
+  var inner=document.createElement('div'); inner.className='inner';
+  while(s.firstChild) inner.appendChild(s.firstChild);
+  s.insertAdjacentHTML('beforeend','<i class="band"></i><i class="glow"></i>');
+  s.appendChild(inner);
+
+  var sub=inner.querySelector('.sub'), away=null, home=null;
+  if(sub){var m=sub.textContent.match(/([A-Z]{2,3})\s*@\s*([A-Z]{2,3})/); if(m){away=m[1];home=m[2];}}
+  if(away&&home&&TC[away]&&TC[home]){
+    var mu=document.createElement('div'); mu.className='matchup';
+    mu.innerHTML=badge(away,1)+away+' <span class="at">@</span> '+badge(home,1)+home;
+    inner.insertBefore(mu,inner.firstChild);
+  }
+  var wraph=document.createElement('div'); wraph.className='headline';
+  h.parentNode.insertBefore(wraph,h);
+  wraph.insertAdjacentHTML('beforeend',badge(t));
+  wraph.appendChild(h);
+
+  var cv=inner.querySelector('.cover'), P=null;
+  if(cv){P=num(cv.textContent); if(P!==null){var d=document.createElement('div');
+    d.innerHTML=ring(P,62); cv.replaceWith(d.firstChild);}}
+
+  var mv=null,bv=null,ev=null;
+  inner.querySelectorAll('.facts li').forEach(function(li){
+    var k=(li.querySelector('span')||{}).textContent||'', v=(li.querySelector('b')||{}).textContent||'';
+    if(/model line/i.test(k)) mv=num(v);
+    if(/book line/i.test(k)) bv=num(v);
+    if(/edge/i.test(k)) ev=num(v);});
+  if(ev!==null){
+    var g=document.createElement('div'); g.className='gauge';
+    g.innerHTML='<div class="lbl"><span>Edge vs the book</span><b>'+(ev>0?'+':'')+ev.toFixed(1)+
+      ' pts</b></div><div class="track"><i style="--w:'+Math.min(100,Math.abs(ev)/7*100)+
+      '%"></i><u style="left:57%"></u></div><div class="ends"><span>Model '+
+      (mv!==null?mv.toFixed(1):'—')+'</span><span>Book '+(bv!==null?bv.toFixed(1):'—')+'</span></div>';
+    var why=inner.querySelector('.why'); why?inner.insertBefore(g,why):inner.appendChild(g);
+  }
+
+  // top play gets promoted into the hero
+  if(idx===0){
+    var tier=(inner.querySelector('.chip')||{}).textContent||'';
+    var feat=document.createElement('div'); feat.className='feat';
+    feat.style.setProperty('--t1',c[0]); feat.style.setProperty('--t2',c[1]);
+    feat.innerHTML='<div class="fin"><span class="tag">'+
+      (/STRONG/i.test(tier)?'🔥 TOP PLAY · 2U':'✅ TOP PLAY · 1U')+'</span>'+
+      '<div class="vs">'+badge(away||t)+'<span class="x">VS</span>'+badge(home||t)+'</div>'+
+      '<h1>'+h.textContent+'</h1><div class="meta">'+(sub?sub.textContent:'')+'</div>'+
+      '<div class="row"><div class="stat"><span>EDGE</span><b>'+(ev>0?'+':'')+
+      (ev!==null?ev.toFixed(1):'—')+'</b></div>'+(P!==null?ring(P,58):'')+
+      '<div class="stat"><span>MODEL</span><b>'+(mv!==null?mv.toFixed(1):'—')+'</b></div></div></div>';
+    var hero=document.querySelector('.hero');
+    hero.parentNode.insertBefore(feat,hero);
+    // don't print the same play twice: the featured card replaces the list entry
+    s.style.display='none';
+    // carry the explanation up into the hero so nothing is lost
+    var w=inner.querySelector('.why');
+    if(w){w.style.marginTop='16px';w.style.borderTopColor='rgba(255,255,255,.18)';
+          feat.querySelector('.fin').appendChild(w);}
+    var h2=document.querySelector('.view.on h2');
+    if(h2 && slips.length<2) h2.style.display='none';
+  }
+});
+
+// mini rings in the season tiles where the value is a percentage or a fraction
+document.querySelectorAll('.tile').forEach(function(tl){
+  var b=tl.querySelector('b'); if(!b) return;
+  var txt=b.textContent.trim(), p=null, m;
+  if((m=txt.match(/^(\d+)\/(\d+)$/))) p=+m[1]/+m[2]*100;
+  else if((m=txt.match(/^(\d+)-(\d+)(-\d+)?$/))) {var w=+m[1],l=+m[2]; if(w+l) p=w/(w+l)*100;}
+  var wrap=document.createElement('div'); wrap.className='txt';
+  while(tl.firstChild) wrap.appendChild(tl.firstChild);
+  if(p!==null){var d=document.createElement('div');
+    d.innerHTML=ring(p,42,1); d.firstChild.querySelector('s').textContent=(/\//.test(txt)?'RATE':'HIT');
+    tl.appendChild(d.firstChild);}
+  tl.appendChild(wrap);
+});
+
+// slate rows: both team badges
+document.querySelectorAll('td b').forEach(function(b){
+  var m=b.textContent.match(/^([A-Z]{2,3})\s*@\s*([A-Z]{2,3})/);
+  if(m&&TC[m[1]]&&TC[m[2]]){
+    var lbl=b.textContent;
+    b.innerHTML='<span class="gm">'+badge(m[1],1)+badge(m[2],1)+'<span>'+lbl+'</span></span>';
+  }
+});
+
+// the featured play belongs to the Bets tab only
+(function(){var f=document.querySelector('.feat'); if(!f) return;
+  var g=window.go; window.go=function(t){g(t); f.style.display=(t==='bets'?'':'none');};
+  var cur=document.querySelector('.view.on'); if(cur&&cur.id!=='bets') f.style.display='none';
+})();
+var ICONS={bets:'M12 2v20M5 7h14M5 17h14',slate:'M4 4h16v16H4zM4 9h16M9 9v11',
+ props:'M3 12c4-6 14-6 18 0-4 6-14 6-18 0zM8 12h8',why:'M4 5h16v11H8l-4 4z',
+ record:'M3 18l5-6 4 3 6-8M3 21h18'};
+document.querySelectorAll('.tabbar a').forEach(function(a){
+  var k=a.getAttribute('data-t'), b=a.querySelector('b'); if(!b) return;
+  b.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" '+
+   'stroke-linecap="round" stroke-linejoin="round"><path d="'+(ICONS[k]||'M4 7h16M4 12h16M4 17h16')+'"/></svg>';
+});
+
+/* ---------- real logos when the folder is present ---------- */
+document.querySelectorAll('.badge').forEach(function(b){
+  var t=(b.querySelector('em')||{}).textContent; if(!t) return;
+  var im=new Image();
+  im.onload=function(){b.classList.add('has'); b.appendChild(im);};
+  im.src='logos/'+t.toLowerCase()+'.png';
+});
+
+/* ---------- live kickoff ticker ---------- */
+(function(){
+  var rows=[].slice.call(document.querySelectorAll('#slate table tr'));
+  var items=[];
+  rows.forEach(function(r){
+    var c=r.querySelector('.clock'); if(!c) return;
+    var when=c.textContent.trim();
+    if(/final/i.test(when)) return;                 // only games still to come
+    var lab=r.querySelector('td .gm span:last-child')||r.querySelector('td b');
+    items.push('<b>'+((lab||{}).textContent||'').trim()+'</b> '+when);
+  });
+  if(!items.length) return;                       // nothing upcoming — no ticker at all
+  var t=document.createElement('div'); t.className='tick';
+  var run=items.slice(0,8).join(' &nbsp;·&nbsp; ');
+  t.innerHTML='<span class="k">KICKOFF</span><span class="scroller"><div>'+run+
+              ' &nbsp;·&nbsp; '+run+'</div></span>';
+  var nb=document.querySelector('.navbar'); nb.parentNode.insertBefore(t,nb.nextSibling);
+})();
+
+/* ---------- numbers count up ---------- */
+document.querySelectorAll('.rec div b,.feat .stat b').forEach(function(b){
+  var txt=b.textContent.trim(), m=txt.match(/^([+-]?)(\d+(?:\.\d+)?)(.*)$/);
+  if(!m || /-\d+-/.test(txt)) return;            // skip records like 8-7-1
+  var sign=m[1], end=parseFloat(m[2]), tail=m[3], dp=(m[2].split('.')[1]||'').length, t0=null;
+  function step(ts){ if(!t0) t0=ts; var p=Math.min(1,(ts-t0)/700);
+    var v=(end*(1-Math.pow(1-p,3)));
+    b.textContent=sign+v.toFixed(dp)+tail; if(p<1) requestAnimationFrame(step);}
+  b.textContent=sign+(0).toFixed(dp)+tail; requestAnimationFrame(step);
+});
+
+/* ---------- tap a slate row for the detail drawer ---------- */
+(function(){
+  var tb=document.querySelector('#slate table'); if(!tb) return;
+  [].slice.call(tb.querySelectorAll('tr')).forEach(function(r){
+    var cells=r.querySelectorAll('td'); if(cells.length<4) return;
+    r.classList.add('gm');
+    r.addEventListener('click',function(){
+      var nx=r.nextElementSibling;
+      if(nx&&nx.classList.contains('dr')){nx.remove();r.classList.remove('open');return;}
+      tb.querySelectorAll('tr.dr').forEach(function(x){x.remove()});
+      tb.querySelectorAll('tr.open').forEach(function(x){x.classList.remove('open')});
+      r.classList.add('open');
+      function val(i){var c=cells[i],b=c.querySelector('b');
+        var t=b?b.textContent:(c.firstChild?c.firstChild.textContent:'');
+        var v=parseFloat(t); return isNaN(v)?null:v;}
+      function sml(i){var s=cells[i].querySelector('small');
+        var v=s?parseFloat(s.textContent):NaN; return isNaN(v)?null:v;}
+      var mS=val(1),bS=val(2),eS=val(3),mT=sml(1),bT=sml(2),eT=sml(3);
+      function bar(lbl,m,b,e,unit){
+        if(m===null||b===null) return '';
+        var span=Math.max(Math.abs(m),Math.abs(b),1)*1.25;
+        function w(v){return Math.min(100,Math.abs(v)/span*100);}
+        return '<div class="mini"><span>'+lbl+' MODEL</span><div class="t"><i style="left:0;width:'+
+          w(m)+'%;background:linear-gradient(90deg,#1f9e63,#5ef2a5)"></i></div><b>'+m.toFixed(1)+
+          '</b></div><div class="mini"><span>'+lbl+' BOOK</span><div class="t"><i style="left:0;width:'+
+          w(b)+'%;background:#3d5876"></i></div><b>'+b.toFixed(1)+'</b></div>';
+      }
+      var note='';
+      if(eS!==null) note+='Model is '+Math.abs(eS).toFixed(1)+' pts '+(eS>0?'above':'below')+
+        ' the spread. ';
+      if(eT!==null) note+='Total is '+Math.abs(eT).toFixed(1)+' pts '+(eT>0?'over':'under')+
+        ' the number.';
+      var tr=document.createElement('tr'); tr.className='dr';
+      tr.innerHTML='<td colspan="'+cells.length+'"><div class="drawer">'+
+        bar('SPREAD',mS,bS,eS)+bar('TOTAL',mT,bT,eT)+
+        (note?'<div class="note">'+note+'</div>':'')+'</div></td>';
+      r.parentNode.insertBefore(tr,r.nextSibling);
+    });
+  });
+})();
+
+/* ---------- heat colour on the edge column ---------- */
+document.querySelectorAll('#slate table td.n b').forEach(function(b){
+  var v=parseFloat(b.textContent); if(isNaN(v)) return;
+  if(!/^[+-]/.test(b.textContent.trim())) return;
+  b.className=Math.abs(v)>=4?'heat1':(Math.abs(v)>=2.5?'heat2':'heat0');
+});
+
+/* ---------- swipe between tabs ---------- */
+(function(){
+  var order=['bets','slate','props','why','record'], x0=null,y0=null;
+  addEventListener('touchstart',function(e){x0=e.touches[0].clientX;y0=e.touches[0].clientY;},{passive:true});
+  addEventListener('touchend',function(e){
+    if(x0===null) return;
+    var dx=e.changedTouches[0].clientX-x0, dy=e.changedTouches[0].clientY-y0;
+    x0=null; if(Math.abs(dx)<60||Math.abs(dy)>50) return;
+    var cur=(document.querySelector('.view.on')||{}).id, i=order.indexOf(cur);
+    if(i<0) return;
+    var j=i+(dx<0?1:-1); if(j<0||j>=order.length) return;
+    window.go(order[j]);
+  },{passive:true});
+})();
+</script></body></html>
