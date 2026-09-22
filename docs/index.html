@@ -61,6 +61,17 @@ tr.play td{background:#0c2418}
 .pill{display:inline-block;font-size:11px;font-weight:700;padding:4px 9px;border-radius:7px;background:#12301f;color:var(--up)}
 .pill.off{background:#131c28;color:var(--dim)}
 .res.w{color:var(--up)}.res.l{color:var(--dn)}.res.p{color:var(--mut)}
+.exp{background:linear-gradient(180deg,var(--card),var(--card2));border:1px solid var(--line);border-radius:14px;margin-bottom:10px;overflow:hidden}
+.exp summary{padding:14px 16px;cursor:pointer;list-style:none;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.exp summary::-webkit-details-marker{display:none}
+.exp summary b{font-size:16px}
+.exp summary small{width:100%;color:var(--dim);font-size:11px;margin-top:3px}
+.exp[open] summary{border-bottom:1px solid var(--line);background:#0b1524}
+.reasons{list-style:none;padding:6px 16px 14px}
+.reasons li{padding:10px 0;border-bottom:1px solid #12202f}
+.reasons li:last-child{border-bottom:0}
+.reasons span{display:block;color:var(--blue);font-size:10px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:3px}
+.reasons p{font-size:14px;color:var(--txt);line-height:1.5}
 .prose p{color:var(--mut);font-size:14px;margin-bottom:12px}
 .prose b{color:var(--txt)}
 .tabbar{position:fixed;left:0;right:0;bottom:0;z-index:50;display:flex;background:rgba(10,16,26,.97);backdrop-filter:blur(12px);border-top:1px solid var(--line);padding:8px 0 max(10px,env(safe-area-inset-bottom))}
@@ -79,6 +90,7 @@ footer{color:var(--dim);font-size:12px;text-align:center;padding:26px 20px 0;lin
   <a onclick="go('slate')">Line movement <span>open vs now</span></a>
   <a onclick="go('props')">Anytime TD <span>467 players</span></a>
   <a onclick="go('props')">First TD &amp; kickers <span>32 kickers</span></a>
+  <a onclick="go('why')">Play explanations <span>all 16 games</span></a>
   <a onclick="go('record')">My record <span>9-7-1 · +1.8u</span></a>
   <a onclick="go('power')">Power ratings <span>32 teams</span></a>
   <a onclick="go('how')">How it works <span></span></a>
@@ -101,7 +113,8 @@ footer{color:var(--dim);font-size:12px;text-align:center;padding:26px 20px 0;lin
         </div>
         <h3>GB -6.5</h3>
         <p class="sub">ATL @ GB · Thu 9/24 8:15 PM · Spread</p>
-        <details class="why"><summary>Why this pick</summary><ul class="facts"><li><span>Model line</span><b>-12.0</b></li><li><span>Book line</span><b>-6.5</b></li><li><span>Edge</span><b class="big">+5.5 pts</b></li><li><span>Cover chance</span><b>66%</b></li><li><span>Line moved</span><b>-6.5 → -6.5</b></li><li><span>Sharp vs public</span><b>-6.5 vs -6.0 <small>sharps lower</small></b></li><li><span>ATL</span><b>#32 power · Tua / Penix (TBD)</b></li><li><span>GB</span><b>#16 power · Jordan Love</b></li><li class="wide"><span>Injuries counted</span><b>ATL Tua Tagovailoa (QB) DOUBTFUL -6.0 · ATL Michael Penix Jr. (QB) OUT -1.5 · ATL Billy Bowman Jr. (CB) OUT -1.0 · GB Josh Jacobs (RB) OUT -2.0 · GB Javon Hargrave (DT) DOUBTFUL -0.8 · GB Warren Brinson (DT) OUT -0.8</b></li></ul></details>
+        <details class="why"><summary>Why this pick</summary><ul class="facts"><li><span>Model line</span><b>-12.0</b></li><li><span>Book line</span><b>-6.5</b></li><li><span>Edge</span><b class="big">+5.5 pts</b></li><li><span>Cover chance</span><b>66%</b></li><li><span>Line moved</span><b>-6.5 → -6.5</b></li><li><span>Sharp vs public</span><b>-6.5 vs -6.0 <small>sharps lower</small></b></li><li><span>ATL</span><b>#32 power · Tua / Penix (TBD)</b></li><li><span>GB</span><b>#16 power · Jordan Love</b></li><li class="wide"><span>Injuries counted</span><b>ATL Tua Tagovailoa (QB) DOUBTFUL -6.0 · ATL Michael Penix Jr. (QB) OUT -1.5 · ATL Billy Bowman Jr. (CB) OUT -1.0 · GB Josh Jacobs (RB) OUT -2.0 · GB Javon Hargrave (DT) DOUBTFUL -0.8 · GB Warren Brinson (DT) OUT -0.8</b></li></ul>
+        <p class="sub" style="margin-top:10px"><a onclick="go('why')" style="color:var(--blue);cursor:pointer">Read the full write-up →</a></p></details>
       </article>
    <h2>Season so far</h2>
    <div class="tiles">
@@ -562,6 +575,92 @@ footer{color:var(--dim);font-size:12px;text-align:center;padding:26px 20px 0;lin
           <td class="n dn">-2.2</td></tr></table>
  </section>
 
+ <section id="why" class="view">
+   <h2>Why we like it</h2>
+   <p class="sub" style="margin-bottom:14px">Every game on the slate, explained from the same numbers the model uses. Plays are open by default.</p>
+   
+      <details class="exp" open>
+        <summary><b>ATL @ GB</b> <span class="pill">SPREAD</span>
+          <small>Thu 9/24 8:15 PM · model -12.0 / 42.5</small></summary>
+        <ul class="reasons"><li><span>Team quality</span><p>GB rates 8.7 points better than ATL (#16 vs #32 in the power ratings). Home field here is worth 2.0.</p></li><li><span>Biggest matchup</span><p>GB&#x27;s passing offense vs ATL&#x27;s pass defense is the largest single edge in the game (+4.4).</p></li><li><span>Injuries priced in</span><p>ATL: Tua Tagovailoa (QB, doubtful, -6.0), Michael Penix Jr. (QB, out, -1.5), Billy Bowman Jr. (CB, out, -1.0) · GB: Josh Jacobs (RB, out, -2.0), Javon Hargrave (DT, doubtful, -0.8), Warren Brinson (DT, out, -0.8)</p></li><li><span>What the market says</span><p>The spread has barely moved off -6.5; sharp books sit at -6.5 against -6.0 at the retail apps, which leans GB.</p></li><li><span>The total</span><p>Model total 42.5 against 44.5 at the book; the two teams average 62 plays a game and score touchdowns on 56% of red-zone trips.</p></li><li><span>Scheme</span><p>GB plays heavy zone coverage and blitzes 21% (neutral); ATL plays zone-leaning at 34% (neutral).</p></li><li><span>Trenches</span><p>GB&#x27;s pass rush is getting home on 9.6% of dropbacks, against a league rate of 6.9%.</p></li><li><span>The bet</span><p>GB -6.5 — model says -12.0, an edge of +5.5, 2 units, 66% to cover.</p></li></ul>
+      </details>
+      <details class="exp">
+        <summary><b>LAC @ BUF</b> <span class="pill off">no bet</span>
+          <small>Sun 9/27 1:00 PM · model -11.5 / 48.5</small></summary>
+        <ul class="reasons"><li><span>Team quality</span><p>BUF rates 4.0 points better than LAC (#3 vs #15 in the power ratings). Home field here is worth 2.0.</p></li><li><span>Biggest matchup</span><p>BUF&#x27;s passing offense vs LAC&#x27;s pass defense is the largest single edge in the game (+4.4).</p></li><li><span>Injuries priced in</span><p>LAC: Trey Pipkins (T, out, -0.8), Elijah Molden (S, out, -0.7), Tyler Biadasz (C, out, -0.5)</p></li><li><span>What the market says</span><p>The spread has barely moved off -7.0; sharp and retail books agree on the number.</p></li><li><span>The total</span><p>Model total 48.5 against 50.0 at the book; the two teams average 63 plays a game and score touchdowns on 61% of red-zone trips.</p></li><li><span>Scheme</span><p>BUF plays balanced coverage and blitzes 21% (neutral); LAC plays heavy zone at 19% (run-funnel).</p></li><li><span>Trenches</span><p>BUF&#x27;s pass rush is getting home on 8.4% of dropbacks, against a league rate of 6.9%.</p></li><li><span>No bet</span><p>The biggest disagreement here is 4.5 points, under the 3.5 needed on a spread. The model and the book essentially agree.</p></li></ul>
+      </details>
+      <details class="exp">
+        <summary><b>CAR @ CLE</b> <span class="pill off">no bet</span>
+          <small>Sun 9/27 1:00 PM · model 0.0 / 40.0</small></summary>
+        <ul class="reasons"><li><span>Team quality</span><p>CAR rates 1.1 points better than CLE (#26 vs #24 in the power ratings). Home field here is worth 1.0.</p></li><li><span>Injuries priced in</span><p>CAR: Bobby Brown III (DT, out, -0.8), Ikem Ekwonu (OT, out, -0.8), Nic Scourton (EDGE, out, -0.5) · CLE: Dillon Gabriel (QB, out, -1.0), Teven Jenkins (G, out, -0.5)</p></li><li><span>What the market says</span><p>The spread has barely moved off 3.0; sharp and retail books agree on the number.</p></li><li><span>The total</span><p>Model total 40.0 against 42.0 at the book; the two teams average 61 plays a game and score touchdowns on 50% of red-zone trips.</p></li><li><span>Scheme</span><p>CLE plays heavy man coverage and blitzes 28% (pass-funnel); CAR plays heavy zone at 27% (neutral).</p></li><li><span>No bet</span><p>The biggest disagreement here is 3.0 points, under the 3.5 needed on a spread. The model and the book essentially agree.</p></li></ul>
+      </details>
+      <details class="exp">
+        <summary><b>NYJ @ DET</b> <span class="pill off">no bet</span>
+          <small>Sun 9/27 1:00 PM · model -8.0 / 53.0</small></summary>
+        <ul class="reasons"><li><span>Team quality</span><p>DET rates 6.4 points better than NYJ (#18 vs #30 in the power ratings). Home field here is worth 1.5.</p></li><li><span>Biggest matchup</span><p>DET&#x27;s passing offense vs NYJ&#x27;s pass defense is the largest single edge in the game (+6.3).</p></li><li><span>Injuries priced in</span><p>NYJ: Kene Nwangwu (RB, out, -1.2), Joseph Ossai (DE, out, -1.0), Omar Cooper Jr. (WR, out, -1.0) · DET: Brian Branch (CB, out, -1.0), Kerby Joseph (S, out, -0.8), Blake Miller (T, out, -0.8)</p></li><li><span>What the market says</span><p>The spread has barely moved off -6.5; sharp and retail books agree on the number.</p></li><li><span>The total</span><p>Model total 53.0 against 48.0 at the book; the two teams average 64 plays a game and score touchdowns on 58% of red-zone trips; indoors at Ford Field.</p></li><li><span>Scheme</span><p>DET plays heavy man coverage and blitzes 24% (pass-funnel); NYJ plays heavy man at 27% (pass-funnel).</p></li><li><span>Trenches</span><p>NYJ&#x27;s pass rush is getting home on 9.0% of dropbacks, against a league rate of 6.9%.</p></li><li><span>No bet</span><p>The biggest disagreement here is 5.0 points, under the 3.5 needed on a spread. The model and the book essentially agree.</p></li></ul>
+      </details>
+      <details class="exp">
+        <summary><b>HOU @ IND</b> <span class="pill off">no bet</span>
+          <small>Sun 9/27 1:00 PM · model 0.5 / 42.5</small></summary>
+        <ul class="reasons"><li><span>Team quality</span><p>HOU rates 1.0 points better than IND (#17 vs #12 in the power ratings). Home field here is worth 1.0.</p></li><li><span>Injuries priced in</span><p>HOU: Jadeveon Clowney (DE, out, -1.0), Nico Collins (WR, out, -1.0), Jacob Hummel (LB, out, -0.7) · IND: Ashton Dulin (WR, out, -1.0)</p></li><li><span>What the market says</span><p>The spread moved 0.5 toward IND since it opened (3.0 → 2.5); sharp books sit at 3.0 against 2.5 at the retail apps, which leans HOU.</p></li><li><span>The total</span><p>Model total 42.5 against 43.5 at the book; the two teams average 62 plays a game and score touchdowns on 56% of red-zone trips.</p></li><li><span>Scheme</span><p>IND plays man-leaning coverage and blitzes 28% (neutral); HOU plays zone-leaning at 22% (neutral).</p></li><li><span>Trenches</span><p>HOU&#x27;s pass rush is getting home on 10.3% of dropbacks, against a league rate of 6.9%.</p></li><li><span>No bet</span><p>The biggest disagreement here is 2.0 points, under the 3.5 needed on a spread. The model and the book essentially agree.</p></li></ul>
+      </details>
+      <details class="exp">
+        <summary><b>NE @ JAX</b> <span class="pill off">no bet</span>
+          <small>Sun 9/27 1:00 PM · model -7.0 / 50.0</small></summary>
+        <ul class="reasons"><li><span>Team quality</span><p>JAX rates 2.0 points better than NE (#5 vs #11 in the power ratings). Home field here is worth 0.5.</p></li><li><span>Biggest matchup</span><p>JAX&#x27;s passing offense vs NE&#x27;s pass defense is the largest single edge in the game (+3.5).</p></li><li><span>Injuries priced in</span><p>NE: Carlton Davis III (CB, out, -1.0), Dametrious Crownover (T, out, -0.8)</p></li><li><span>What the market says</span><p>The spread has barely moved off -3.0; sharp and retail books agree on the number.</p></li><li><span>The total</span><p>Model total 50.0 against 45.5 at the book; the two teams average 64 plays a game and score touchdowns on 59% of red-zone trips.</p></li><li><span>Scheme</span><p>JAX plays heavy zone coverage and blitzes 26% (neutral); NE plays man-leaning at 27% (neutral).</p></li><li><span>Trenches</span><p>JAX&#x27;s pass rush is getting home on 8.6% of dropbacks, against a league rate of 6.9%.</p></li><li><span>No bet</span><p>The biggest disagreement here is 4.5 points, under the 3.5 needed on a spread. The model and the book essentially agree.</p></li></ul>
+      </details>
+      <details class="exp">
+        <summary><b>KC @ MIA</b> <span class="pill off">no bet</span>
+          <small>Sun 9/27 1:00 PM · model 9.0 / 45.5</small></summary>
+        <ul class="reasons"><li><span>Team quality</span><p>KC rates 7.7 points better than MIA (#31 vs #14 in the power ratings). Home field here is worth 0.5.</p></li><li><span>Biggest matchup</span><p>KC&#x27;s run game vs MIA&#x27;s run defense is the largest single edge in the game (+5.1).</p></li><li><span>Injuries priced in</span><p>KC: Josh Simmons (T, out, -0.8), Chamarri Conner (S, out, -0.7) · MIA: Ronnie Harrison (LB, out, -0.7), Chop Robinson (LB, out, -0.7)</p></li><li><span>What the market says</span><p>The spread has barely moved off 11.5; sharp and retail books agree on the number.</p></li><li><span>The total</span><p>Model total 45.5 against 46.0 at the book; the two teams average 64 plays a game and score touchdowns on 51% of red-zone trips.</p></li><li><span>Scheme</span><p>MIA plays balanced coverage and blitzes 31% (neutral); KC plays balanced at 31% (neutral).</p></li><li><span>No bet</span><p>The biggest disagreement here is 2.5 points, under the 3.5 needed on a spread. The model and the book essentially agree.</p></li></ul>
+      </details>
+      <details class="exp">
+        <summary><b>TEN @ NYG</b> <span class="pill off">no bet</span>
+          <small>Sun 9/27 1:00 PM · model -4.0 / 45.0</small></summary>
+        <ul class="reasons"><li><span>Team quality</span><p>TEN rates 0.6 points better than NYG (#25 vs #23 in the power ratings). Home field here is worth 0.5.</p></li><li><span>Biggest matchup</span><p>TEN&#x27;s run game vs NYG&#x27;s run defense is the largest single edge in the game (+0.8).</p></li><li><span>Injuries priced in</span><p>Nothing on the official report moves either side.</p></li><li><span>What the market says</span><p>The spread moved 3.0 toward TEN since it opened (-6.0 → -3.0); sharp and retail books agree on the number.</p></li><li><span>The total</span><p>Model total 45.0 against 40.5 at the book; the two teams average 62 plays a game and score touchdowns on 50% of red-zone trips.</p></li><li><span>Scheme</span><p>NYG plays man-leaning coverage and blitzes 30% (neutral); TEN plays zone-leaning at 21% (neutral).</p></li><li><span>No bet</span><p>The biggest disagreement here is 4.5 points, under the 3.5 needed on a spread. The model and the book essentially agree.</p></li></ul>
+      </details>
+      <details class="exp">
+        <summary><b>CIN @ PIT</b> <span class="pill off">no bet</span>
+          <small>Sun 9/27 1:00 PM · model -2.0 / 49.5</small></summary>
+        <ul class="reasons"><li><span>Team quality</span><p>CIN rates 3.2 points better than PIT (#19 vs #6 in the power ratings). Home field here is worth 1.5.</p></li><li><span>Biggest matchup</span><p>CIN&#x27;s passing offense vs PIT&#x27;s pass defense is the largest single edge in the game (+5.1).</p></li><li><span>Injuries priced in</span><p>PIT: Joey Porter Jr. (CB, out, -1.0)</p></li><li><span>What the market says</span><p>The spread has barely moved off 3.5; sharp and retail books agree on the number.</p></li><li><span>The total</span><p>Model total 49.5 against 42.5 at the book; the two teams average 63 plays a game and score touchdowns on 57% of red-zone trips.</p></li><li><span>Scheme</span><p>PIT plays heavy man coverage and blitzes 30% (neutral); CIN plays man-leaning at 17% (neutral).</p></li><li><span>Trenches</span><p>PIT&#x27;s pass rush is getting home on 13.7% of dropbacks, against a league rate of 6.9%.</p></li><li><span>No bet</span><p>The biggest disagreement here is 7.0 points, under the 3.5 needed on a spread. The model and the book essentially agree.</p></li></ul>
+      </details>
+      <details class="exp">
+        <summary><b>SEA @ WAS</b> <span class="pill off">no bet</span>
+          <small>Sun 9/27 1:00 PM · model 7.5 / 42.5</small></summary>
+        <ul class="reasons"><li><span>Team quality</span><p>SEA rates 6.2 points better than WAS (#28 vs #13 in the power ratings). Home field here is worth 0.5.</p></li><li><span>Biggest matchup</span><p>SEA&#x27;s run game vs WAS&#x27;s run defense is the largest single edge in the game (+3.0).</p></li><li><span>Injuries priced in</span><p>SEA: Sam Darnold (QB, out, -6.0), Ty Okada (S, out, -0.7), Zach Charbonnet (RB, out, -0.5) · WAS: Laremy Tunsil (OT, out, -1.0), Frankie Luvu (LB, out, -0.7), Chig Okonkwo (TE, out, -0.7)</p></li><li><span>What the market says</span><p>The spread moved 0.5 toward SEA since it opened (6.5 → 7.0); sharp and retail books agree on the number.</p></li><li><span>The total</span><p>Model total 42.5 against 40.0 at the book; the two teams average 62 plays a game and score touchdowns on 55% of red-zone trips.</p></li><li><span>Scheme</span><p>WAS plays balanced coverage and blitzes 27% (neutral); SEA plays heavy zone at 22% (run-funnel).</p></li><li><span>No bet</span><p>The biggest disagreement here is 2.5 points, under the 3.5 needed on a spread. The model and the book essentially agree.</p></li></ul>
+      </details>
+      <details class="exp">
+        <summary><b>ARI @ SF</b> <span class="pill off">no bet</span>
+          <small>Sun 9/27 4:05 PM · model -8.5 / 47.5</small></summary>
+        <ul class="reasons"><li><span>Team quality</span><p>SF rates 6.2 points better than ARI (#9 vs #27 in the power ratings). Home field here is worth 0.5.</p></li><li><span>Biggest matchup</span><p>SF&#x27;s run game vs ARI&#x27;s run defense is the largest single edge in the game (+3.7).</p></li><li><span>Injuries priced in</span><p>ARI: James Conner (RB, out, -1.0), Garrett Williams (CB, out, -1.0), Trey Benson (RB, out, -0.5) · SF: De&#x27;Zhaun Stribling (WR, out, -1.0), Ricky Pearsall (WR, out, -0.5)</p></li><li><span>What the market says</span><p>The spread has barely moved off -8.5; sharp and retail books agree on the number.</p></li><li><span>The total</span><p>Model total 47.5 against 47.5 at the book; the two teams average 62 plays a game and score touchdowns on 56% of red-zone trips.</p></li><li><span>Scheme</span><p>SF plays zone-leaning coverage and blitzes 22% (run-funnel); ARI plays zone-leaning at 24% (neutral).</p></li><li><span>No bet</span><p>The biggest disagreement here is 0.0 points, under the 3.5 needed on a spread. The model and the book essentially agree.</p></li></ul>
+      </details>
+      <details class="exp">
+        <summary><b>MIN @ TB</b> <span class="pill off">no bet</span>
+          <small>Sun 9/27 4:05 PM · model -4.0 / 36.5</small></summary>
+        <ul class="reasons"><li><span>Team quality</span><p>TB rates 1.6 points better than MIN (#20 vs #22 in the power ratings). Home field here is worth 0.5.</p></li><li><span>Biggest matchup</span><p>MIN&#x27;s run game vs TB&#x27;s run defense is the largest single edge in the game (+0.8).</p></li><li><span>Injuries priced in</span><p>MIN: Kyler Murray (QB, out, -6.0), Jauan Jennings (WR, out, -1.0)</p></li><li><span>What the market says</span><p>The spread has barely moved off 1.5; sharp and retail books agree on the number.</p></li><li><span>The total</span><p>Model total 36.5 against 42.5 at the book; the two teams average 64 plays a game and score touchdowns on 56% of red-zone trips.</p></li><li><span>Scheme</span><p>TB plays balanced coverage and blitzes 31% (neutral); MIN plays zone-leaning at 48% (pass-funnel).</p></li><li><span>Trenches</span><p>MIN&#x27;s pass rush is getting home on 9.4% of dropbacks, against a league rate of 6.9%.</p></li><li><span>No bet</span><p>The biggest disagreement here is 6.0 points, under the 3.5 needed on a spread. The model and the book essentially agree.</p></li></ul>
+      </details>
+      <details class="exp">
+        <summary><b>BAL @ DAL</b> <span class="pill off">no bet</span>
+          <small>Sun 9/27 4:25 PM · model 2.0 / 52.0</small></summary>
+        <ul class="reasons"><li><span>Team quality</span><p>BAL rates 1.5 points better than DAL (#10 vs #7 in the power ratings). Home field here is worth 1.0.</p></li><li><span>Biggest matchup</span><p>BAL&#x27;s run game vs DAL&#x27;s run defense is the largest single edge in the game (+5.2).</p></li><li><span>Injuries priced in</span><p>BAL: T.J. Tampa (CB, out, -1.0), Nnamdi Madubuike (DT, out, -0.8), Teddye Buchanan (LB, out, -0.7) · DAL: Malik Hooker (S, out, -0.7), DeMarvion Overshown (LB, out, -0.7)</p></li><li><span>What the market says</span><p>The spread has barely moved off 3.0; sharp and retail books agree on the number.</p></li><li><span>The total</span><p>Model total 52.0 against 52.5 at the book; the two teams average 64 plays a game and score touchdowns on 62% of red-zone trips.</p></li><li><span>Scheme</span><p>DAL plays balanced coverage and blitzes 28% (neutral); BAL plays heavy man at 23% (neutral).</p></li><li><span>No bet</span><p>The biggest disagreement here is 1.0 points, under the 3.5 needed on a spread. The model and the book essentially agree.</p></li></ul>
+      </details>
+      <details class="exp">
+        <summary><b>LV @ NO</b> <span class="pill off">no bet</span>
+          <small>Sun 9/27 4:25 PM · model -6.0 / 47.5</small></summary>
+        <ul class="reasons"><li><span>Team quality</span><p>NO rates 4.2 points better than LV (#21 vs #29 in the power ratings). Home field here is worth 1.0.</p></li><li><span>Biggest matchup</span><p>NO&#x27;s passing offense vs LV&#x27;s pass defense is the largest single edge in the game (+3.0).</p></li><li><span>Injuries priced in</span><p>LV: Darien Porter (CB, out, -1.0), Brock Bowers (TE, doubtful, -0.7) · NO: Isaiah Stalbird (LB, doubtful, -0.7), Bryan Bresee (DT, out, -0.5), Zach Wood (LS, out, -0.1)</p></li><li><span>What the market says</span><p>The spread has barely moved off -3.0; sharp and retail books agree on the number.</p></li><li><span>The total</span><p>Model total 47.5 against 44.0 at the book; the two teams average 62 plays a game and score touchdowns on 52% of red-zone trips; indoors at Caesars Superdome.</p></li><li><span>Scheme</span><p>NO plays zone-leaning coverage and blitzes 25% (neutral); LV plays heavy zone at 22% (pass-funnel).</p></li><li><span>Trenches</span><p>LV&#x27;s pass rush is getting home on 12.9% of dropbacks, against a league rate of 6.9%.</p></li><li><span>No bet</span><p>The biggest disagreement here is 3.5 points, under the 3.5 needed on a spread. The model and the book essentially agree.</p></li></ul>
+      </details>
+      <details class="exp">
+        <summary><b>LAR @ DEN</b> <span class="pill off">no bet</span>
+          <small>Sun 9/27 8:20 PM · model -3.5 / 44.0</small></summary>
+        <ul class="reasons"><li><span>Team quality</span><p>LAR rates 0.9 points better than DEN (#2 vs #1 in the power ratings). Home field here is worth 2.5.</p></li><li><span>Injuries priced in</span><p>DEN: Marvin Mims Jr. (WR, out, -1.0)</p></li><li><span>What the market says</span><p>The spread has barely moved off 2.5; sharp books sit at 1.5 against 2.5 at the retail apps, which leans DEN.</p></li><li><span>The total</span><p>Model total 44.0 against 45.5 at the book; the two teams average 64 plays a game and score touchdowns on 59% of red-zone trips.</p></li><li><span>Scheme</span><p>DEN plays heavy man coverage and blitzes 32% (neutral); LAR plays heavy zone at 18% (run-funnel).</p></li><li><span>No bet</span><p>The biggest disagreement here is 6.0 points, under the 3.5 needed on a spread. The model and the book essentially agree.</p></li></ul>
+      </details>
+      <details class="exp">
+        <summary><b>PHI @ CHI</b> <span class="pill off">no bet</span>
+          <small>Mon 9/28 8:15 PM · model 6.0 / 41.0</small></summary>
+        <ul class="reasons"><li><span>Team quality</span><p>PHI rates 2.2 points better than CHI (#8 vs #4 in the power ratings). Home field here is worth 1.5.</p></li><li><span>Biggest matchup</span><p>PHI&#x27;s passing offense vs CHI&#x27;s pass defense is the largest single edge in the game (+2.2).</p></li><li><span>Injuries priced in</span><p>CHI: Kyler Gordon (CB, out, -1.0)</p></li><li><span>What the market says</span><p>The spread has barely moved off 3.0; sharp and retail books agree on the number.</p></li><li><span>The total</span><p>Model total 41.0 against 43.5 at the book; the two teams average 64 plays a game and score touchdowns on 62% of red-zone trips.</p></li><li><span>Scheme</span><p>CHI plays man-leaning coverage and blitzes 28% (neutral); PHI plays balanced at 18% (run-funnel).</p></li><li><span>No bet</span><p>The biggest disagreement here is 3.0 points, under the 3.5 needed on a spread. The model and the book essentially agree.</p></li></ul>
+      </details>
+ </section>
+
  <section id="power" class="view">
    <h2>Power ratings</h2>
    <table><tr><th class="n">#</th><th>Team</th><th class="n">Power</th><th class="n">Off</th><th class="n">Def</th></tr>
@@ -710,6 +809,7 @@ footer{color:var(--dim);font-size:12px;text-align:center;padding:26px 20px 0;lin
   <a class="on" data-t="bets" onclick="go('bets')"><b>🎯</b>Bets</a>
   <a data-t="slate" onclick="go('slate')"><b>📋</b>Slate</a>
   <a data-t="props" onclick="go('props')"><b>🏈</b>Props</a>
+  <a data-t="why" onclick="go('why')"><b>💬</b>Why</a>
   <a data-t="record" onclick="go('record')"><b>📈</b>Record</a>
   <a data-t="more" onclick="menu()"><b>☰</b>More</a>
 </div>
