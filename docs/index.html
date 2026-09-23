@@ -99,6 +99,134 @@ tr.play td{background:#0c2418}
 footer{color:var(--dim);font-size:12px;text-align:center;padding:26px 20px 0;line-height:1.7}
 @media(max-width:560px){.rec div b{font-size:28px}.slip h3{font-size:23px}.facts{grid-template-columns:1fr}}
 
+.note{color:#7d93ad;font-size:12.5px;line-height:1.6;margin:-4px 0 14px}
+.note b{color:#e8edf5}
+.tzbar{width:44%}
+.tz{position:relative;display:block;height:8px;border-radius:4px;background:#132134;
+  overflow:visible}
+.tz i{position:absolute;left:0;top:0;bottom:0;border-radius:4px}
+.tz u{position:absolute;top:-4px;bottom:-4px;width:2px;background:#e8edf5;opacity:.85}
+.calibbox{background:linear-gradient(180deg,#0f1b2b,#0a121d);border:1px solid #1b3050;
+  border-radius:14px;padding:12px}
+.calib{display:block;width:100%;height:auto}
+.calib .ax{stroke:#1b3050;stroke-width:.8}
+.calib .diag{stroke:#5f7590;stroke-width:1;stroke-dasharray:4 3}
+.calib .cline{fill:none;stroke:#5ec8ff;stroke-width:1.6;opacity:.55}
+.calib .clab{font-size:7px;font-weight:800;letter-spacing:.1em;fill:#5f7590;text-anchor:middle}
+.calib .cline{fill:none;stroke:#5ec8ff;stroke-width:1.2;opacity:.35}
+
+/* ================= LINE MOVEMENT CHARTS ================================== */
+.lh{margin-top:12px;padding-top:12px;border-top:1px solid #172b44}
+.lh .hd{display:flex;align-items:center;gap:8px;font-size:9px;letter-spacing:.16em;
+  font-weight:800;color:#5f7590;text-transform:uppercase;margin-bottom:9px;flex-wrap:wrap}
+.lh .hd b{color:#e8edf5;font-size:11px;letter-spacing:0}
+.lh .tag{font-size:8.5px;letter-spacing:.12em;font-weight:800;padding:3px 7px;border-radius:5px}
+.lh .tag.steam{background:#3a2c08;color:#ffcf5c}
+.lh .tag.rlm{background:#0d2a3d;color:#5ec8ff}
+.lh .tag.good{background:#12301f;color:#5ef2a5}
+.lh .tag.bad{background:#341717;color:#ff8d8d}
+.lh .tag.hold{background:#121d2b;color:#8fa8c0}
+.lh svg{display:block;width:100%;height:auto;overflow:visible}
+.lh .axis{stroke:#1b3050;stroke-width:.6}
+.lh .mkt{fill:none;stroke:#5ec8ff;stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+.lh .shp{fill:none;stroke:#5ef2a5;stroke-width:1.2;stroke-dasharray:3 2.5;opacity:.85}
+.lh .pub{fill:none;stroke:#8fa8c0;stroke-width:1.2;stroke-dasharray:3 2.5;opacity:.55}
+.lh .dot{fill:#5ec8ff}
+.lh .betl{stroke:#ffcf5c;stroke-width:1;stroke-dasharray:2 2}
+.lh .betd{fill:#ffcf5c}
+.lh .lab{font-size:6.5px;font-weight:800;letter-spacing:.06em;fill:#5f7590}
+.lh .key{display:flex;gap:12px;margin-top:6px;font-size:9px;color:#5f7590;flex-wrap:wrap}
+.lh .key i{display:inline-block;width:12px;height:2px;vertical-align:3px;margin-right:5px}
+.spark{width:78px;height:22px;display:block}
+.spark path{fill:none;stroke-width:1.6;stroke-linejoin:round;stroke-linecap:round}
+td .sparkcell{display:flex;align-items:center;gap:8px}
+
+/* ================= ANIMATED MESH HERO ==================================== */
+/* A few soft blobs in the featured team's colours, drifting and blending on a
+   half-resolution canvas (cheap) that CSS blurs back up. It pauses whenever
+   the hero scrolls out of view or the tab is hidden, so it costs nothing when
+   you aren't looking at it. */
+.feat canvas.mesh{position:absolute;inset:0;width:100%;height:100%;z-index:0;
+  filter:blur(26px) saturate(1.25);opacity:.85}
+.feat .fin{position:relative;z-index:2}
+@media(prefers-reduced-motion:reduce){.feat canvas.mesh{filter:blur(26px)}}
+
+/* ================= POWER RATINGS MAP ===================================== */
+.mapwrap{position:relative;border:1px solid #1b3050;border-radius:14px;overflow:hidden;
+  background:radial-gradient(120% 120% at 50% 0%,#101d2e,#080f19);touch-action:none;
+  margin-bottom:12px}
+.mapwrap svg{display:block;width:100%;height:auto;cursor:grab}
+.mapwrap svg:active{cursor:grabbing}
+.quad{font-size:7px;letter-spacing:.14em;font-weight:800;fill:#3f5570;
+  text-transform:uppercase}
+.axl{font-size:7.5px;letter-spacing:.16em;font-weight:800;fill:#5f7590}
+.grid line{stroke:#152539;stroke-width:.5}
+.grid line.mid{stroke:#2a4258}
+.node{cursor:pointer}
+.node circle.bg{fill:#0b1523;stroke-width:1.2}
+.node text{font-size:6.5px;font-weight:900;text-anchor:middle;fill:#fff}
+.node.dim{opacity:.30}
+.mapbar{display:flex;gap:8px;align-items:center;margin-bottom:10px;flex-wrap:wrap}
+.mapbar button{background:#101d2e;border:1px solid #1b3050;color:#8fa8c0;font-size:10px;
+  letter-spacing:.14em;font-weight:800;text-transform:uppercase;padding:7px 11px;
+  border-radius:8px;cursor:pointer}
+.mapbar button.on{border-color:var(--acc1);color:var(--acc1)}
+.mapbar .hint{color:#5f7590;font-size:10.5px;margin-left:auto}
+.mapcard{position:absolute;left:10px;right:10px;bottom:10px;z-index:3;
+  background:rgba(8,14,24,.96);border:1px solid #24405f;border-radius:12px;padding:11px 13px;
+  display:none;box-shadow:0 16px 34px -16px #000}
+.mapcard.on{display:block;animation:drop .2s ease}
+.mapcard b{font-size:15px;font-weight:800;letter-spacing:-.3px}
+.mapcard .r{display:flex;gap:16px;margin-top:5px;font-size:11.5px;color:#8fa8c0}
+.mapcard .r i{font-style:normal;color:#e8edf5;font-weight:700}
+.mapcard .x{position:absolute;top:8px;right:11px;color:#5f7590;font-size:15px;cursor:pointer}
+
+/* ================= HOLOGRAPHIC TILT CARDS ================================ */
+/* The pick card behaves like a foil trading card: it tilts toward however you
+   are holding the phone (gyroscope) or toward the cursor on a desktop, with a
+   sheen that sweeps across it and a glare that tracks the light source. All of
+   it is transform + opacity so it stays on the compositor and never repaints.
+   Anyone who asks their phone for reduced motion gets a flat card. */
+.holo{transform-style:preserve-3d;will-change:transform;
+  transition:transform .45s cubic-bezier(.22,1,.36,1)}
+.holo.live{transition:none}                       /* no lag while tilting */
+.holo .foil,.holo .glare{position:absolute;inset:0;pointer-events:none;z-index:4;
+  border-radius:inherit;opacity:0;transition:opacity .35s}
+.holo.live .foil{opacity:var(--fo,.5)}
+.holo.live .glare{opacity:var(--go,.5)}
+.holo .foil{
+  background:repeating-linear-gradient(105deg,
+    rgba(255,255,255,0) 0%,
+    color-mix(in srgb,var(--t1,#5ef2a5) 55%,transparent) 8%,
+    rgba(255,255,255,.38) 13%,
+    color-mix(in srgb,var(--t2,#5ec8ff) 55%,transparent) 18%,
+    rgba(255,255,255,0) 26%);
+  background-size:260% 260%;
+  background-position:var(--fx,50%) var(--fy,50%);
+  mix-blend-mode:color-dodge;filter:saturate(1.35) blur(.4px)}
+/* the hero already has the moving mesh behind it, so its sheen stays a hint */
+.feat.holo .foil{mix-blend-mode:overlay;filter:saturate(1.1) blur(1px)}
+.feat.holo .glare{mix-blend-mode:soft-light}
+.holo .glare{
+  background:radial-gradient(circle at var(--gx,50%) var(--gy,50%),
+    rgba(255,255,255,.34) 0%,rgba(255,255,255,.12) 26%,transparent 58%);
+  mix-blend-mode:soft-light}
+.holo .edge{position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:5;
+  box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--t1,#5ef2a5) 55%,transparent),
+             inset 0 0 24px -10px var(--t1,#5ef2a5);opacity:0;transition:opacity .35s}
+.holo.live .edge{opacity:.9}
+.holo .inner,.holo .fin{transform:translateZ(22px)}   /* content floats above */
+.feat.holo{transform-origin:50% 100%}
+@media(prefers-reduced-motion:reduce){
+  .holo{transform:none!important}
+  .holo .foil,.holo .glare,.holo .edge{display:none}
+}
+.tiltask{position:fixed;left:50%;bottom:96px;transform:translateX(-50%);z-index:70;
+  background:rgba(10,18,30,.96);border:1px solid #24405f;border-radius:999px;
+  padding:9px 15px;font-size:11.5px;font-weight:700;letter-spacing:.04em;color:#cfe0f0;
+  box-shadow:0 14px 34px -16px #000;cursor:pointer}
+.tiltask b{color:var(--acc1);margin-right:6px}
+
 /* ============ A3 · BROADCAST PRO+ ============ */
 body{background:#05080e;font-family:'Helvetica Neue',Inter,-apple-system,sans-serif;
   padding-bottom:148px}
@@ -397,7 +525,7 @@ tr.flash.lose td{animation:flashl 1.1s ease-out}
 </style></head><body>
 
 <div id="stale" class="stale"></div>
-<div class="navbar"><b>🏈 NFL MODEL</b><span class="wk">Tue Sep 22, 8:33 PM ET</span>
+<div class="navbar"><b>🏈 NFL MODEL</b><span class="wk">Tue Sep 22, 9:49 PM ET</span>
   <div class="burger" onclick="menu()"><i></i><i></i><i></i></div></div>
 <nav class="menu">
   <a onclick="go('bets')">Today's bets <span>1 play</span></a>
@@ -409,7 +537,7 @@ tr.flash.lose td{animation:flashl 1.1s ease-out}
   <a onclick="go('record')">My record <span>9-7-1 · +1.8u</span></a>
   <a onclick="go('power')">Power ratings <span>32 teams</span></a>
   <a onclick="go('how')">How it works <span></span></a>
-</nav>
+<a onclick="go('shop')">Line shopping <span>96 markets</span></a><a onclick="go('teaser')">Teaser lab <span>2 legs</span></a><a onclick="go('calib')">Calibration <span>10 bets</span></a><a onclick="go('match')">Scheme &amp; trenches <span>32 teams</span></a></nav>
 
 <header class="hero"><div class="rec">
   <div><span>Season</span><b>9-7-1</b></div>
@@ -1142,7 +1270,7 @@ tr.flash.lose td{animation:flashl 1.1s ease-out}
    <p><b>Grading.</b> Finished games are graded automatically against the number that was posted, and the closing line is recorded, so the record can be judged on more than wins and losses.</p>
    <p><b>What it isn't.</b> It is not beating the market yet. Measured against closing lines, the model's average miss is about the same as the book's. Bet accordingly.</p>
  </section>
-</main>
+<section id='shop' class='view'><h2>Where the number is</h2><p class='note'>96 markets on today's plays, priced across every book on the feed. Gain is how much implied probability you pick up by taking the best book instead of Hard Rock — the one edge that does not depend on the model being right.</p><table><tr><th>Bet</th><th class='n'>Hard Rock</th><th class='n'>Best</th><th class='n'>Gain</th></tr><tr><td><b>CHI ML</b><small>PHI @ CHI</small></td><td class='n'>+145</td><td class='n'><b>+166</b><small>Betfair</small></td><td class='n up'><b>+3.2%</b></td></tr><tr><td><b>DET ML</b><small>NYJ @ DET</small></td><td class='n'>-325</td><td class='n'><b>-278</b><small>Matchbook</small></td><td class='n up'><b>+2.9%</b></td></tr><tr><td><b>SF ML</b><small>ARI @ SF</small></td><td class='n'>-450</td><td class='n'><b>-378</b><small>Pinnacle</small></td><td class='n up'><b>+2.7%</b></td></tr><tr><td><b>BUF ML</b><small>LAC @ BUF</small></td><td class='n'>-350</td><td class='n'><b>-303</b><small>Matchbook</small></td><td class='n up'><b>+2.6%</b></td></tr><tr><td><b>NYG ML</b><small>TEN @ NYG</small></td><td class='n'>-170</td><td class='n'><b>-152</b><small>Unibet (NL)</small></td><td class='n up'><b>+2.6%</b></td></tr><tr><td><b>SEA ML</b><small>SEA @ WAS</small></td><td class='n'>-325</td><td class='n'><b>-286</b><small>Matchbook</small></td><td class='n up'><b>+2.4%</b></td></tr><tr><td><b>DEN spread</b><small>LAR @ DEN</small></td><td class='n'>-110<small>2.5 vs 2.5</small></td><td class='n'><b>+100</b><small>888sport</small></td><td class='n up'><b>+2.4%</b></td></tr><tr><td><b>PHI spread</b><small>PHI @ CHI</small></td><td class='n'>-120<small>-3.0 vs -3.0</small></td><td class='n'><b>-109</b><small>GTbets</small></td><td class='n up'><b>+2.4%</b></td></tr><tr><td><b>BUF spread</b><small>LAC @ BUF</small></td><td class='n'>-115<small>-7.0 vs -7.0</small></td><td class='n'><b>-105</b><small>LowVig.ag</small></td><td class='n up'><b>+2.3%</b></td></tr><tr><td><b>Under</b><small>HOU @ IND</small></td><td class='n'>-115<small>43.5 vs 43.5</small></td><td class='n'><b>-105</b><small>Coolbet</small></td><td class='n up'><b>+2.3%</b></td></tr><tr><td><b>ARI ML</b><small>ARI @ SF</small></td><td class='n'>+325</td><td class='n'><b>+370</b><small>DraftKings</small></td><td class='n up'><b>+2.3%</b></td></tr><tr><td><b>ATL ML</b><small>ATL @ GB</small></td><td class='n'>+225</td><td class='n'><b>+250</b><small>888sport</small></td><td class='n up'><b>+2.2%</b></td></tr><tr><td><b>PHI ML</b><small>PHI @ CHI</small></td><td class='n'>-175</td><td class='n'><b>-159</b><small>Marathon Bet</small></td><td class='n up'><b>+2.2%</b></td></tr><tr><td><b>CIN spread</b><small>CIN @ PIT</small></td><td class='n'>-110<small>-3.5 vs -3.5</small></td><td class='n'><b>-101</b><small>Matchbook</small></td><td class='n up'><b>+2.1%</b></td></tr><tr><td><b>DET spread</b><small>NYJ @ DET</small></td><td class='n'>-115<small>-6.5 vs -6.5</small></td><td class='n'><b>-106</b><small>Matchbook</small></td><td class='n up'><b>+2.0%</b></td></tr><tr><td><b>KC ML</b><small>KC @ MIA</small></td><td class='n'>-800</td><td class='n'><b>-663</b><small>Pinnacle</small></td><td class='n up'><b>+2.0%</b></td></tr><tr><td><b>BAL ML</b><small>BAL @ DAL</small></td><td class='n'>-160</td><td class='n'><b>-147</b><small>Betfair</small></td><td class='n up'><b>+2.0%</b></td></tr><tr><td><b>GB ML</b><small>ATL @ GB</small></td><td class='n'>-275</td><td class='n'><b>-250</b><small>Matchbook</small></td><td class='n gold'><b>+1.9%</b></td></tr><tr><td><b>NYJ ML</b><small>NYJ @ DET</small></td><td class='n'>+250</td><td class='n'><b>+275</b><small>Betfair</small></td><td class='n gold'><b>+1.9%</b></td></tr><tr><td><b>PIT ML</b><small>CIN @ PIT</small></td><td class='n'>+155</td><td class='n'><b>+168</b><small>Matchbook</small></td><td class='n gold'><b>+1.9%</b></td></tr><tr><td><b>WAS ML</b><small>SEA @ WAS</small></td><td class='n'>+250</td><td class='n'><b>+275</b><small>Matchbook</small></td><td class='n gold'><b>+1.9%</b></td></tr><tr><td><b>TB ML</b><small>MIN @ TB</small></td><td class='n'>+100</td><td class='n'><b>+108</b><small>Betfair</small></td><td class='n gold'><b>+1.9%</b></td></tr><tr><td><b>MIN ML</b><small>MIN @ TB</small></td><td class='n'>-120</td><td class='n'><b>-111</b><small>Betfair</small></td><td class='n gold'><b>+1.9%</b></td></tr><tr><td><b>DAL ML</b><small>BAL @ DAL</small></td><td class='n'>+135</td><td class='n'><b>+146</b><small>Pinnacle</small></td><td class='n gold'><b>+1.9%</b></td></tr><tr><td><b>LV ML</b><small>LV @ NO</small></td><td class='n'>+145</td><td class='n'><b>+156</b><small>Matchbook</small></td><td class='n gold'><b>+1.8%</b></td></tr><tr><td><b>LAC ML</b><small>LAC @ BUF</small></td><td class='n'>+275</td><td class='n'><b>+300</b><small>FanDuel</small></td><td class='n gold'><b>+1.7%</b></td></tr><tr><td><b>CLE ML</b><small>CAR @ CLE</small></td><td class='n'>+125</td><td class='n'><b>+134</b><small>Matchbook</small></td><td class='n gold'><b>+1.7%</b></td></tr><tr><td><b>HOU ML</b><small>HOU @ IND</small></td><td class='n'>-150</td><td class='n'><b>-140</b><small>BetUS</small></td><td class='n gold'><b>+1.7%</b></td></tr><tr><td><b>NE ML</b><small>NE @ JAX</small></td><td class='n'>+135</td><td class='n'><b>+145</b><small>BetAnything</small></td><td class='n gold'><b>+1.7%</b></td></tr><tr><td><b>CIN ML</b><small>CIN @ PIT</small></td><td class='n'>-185</td><td class='n'><b>-172</b><small>Marathon Bet</small></td><td class='n gold'><b>+1.7%</b></td></tr><tr><td><b>NYG spread</b><small>TEN @ NYG</small></td><td class='n'>-115<small>-3.0 vs -3.0</small></td><td class='n'><b>-108</b><small>FanDuel</small></td><td class='n gold'><b>+1.6%</b></td></tr><tr><td><b>DAL spread</b><small>BAL @ DAL</small></td><td class='n'>-110<small>3.0 vs 3.0</small></td><td class='n'><b>-103</b><small>Pinnacle</small></td><td class='n gold'><b>+1.6%</b></td></tr><tr><td><b>DEN ML</b><small>LAR @ DEN</small></td><td class='n'>+115</td><td class='n'><b>+122</b><small>Betfair</small></td><td class='n gold'><b>+1.5%</b></td></tr><tr><td><b>Over</b><small>PHI @ CHI</small></td><td class='n'>-110<small>43.5 vs 43.5</small></td><td class='n'><b>-104</b><small>Pinnacle</small></td><td class='n gold'><b>+1.4%</b></td></tr><tr><td><b>HOU spread</b><small>HOU @ IND</small></td><td class='n'>-120<small>-2.5 vs -2.5</small></td><td class='n'><b>-114</b><small>GTbets</small></td><td class='n gold'><b>+1.3%</b></td></tr><tr><td><b>MIA ML</b><small>KC @ MIA</small></td><td class='n'>+525</td><td class='n'><b>+580</b><small>Betfair</small></td><td class='n gold'><b>+1.3%</b></td></tr><tr><td><b>MIN spread</b><small>MIN @ TB</small></td><td class='n'>-115<small>-1.0 vs -1.0</small></td><td class='n'><b>-109</b><small>Matchbook</small></td><td class='n gold'><b>+1.3%</b></td></tr><tr><td><b>Over</b><small>MIN @ TB</small></td><td class='n'>-115<small>42.5 vs 42.0</small></td><td class='n'><b>-109</b><small>Matchbook</small></td><td class='n gold'><b>+1.3%</b></td></tr><tr><td><b>LAR ML</b><small>LAR @ DEN</small></td><td class='n'>-135</td><td class='n'><b>-128</b><small>LowVig.ag</small></td><td class='n gold'><b>+1.3%</b></td></tr><tr><td><b>CLE spread</b><small>CAR @ CLE</small></td><td class='n'>-115<small>3.0 vs 3.0</small></td><td class='n'><b>-110</b><small>MyBookie.ag</small></td><td class='n gold'><b>+1.1%</b></td></tr><tr><td><b>TEN ML</b><small>TEN @ NYG</small></td><td class='n'>+145</td><td class='n'><b>+152</b><small>Betfair</small></td><td class='n gold'><b>+1.1%</b></td></tr><tr><td><b>NO spread</b><small>LV @ NO</small></td><td class='n'>-120<small>-3.0 vs -3.0</small></td><td class='n'><b>-115</b><small>FanDuel</small></td><td class='n gold'><b>+1.1%</b></td></tr><tr><td><b>Under</b><small>KC @ MIA</small></td><td class='n'>-110<small>46.0 vs 46.5</small></td><td class='n'><b>-106</b><small>Matchbook</small></td><td class='n dim'><b>+0.9%</b></td></tr><tr><td><b>NO ML</b><small>LV @ NO</small></td><td class='n'>-175</td><td class='n'><b>-168</b><small>FanDuel</small></td><td class='n dim'><b>+0.9%</b></td></tr><tr><td><b>JAX ML</b><small>NE @ JAX</small></td><td class='n'>-155</td><td class='n'><b>-150</b><small>Unibet (SE)</small></td><td class='n dim'><b>+0.8%</b></td></tr><tr><td><b>Under</b><small>NE @ JAX</small></td><td class='n'>-110<small>45.0 vs 45.5</small></td><td class='n'><b>-107</b><small>LowVig.ag</small></td><td class='n dim'><b>+0.7%</b></td></tr><tr><td><b>Under</b><small>TEN @ NYG</small></td><td class='n'>-110<small>40.5 vs 40.5</small></td><td class='n'><b>-107</b><small>LowVig.ag</small></td><td class='n dim'><b>+0.7%</b></td></tr><tr><td><b>Over</b><small>LV @ NO</small></td><td class='n'>-115<small>43.5 vs 43.5</small></td><td class='n'><b>-112</b><small>DraftKings</small></td><td class='n dim'><b>+0.7%</b></td></tr><tr><td><b>IND ML</b><small>HOU @ IND</small></td><td class='n'>+130</td><td class='n'><b>+133</b><small>Pinnacle</small></td><td class='n dim'><b>+0.6%</b></td></tr><tr><td><b>CAR ML</b><small>CAR @ CLE</small></td><td class='n'>-145</td><td class='n'><b>-143</b><small>Matchbook</small></td><td class='n dim'><b>+0.3%</b></td></tr><tr><td><b>Under</b><small>ATL @ GB</small></td><td class='n'>-105<small>44.0 vs 44.5</small></td><td class='n'><b>-104</b><small>LowVig.ag</small></td><td class='n dim'><b>+0.2%</b></td></tr><tr><td><b>Under</b><small>CAR @ CLE</small></td><td class='n'>-110<small>42.0 vs 42.5</small></td><td class='n'><b>-109</b><small>Coolbet</small></td><td class='n dim'><b>+0.2%</b></td></tr><tr><td><b>Over</b><small>NE @ JAX</small></td><td class='n'>-110<small>45.0 vs 45.0</small></td><td class='n'><b>-109</b><small>Matchbook</small></td><td class='n dim'><b>+0.2%</b></td></tr><tr><td><b>Over</b><small>CIN @ PIT</small></td><td class='n'>-110<small>42.5 vs 42.0</small></td><td class='n'><b>-109</b><small>LowVig.ag</small></td><td class='n dim'><b>+0.2%</b></td></tr><tr><td><b>Under</b><small>LAR @ DEN</small></td><td class='n'>-110<small>45.5 vs 45.5</small></td><td class='n'><b>-109</b><small>GTbets</small></td><td class='n dim'><b>+0.2%</b></td></tr><tr><td><b>Over</b><small>NYJ @ DET</small></td><td class='n'>-110<small>48.0 vs 47.5</small></td><td class='n'><b>-110</b><small>888sport</small></td><td class='n dim'><b>—</b></td></tr><tr><td><b>Under</b><small>CIN @ PIT</small></td><td class='n'>-110<small>42.5 vs 43.0</small></td><td class='n'><b>-110</b><small>BetAnything</small></td><td class='n dim'><b>—</b></td></tr><tr><td><b>Over</b><small>ARI @ SF</small></td><td class='n'>-110<small>47.5 vs 47.5</small></td><td class='n'><b>-110</b><small>Hard Rock Bet (OH)</small></td><td class='n dim'><b>—</b></td></tr><tr><td><b>TB spread</b><small>MIN @ TB</small></td><td class='n'>-110<small>1.0 vs 2.0</small></td><td class='n'><b>-110</b><small>MyBookie.ag</small></td><td class='n dim'><b>—</b></td></tr><tr><td><b>LAR spread</b><small>LAR @ DEN</small></td><td class='n'>-110<small>-2.5 vs -1.5</small></td><td class='n'><b>-110</b><small>LowVig.ag</small></td><td class='n dim'><b>—</b></td></tr><tr><td><b>Over</b><small>LAR @ DEN</small></td><td class='n'>-110<small>45.5 vs 44.5</small></td><td class='n'><b>-110</b><small>Matchbook</small></td><td class='n dim'><b>—</b></td></tr><tr><td><b>Under</b><small>PHI @ CHI</small></td><td class='n'>-110<small>43.5 vs 44.5</small></td><td class='n'><b>-110</b><small>1xBet</small></td><td class='n dim'><b>—</b></td></tr><tr><td><b>Under</b><small>ARI @ SF</small></td><td class='n'>-110<small>47.5 vs 48.5</small></td><td class='n'><b>-111</b><small>Matchbook</small></td><td class='n dim'><b>-0.2%</b></td></tr><tr><td><b>Over</b><small>CAR @ CLE</small></td><td class='n'>-110<small>42.0 vs 41.5</small></td><td class='n'><b>-112</b><small>betPARX</small></td><td class='n dim'><b>-0.4%</b></td></tr><tr><td><b>Under</b><small>BAL @ DAL</small></td><td class='n'>-110<small>52.5 vs 53.0</small></td><td class='n'><b>-112</b><small>Pinnacle</small></td><td class='n dim'><b>-0.4%</b></td></tr><tr><td><b>SF spread</b><small>ARI @ SF</small></td><td class='n'>-115<small>-8.0 vs -7.5</small></td><td class='n'><b>-118</b><small>Nordic Bet</small></td><td class='n dim'><b>-0.6%</b></td></tr><tr><td><b>ATL spread</b><small>ATL @ GB</small></td><td class='n'>-105<small>6.0 vs 6.5</small></td><td class='n'><b>-108</b><small>BetMGM</small></td><td class='n dim'><b>-0.7%</b></td></tr><tr><td><b>Under</b><small>LAC @ BUF</small></td><td class='n'>-110<small>50.0 vs 50.5</small></td><td class='n'><b>-113</b><small>LowVig.ag</small></td><td class='n dim'><b>-0.7%</b></td></tr><tr><td><b>Over</b><small>TEN @ NYG</small></td><td class='n'>-110<small>40.5 vs 39.5</small></td><td class='n'><b>-114</b><small>Matchbook</small></td><td class='n dim'><b>-0.9%</b></td></tr><tr><td><b>SEA spread</b><small>SEA @ WAS</small></td><td class='n'>-110<small>-7.0 vs -6.5</small></td><td class='n'><b>-114</b><small>Coolbet</small></td><td class='n dim'><b>-0.9%</b></td></tr><tr><td><b>GB spread</b><small>ATL @ GB</small></td><td class='n'>-115<small>-6.0 vs -5.5</small></td><td class='n'><b>-120</b><small>Nordic Bet</small></td><td class='n dim'><b>-1.1%</b></td></tr><tr><td><b>Under</b><small>NYJ @ DET</small></td><td class='n'>-110<small>48.0 vs 48.5</small></td><td class='n'><b>-115</b><small>DraftKings</small></td><td class='n dim'><b>-1.1%</b></td></tr><tr><td><b>MIA spread</b><small>KC @ MIA</small></td><td class='n'>-110<small>11.5 vs 12.5</small></td><td class='n'><b>-115</b><small>Tipico</small></td><td class='n dim'><b>-1.1%</b></td></tr><tr><td><b>Over</b><small>KC @ MIA</small></td><td class='n'>-110<small>46.0 vs 45.5</small></td><td class='n'><b>-115</b><small>FanDuel</small></td><td class='n dim'><b>-1.1%</b></td></tr><tr><td><b>PIT spread</b><small>CIN @ PIT</small></td><td class='n'>-110<small>3.5 vs 4.0</small></td><td class='n'><b>-115</b><small>theScore Bet</small></td><td class='n dim'><b>-1.1%</b></td></tr><tr><td><b>Under</b><small>SEA @ WAS</small></td><td class='n'>-105<small>40.0 vs 40.5</small></td><td class='n'><b>-110</b><small>Matchbook</small></td><td class='n dim'><b>-1.2%</b></td></tr><tr><td><b>Over</b><small>HOU @ IND</small></td><td class='n'>-105<small>43.5 vs 43.0</small></td><td class='n'><b>-112</b><small>Unibet (NL)</small></td><td class='n dim'><b>-1.6%</b></td></tr><tr><td><b>KC spread</b><small>KC @ MIA</small></td><td class='n'>-110<small>-11.5 vs -10.5</small></td><td class='n'><b>-118</b><small>FanDuel</small></td><td class='n dim'><b>-1.7%</b></td></tr><tr><td><b>Over</b><small>SEA @ WAS</small></td><td class='n'>-115<small>40.0 vs 39.5</small></td><td class='n'><b>-125</b><small>888sport</small></td><td class='n dim'><b>-2.1%</b></td></tr><tr><td><b>LAC spread</b><small>LAC @ BUF</small></td><td class='n'>-105<small>7.0 vs 7.5</small></td><td class='n'><b>-115</b><small>Tipico</small></td><td class='n dim'><b>-2.3%</b></td></tr><tr><td><b>CAR spread</b><small>CAR @ CLE</small></td><td class='n'>-105<small>-3.0 vs -2.5</small></td><td class='n'><b>-115</b><small>FanDuel</small></td><td class='n dim'><b>-2.3%</b></td></tr><tr><td><b>NYJ spread</b><small>NYJ @ DET</small></td><td class='n'>-105<small>6.5 vs 7.0</small></td><td class='n'><b>-115</b><small>theScore Bet</small></td><td class='n dim'><b>-2.3%</b></td></tr><tr><td><b>Under</b><small>LV @ NO</small></td><td class='n'>-105<small>43.5 vs 44.5</small></td><td class='n'><b>-115</b><small>theScore Bet</small></td><td class='n dim'><b>-2.3%</b></td></tr><tr><td><b>CHI spread</b><small>PHI @ CHI</small></td><td class='n'>-105<small>3.0 vs 3.5</small></td><td class='n'><b>-115</b><small>Tipico</small></td><td class='n dim'><b>-2.3%</b></td></tr><tr><td><b>ARI spread</b><small>ARI @ SF</small></td><td class='n'>-105<small>8.0 vs 9.0</small></td><td class='n'><b>-116</b><small>LowVig.ag</small></td><td class='n dim'><b>-2.5%</b></td></tr><tr><td><b>JAX spread</b><small>NE @ JAX</small></td><td class='n'>-110<small>-3.0 vs -2.5</small></td><td class='n'><b>-122</b><small>FanDuel</small></td><td class='n dim'><b>-2.6%</b></td></tr><tr><td><b>Under</b><small>MIN @ TB</small></td><td class='n'>-105<small>42.5 vs 43.0</small></td><td class='n'><b>-118</b><small>Pinnacle</small></td><td class='n dim'><b>-2.9%</b></td></tr><tr><td><b>IND spread</b><small>HOU @ IND</small></td><td class='n'>+100<small>2.5 vs 3.0</small></td><td class='n'><b>-113</b><small>Unibet (NL)</small></td><td class='n dim'><b>-3.1%</b></td></tr><tr><td><b>NE spread</b><small>NE @ JAX</small></td><td class='n'>-110<small>3.0 vs 3.5</small></td><td class='n'><b>-125</b><small>888sport</small></td><td class='n dim'><b>-3.2%</b></td></tr><tr><td><b>WAS spread</b><small>SEA @ WAS</small></td><td class='n'>-110<small>7.0 vs 7.5</small></td><td class='n'><b>-125</b><small>Fliff</small></td><td class='n dim'><b>-3.2%</b></td></tr><tr><td><b>TEN spread</b><small>TEN @ NYG</small></td><td class='n'>+100<small>3.0 vs 3.5</small></td><td class='n'><b>-115</b><small>DraftKings</small></td><td class='n dim'><b>-3.5%</b></td></tr><tr><td><b>LV spread</b><small>LV @ NO</small></td><td class='n'>+100<small>3.0 vs 3.5</small></td><td class='n'><b>-116</b><small>Matchbook</small></td><td class='n dim'><b>-3.7%</b></td></tr><tr><td><b>BAL spread</b><small>BAL @ DAL</small></td><td class='n'>-110<small>-3.0 vs -2.5</small></td><td class='n'><b>-130</b><small>Betsson</small></td><td class='n dim'><b>-4.1%</b></td></tr><tr><td><b>Over</b><small>ATL @ GB</small></td><td class='n'>-115<small>44.0 vs 42.5</small></td><td class='n'><b>-141</b><small>Nordic Bet</small></td><td class='n dim'><b>-5.0%</b></td></tr><tr><td><b>Over</b><small>LAC @ BUF</small></td><td class='n'>-110<small>50.0 vs 47.5</small></td><td class='n'><b>-145</b><small>Nordic Bet</small></td><td class='n dim'><b>-6.8%</b></td></tr><tr><td><b>Over</b><small>BAL @ DAL</small></td><td class='n'>-110<small>52.5 vs 47.5</small></td><td class='n'><b>-189</b><small>Nordic Bet</small></td><td class='n dim'><b>-13.0%</b></td></tr></table></section><section id='teaser' class='view'><h2>Teaser lab</h2><p class='note'>Two-leg seven-point teasers at -130. Each leg has to cover <b>75%</b> of the time just to break even — that is the white marker. Percentages are how often a real NFL game since 2015 landed on the right side of that teased number, not a model guess.</p><table><tr><th>Leg</th><th>vs break-even</th><th class='n'>Covers</th></tr><tr><td><b>GB -6.5</b><small>ATL @ GB · teased to +0.5</small></td><td class='tzbar'><span class='tz'><i style='width:74.0%;background:#ff8d8d'></i><u style='left:75.2%'></u></span></td><td class='n'><b class='dn'>74%</b><small>533 games</small></td></tr><tr><td><b>ATL +6.5</b><small>ATL @ GB · teased to +13.5</small></td><td class='tzbar'><span class='tz'><i style='width:67.6%;background:#ff8d8d'></i><u style='left:75.2%'></u></span></td><td class='n'><b class='dn'>68%</b><small>533 games</small></td></tr></table></section><section id='calib' class='view'><h2>Is the model honest?</h2><p class='note'>Each dot is a bucket of picks: where it sits left to right is what the model claimed, how high it sits is what actually happened. The dotted diagonal is perfect honesty. Above the line the model is underselling itself, below it is talking its own book. Dot size is how many bets are in the bucket, and with 10 graded so far none of this means much yet — it will by December.</p><div class='calibbox'><svg viewBox='0 0 300 210' class='calib'><line class='diag' x1='34.0' y1='176.0' x2='286.0' y2='16.0'/><line class='ax' x1='34' y1='176.0' x2='292' y2='176.0'/><line class='ax' x1='34' y1='8' x2='34' y2='176.0'/><polyline class='cline' points='145.8,256.0 172.8,56.0 187.3,-10.7 214.3,122.7'/><circle cx='145.8' cy='256.0' r='4.4' fill='#5ec8ff' opacity='.85'/><text class='clab' x='145.8' y='248.6'>2</text><circle cx='172.8' cy='56.0' r='5.8' fill='#5ec8ff' opacity='.85'/><text class='clab' x='172.8' y='47.2'>4</text><circle cx='187.3' cy='-10.7' r='4.4' fill='#5ec8ff' opacity='.85'/><text class='clab' x='187.3' y='-18.1'>2</text><circle cx='214.3' cy='122.7' r='4.4' fill='#5ec8ff' opacity='.85'/><text class='clab' x='214.3' y='115.3'>2</text><text class='clab' x='76.0' y='187'>40%</text><text class='clab' x='118.0' y='187'>50%</text><text class='clab' x='160.0' y='187'>60%</text><text class='clab' x='202.0' y='187'>70%</text><text class='clab' x='244.0' y='187'>80%</text><text class='clab' x='29' y='151.8' text-anchor='end'>40%</text><text class='clab' x='29' y='98.5' text-anchor='end'>60%</text><text class='clab' x='29' y='45.2' text-anchor='end'>80%</text><text class='clab' x='150.0' y='204'>MODEL SAID</text><text class='clab' x='-%d' y='11' transform='rotate(-90)'>ACTUALLY WON</text></svg></div></section><section id='match' class='view'><h2>How teams actually play</h2><p class='note'>Coverage and blitz tendencies, plus what each line does in the trenches. League average sack rate is 7% — green means better than that, red worse. This is scouting context for a number that looks strange, not a signal on its own.</p><table><tr><th>Team</th><th class='n'>Zone</th><th class='n'>Blitz</th><th class='n'>O-line</th><th class='n'>D-line</th></tr><tr><td><b>ARI</b><small>Zone-leaning · Neutral</small></td><td class='n'>74.7%<small>zone</small></td><td class='n'>23.9%<small>blitz</small></td><td class='n up'>4%<small>sacks allowed</small></td><td class='n up'>7%<small>sack rate</small></td></tr><tr><td><b>ATL</b><small>Zone-leaning · Neutral</small></td><td class='n'>76.8%<small>zone</small></td><td class='n'>33.9%<small>blitz</small></td><td class='n dn'>11%<small>sacks allowed</small></td><td class='n dim'>5%<small>sack rate</small></td></tr><tr><td><b>BAL</b><small>Heavy man · Neutral</small></td><td class='n'>62.7%<small>zone</small></td><td class='n'>23.2%<small>blitz</small></td><td class='n dn'>8%<small>sacks allowed</small></td><td class='n up'>7%<small>sack rate</small></td></tr><tr><td><b>BUF</b><small>Balanced · Neutral</small></td><td class='n'>70.4%<small>zone</small></td><td class='n'>21.1%<small>blitz</small></td><td class='n up'>6%<small>sacks allowed</small></td><td class='n up'>8%<small>sack rate</small></td></tr><tr><td><b>CAR</b><small>Heavy zone · Neutral</small></td><td class='n'>83.1%<small>zone</small></td><td class='n'>26.6%<small>blitz</small></td><td class='n up'>5%<small>sacks allowed</small></td><td class='n up'>8%<small>sack rate</small></td></tr><tr><td><b>CHI</b><small>Man-leaning · Neutral</small></td><td class='n'>66.0%<small>zone</small></td><td class='n'>28.2%<small>blitz</small></td><td class='n dn'>9%<small>sacks allowed</small></td><td class='n up'>8%<small>sack rate</small></td></tr><tr><td><b>CIN</b><small>Man-leaning · Neutral</small></td><td class='n'>67.7%<small>zone</small></td><td class='n'>17.1%<small>blitz</small></td><td class='n dn'>8%<small>sacks allowed</small></td><td class='n up'>9%<small>sack rate</small></td></tr><tr><td><b>CLE</b><small>Heavy man · Pass-funnel</small></td><td class='n'>52.9%<small>zone</small></td><td class='n'>27.8%<small>blitz</small></td><td class='n dn'>12%<small>sacks allowed</small></td><td class='n dim'>7%<small>sack rate</small></td></tr><tr><td><b>DAL</b><small>Balanced · Neutral</small></td><td class='n'>72.2%<small>zone</small></td><td class='n'>28.2%<small>blitz</small></td><td class='n up'>3%<small>sacks allowed</small></td><td class='n dim'>3%<small>sack rate</small></td></tr><tr><td><b>DEN</b><small>Heavy man · Neutral</small></td><td class='n'>63.1%<small>zone</small></td><td class='n'>31.9%<small>blitz</small></td><td class='n up'>6%<small>sacks allowed</small></td><td class='n dim'>7%<small>sack rate</small></td></tr><tr><td><b>DET</b><small>Heavy man · Pass-funnel</small></td><td class='n'>63.0%<small>zone</small></td><td class='n'>23.7%<small>blitz</small></td><td class='n up'>6%<small>sacks allowed</small></td><td class='n up'>7%<small>sack rate</small></td></tr><tr><td><b>GB</b><small>Heavy zone · Neutral</small></td><td class='n'>78.4%<small>zone</small></td><td class='n'>21.0%<small>blitz</small></td><td class='n dn'>9%<small>sacks allowed</small></td><td class='n up'>10%<small>sack rate</small></td></tr><tr><td><b>HOU</b><small>Zone-leaning · Neutral</small></td><td class='n'>74.7%<small>zone</small></td><td class='n'>21.9%<small>blitz</small></td><td class='n up'>7%<small>sacks allowed</small></td><td class='n up'>10%<small>sack rate</small></td></tr><tr><td><b>IND</b><small>Man-leaning · Neutral</small></td><td class='n'>65.7%<small>zone</small></td><td class='n'>27.7%<small>blitz</small></td><td class='n up'>3%<small>sacks allowed</small></td><td class='n dim'>5%<small>sack rate</small></td></tr><tr><td><b>JAX</b><small>Heavy zone · Neutral</small></td><td class='n'>78.6%<small>zone</small></td><td class='n'>25.8%<small>blitz</small></td><td class='n up'>5%<small>sacks allowed</small></td><td class='n up'>9%<small>sack rate</small></td></tr><tr><td><b>KC</b><small>Balanced · Neutral</small></td><td class='n'>74.1%<small>zone</small></td><td class='n'>31.4%<small>blitz</small></td><td class='n up'>5%<small>sacks allowed</small></td><td class='n dim'>6%<small>sack rate</small></td></tr><tr><td><b>LAC</b><small>Heavy zone · Run-funnel</small></td><td class='n'>81.3%<small>zone</small></td><td class='n'>18.9%<small>blitz</small></td><td class='n dn'>10%<small>sacks allowed</small></td><td class='n dim'>4%<small>sack rate</small></td></tr><tr><td><b>LAR</b><small>Heavy zone · Run-funnel</small></td><td class='n'>79.8%<small>zone</small></td><td class='n'>18.1%<small>blitz</small></td><td class='n up'>2%<small>sacks allowed</small></td><td class='n dim'>3%<small>sack rate</small></td></tr><tr><td><b>LV</b><small>Heavy zone · Pass-funnel</small></td><td class='n'>78.6%<small>zone</small></td><td class='n'>21.7%<small>blitz</small></td><td class='n up'>3%<small>sacks allowed</small></td><td class='n up'>13%<small>sack rate</small></td></tr><tr><td><b>MIA</b><small>Balanced · Neutral</small></td><td class='n'>71.7%<small>zone</small></td><td class='n'>31.0%<small>blitz</small></td><td class='n dn'>15%<small>sacks allowed</small></td><td class='n dim'>0%<small>sack rate</small></td></tr><tr><td><b>MIN</b><small>Zone-leaning · Pass-funnel</small></td><td class='n'>77.1%<small>zone</small></td><td class='n'>48.0%<small>blitz</small></td><td class='n dn'>12%<small>sacks allowed</small></td><td class='n up'>9%<small>sack rate</small></td></tr><tr><td><b>NE</b><small>Man-leaning · Neutral</small></td><td class='n'>67.1%<small>zone</small></td><td class='n'>27.2%<small>blitz</small></td><td class='n dn'>10%<small>sacks allowed</small></td><td class='n up'>9%<small>sack rate</small></td></tr><tr><td><b>NO</b><small>Zone-leaning · Neutral</small></td><td class='n'>77.9%<small>zone</small></td><td class='n'>24.9%<small>blitz</small></td><td class='n dn'>8%<small>sacks allowed</small></td><td class='n dim'>5%<small>sack rate</small></td></tr><tr><td><b>NYG</b><small>Man-leaning · Neutral</small></td><td class='n'>63.6%<small>zone</small></td><td class='n'>29.8%<small>blitz</small></td><td class='n up'>6%<small>sacks allowed</small></td><td class='n dim'>2%<small>sack rate</small></td></tr><tr><td><b>NYJ</b><small>Heavy man · Pass-funnel</small></td><td class='n'>62.5%<small>zone</small></td><td class='n'>27.2%<small>blitz</small></td><td class='n up'>6%<small>sacks allowed</small></td><td class='n up'>9%<small>sack rate</small></td></tr><tr><td><b>PHI</b><small>Balanced · Run-funnel</small></td><td class='n'>69.1%<small>zone</small></td><td class='n'>18.5%<small>blitz</small></td><td class='n dn'>9%<small>sacks allowed</small></td><td class='n dim'>5%<small>sack rate</small></td></tr><tr><td><b>PIT</b><small>Heavy man · Neutral</small></td><td class='n'>64.5%<small>zone</small></td><td class='n'>29.6%<small>blitz</small></td><td class='n up'>7%<small>sacks allowed</small></td><td class='n up'>14%<small>sack rate</small></td></tr><tr><td><b>SEA</b><small>Heavy zone · Run-funnel</small></td><td class='n'>80.4%<small>zone</small></td><td class='n'>21.7%<small>blitz</small></td><td class='n up'>6%<small>sacks allowed</small></td><td class='n up'>8%<small>sack rate</small></td></tr><tr><td><b>SF</b><small>Zone-leaning · Run-funnel</small></td><td class='n'>76.1%<small>zone</small></td><td class='n'>21.7%<small>blitz</small></td><td class='n up'>0%<small>sacks allowed</small></td><td class='n up'>7%<small>sack rate</small></td></tr><tr><td><b>TB</b><small>Balanced · Neutral</small></td><td class='n'>73.0%<small>zone</small></td><td class='n'>30.7%<small>blitz</small></td><td class='n dn'>10%<small>sacks allowed</small></td><td class='n dim'>4%<small>sack rate</small></td></tr><tr><td><b>TEN</b><small>Zone-leaning · Neutral</small></td><td class='n'>75.0%<small>zone</small></td><td class='n'>20.8%<small>blitz</small></td><td class='n dn'>9%<small>sacks allowed</small></td><td class='n dim'>5%<small>sack rate</small></td></tr><tr><td><b>WAS</b><small>Balanced · Neutral</small></td><td class='n'>70.3%<small>zone</small></td><td class='n'>26.6%<small>blitz</small></td><td class='n up'>1%<small>sacks allowed</small></td><td class='n up'>8%<small>sack rate</small></td></tr></table></section></main>
 
 <div class="tabbar">
   <a class="on" data-t="bets" onclick="go('bets')"><b>🎯</b>Bets</a>
@@ -1153,11 +1281,11 @@ tr.flash.lose td{animation:flashl 1.1s ease-out}
   <a data-t="more" onclick="menu()"><b>☰</b>More</a>
 </div>
 
-<footer>Updated Tue Sep 22, 8:33 PM ET · rebuilt every morning at 11:00 ET<br>
+<footer>Updated Tue Sep 22, 9:49 PM ET · rebuilt every morning at 11:00 ET<br>
 Model output, not advice. Units are bet-to-win: STRONG 2u, SOLID 1u.</footer>
 
 <script>
-var BUILT = 1790123596;
+var BUILT = 1790128195;
 function fmt(sec){
   var d=Math.floor(sec/86400), h=Math.floor(sec%86400/3600), m=Math.floor(sec%3600/60);
   if(d>0) return 'in '+d+'d '+h+'h';
@@ -1187,7 +1315,400 @@ function go(id){
 }
 try{ var t = localStorage.getItem('tab'); if(t && document.getElementById(t)) go(t); }catch(e){}
 </script>
-<script>var TC={"ARI": ["#97233F", "#000000"], "ATL": ["#A71930", "#000000"], "BAL": ["#241773", "#9E7C0C"], "BUF": ["#00338D", "#C60C30"], "CAR": ["#0085CA", "#101820"], "CHI": ["#0B162A", "#C83803"], "CIN": ["#FB4F14", "#000000"], "CLE": ["#FF3C00", "#311D00"], "DAL": ["#041E42", "#869397"], "DEN": ["#FB4F14", "#002244"], "DET": ["#0076B6", "#B0B7BC"], "GB": ["#203731", "#FFB612"], "HOU": ["#03202F", "#A71930"], "IND": ["#002C5F", "#A2AAAD"], "JAX": ["#006778", "#D7A22A"], "KC": ["#E31837", "#FFB81C"], "LV": ["#000000", "#A5ACAF"], "LAC": ["#0080C6", "#FFC20E"], "LAR": ["#003594", "#FFA300"], "MIA": ["#008E97", "#FC4C02"], "MIN": ["#4F2683", "#FFC62F"], "NE": ["#002244", "#C60C30"], "NO": ["#101820", "#D3BC8D"], "NYG": ["#0B2265", "#A71930"], "NYJ": ["#125740", "#FFFFFF"], "PHI": ["#004C54", "#A5ACAF"], "PIT": ["#FFB612", "#101820"], "SF": ["#AA0000", "#B3995D"], "SEA": ["#002244", "#69BE28"], "TB": ["#D50A0A", "#FF7900"], "TEN": ["#0C2340", "#4B92DB"], "WAS": ["#5A1414", "#FFB612"]};
+<script>var TC={"ARI": ["#97233F", "#000000"], "ATL": ["#A71930", "#000000"], "BAL": ["#241773", "#9E7C0C"], "BUF": ["#00338D", "#C60C30"], "CAR": ["#0085CA", "#101820"], "CHI": ["#0B162A", "#C83803"], "CIN": ["#FB4F14", "#000000"], "CLE": ["#FF3C00", "#311D00"], "DAL": ["#041E42", "#869397"], "DEN": ["#FB4F14", "#002244"], "DET": ["#0076B6", "#B0B7BC"], "GB": ["#203731", "#FFB612"], "HOU": ["#03202F", "#A71930"], "IND": ["#002C5F", "#A2AAAD"], "JAX": ["#006778", "#D7A22A"], "KC": ["#E31837", "#FFB81C"], "LV": ["#000000", "#A5ACAF"], "LAC": ["#0080C6", "#FFC20E"], "LAR": ["#003594", "#FFA300"], "MIA": ["#008E97", "#FC4C02"], "MIN": ["#4F2683", "#FFC62F"], "NE": ["#002244", "#C60C30"], "NO": ["#101820", "#D3BC8D"], "NYG": ["#0B2265", "#A71930"], "NYJ": ["#125740", "#FFFFFF"], "PHI": ["#004C54", "#A5ACAF"], "PIT": ["#FFB612", "#101820"], "SF": ["#AA0000", "#B3995D"], "SEA": ["#002244", "#69BE28"], "TB": ["#D50A0A", "#FF7900"], "TEN": ["#0C2340", "#4B92DB"], "WAS": ["#5A1414", "#FFB612"]};var LH={"ATL@PIT": {"pts": [[1789138829, -5.0, 41.5, -5.0, -5.0], [1789225213, -6.0, 41.0, -6.0, -6.0], [1789230033, -6.0, 41.0, -6.0, -6.0], [1789230308, -6.0, 41.0, -6.0, -6.0], [1789230678, -6.0, 41.0, -6.0, -6.0], [1789311611, -6.5, 41.0, -6.5, -6.5]], "open": {"ts": 1789138829, "sp": -5.0, "tot": 41.5}, "now": {"ts": 1789311611, "sp": -6.5, "tot": 41.0, "sharp": -6.5, "public": -6.5}, "steam": [{"ts": 1789225213, "from": -5.0, "to": -6.0}], "rlm": false, "bet": {"ts": 1789225218, "sp": -6, "tot": 41, "pick": "PIT -6.0", "play": "SPREAD + TOTAL"}}, "BAL@IND": {"pts": [[1789138829, 3.5, 47.5, 3.0, 3.5], [1789225213, 3.5, 48.0, 3.0, 3.5], [1789230033, 3.5, 48.0, 3.0, 3.5], [1789230308, 3.5, 48.0, 3.0, 3.5], [1789230678, 3.5, 48.0, 3.0, 3.5], [1789311611, 3.0, 48.0, 3.0, 3.0]], "open": {"ts": 1789138829, "sp": 3.5, "tot": 47.5}, "now": {"ts": 1789311611, "sp": 3.0, "tot": 48.0, "sharp": 3.0, "public": 3.0}, "steam": [], "rlm": false}, "BUF@HOU": {"pts": [[1789138829, 1.5, 45.0, 1.0, 1.5], [1789225213, 1.5, 44.5, 1.0, 1.5], [1789230033, 1.5, 44.5, 1.0, 1.5], [1789230308, 1.5, 44.5, 1.0, 1.5], [1789230678, 1.5, 44.5, 1.0, 1.5], [1789311611, 1.5, 44.5, 1.0, 1.5]], "open": {"ts": 1789138829, "sp": 1.5, "tot": 45.0}, "now": {"ts": 1789311611, "sp": 1.5, "tot": 44.5, "sharp": 1.0, "public": 1.5}, "steam": [], "rlm": true}, "CHI@CAR": {"pts": [[1789138829, 3.0, 47.0, 3.0, 3.0], [1789225213, 3.0, 47.0, 3.0, 3.0], [1789230033, 3.0, 47.0, 3.0, 3.0], [1789230308, 3.0, 47.0, 3.0, 3.0], [1789230678, 3.0, 47.0, 3.0, 3.0], [1789311611, 3.0, 47.0, 3.0, 3.0]], "open": {"ts": 1789138829, "sp": 3.0, "tot": 47.0}, "now": {"ts": 1789311611, "sp": 3.0, "tot": 47.0, "sharp": 3.0, "public": 3.0}, "steam": [], "rlm": false}, "TB@CIN": {"pts": [[1789138829, -3.5, 50.5, -3.5, -3.5], [1789225213, -3.5, 50.5, -3.5, -4.0], [1789230033, -4.0, 50.5, -3.5, -4.0], [1789230308, -4.0, 50.5, -3.5, -4.0], [1789230678, -4.0, 50.5, -3.5, -4.0], [1789311611, -4.0, 50.5, -4.0, -4.0]], "open": {"ts": 1789138829, "sp": -3.5, "tot": 50.5}, "now": {"ts": 1789311611, "sp": -4.0, "tot": 50.5, "sharp": -4.0, "public": -4.0}, "steam": [], "rlm": false, "bet": {"ts": 1789073958, "sp": -3.5, "tot": 50.5, "pick": "CIN -3.5", "play": "SPREAD"}}, "CLE@JAX": {"pts": [[1789138829, -8.5, 40.0, -9.0, -8.5], [1789225213, -8.5, 40.5, -9.5, -8.5], [1789230033, -8.5, 40.0, -9.5, -8.5], [1789230308, -8.5, 40.0, -9.5, -8.5], [1789230678, -8.5, 40.0, -9.5, -8.5], [1789311611, -8.5, 40.0, -9.5, -8.5]], "open": {"ts": 1789138829, "sp": -8.5, "tot": 40.0}, "now": {"ts": 1789311611, "sp": -8.5, "tot": 40.0, "sharp": -9.5, "public": -8.5}, "steam": [], "rlm": true}, "NO@DET": {"pts": [[1789138829, -7.0, 50.0, -7.0, -7.0], [1789225213, -7.0, 50.0, -7.0, -7.0], [1789230033, -7.0, 50.0, -7.0, -7.0], [1789230308, -7.0, 50.0, -7.0, -7.0], [1789230678, -7.0, 50.0, -7.0, -7.0], [1789311611, -7.0, 50.0, -7.0, -7.0]], "open": {"ts": 1789138829, "sp": -7.0, "tot": 50.0}, "now": {"ts": 1789311611, "sp": -7.0, "tot": 50.0, "sharp": -7.0, "public": -7.0}, "steam": [], "rlm": false}, "NYJ@TEN": {"pts": [[1789138829, -1.5, 38.5, 0.0, -1.5], [1789225213, -1.5, 38.5, 0.0, -1.5], [1789230033, -1.5, 38.5, 0.0, -1.5], [1789230308, -1.5, 38.5, 0.0, -1.5], [1789230678, -1.5, 38.5, 0.0, -1.5], [1789311611, -1.5, 38.5, 0.0, -1.5]], "open": {"ts": 1789138829, "sp": -1.5, "tot": 38.5}, "now": {"ts": 1789311611, "sp": -1.5, "tot": 38.5, "sharp": 0.0, "public": -1.5}, "steam": [], "rlm": true, "bet": {"ts": 1789073958, "sp": -1.5, "tot": 38.5, "pick": "OVER 38.5", "play": "TOTAL"}}, "ARI@LAC": {"pts": [[1789138829, -9.5, 47.0, -9.5, -9.5], [1789225213, -9.0, 47.5, -9.5, -9.0], [1789230033, -9.0, 47.5, -9.5, -9.5], [1789230308, -9.0, 47.5, -9.5, -9.5], [1789230678, -9.0, 47.5, -9.5, -9.5], [1789311611, -9.5, 47.0, -9.5, -9.25]], "open": {"ts": 1789138829, "sp": -9.5, "tot": 47.0}, "now": {"ts": 1789311611, "sp": -9.5, "tot": 47.0, "sharp": -9.5, "public": -9.25}, "steam": [], "rlm": false, "bet": {"ts": 1789073958, "sp": -9.5, "tot": 47, "pick": "UNDER 47", "play": "TOTAL"}}, "GB@MIN": {"pts": [[1789138829, -1.5, 46.5, -1.0, -1.5], [1789225213, -1.5, 46.5, -1.0, -2.0], [1789230033, -2.0, 46.5, -1.0, -2.0], [1789230308, -2.0, 46.5, -1.0, -2.0], [1789230678, -2.0, 46.5, -1.0, -2.0], [1789311611, -2.0, 46.0, -1.0, -2.0]], "open": {"ts": 1789138829, "sp": -1.5, "tot": 46.5}, "now": {"ts": 1789311611, "sp": -2.0, "tot": 46.0, "sharp": -1.0, "public": -2.0}, "steam": [], "rlm": true, "bet": {"ts": 1789073958, "sp": -1.5, "tot": 46.5, "pick": "MIN -1.5", "play": "SPREAD + TOTAL"}}, "MIA@LV": {"pts": [[1789138829, -3.0, 40.5, -3.0, -3.0], [1789225213, -3.0, 40.5, -3.0, -3.0], [1789230033, -3.0, 40.5, -3.0, -3.0], [1789230308, -3.0, 40.5, -3.0, -3.0], [1789230678, -3.0, 40.5, -3.0, -3.0], [1789311611, -3.0, 40.5, -3.0, -3.0]], "open": {"ts": 1789138829, "sp": -3.0, "tot": 40.5}, "now": {"ts": 1789311611, "sp": -3.0, "tot": 40.5, "sharp": -3.0, "public": -3.0}, "steam": [], "rlm": false}, "WAS@PHI": {"pts": [[1789138829, -5.5, 44.5, -5.5, -5.5], [1789225213, -5.5, 44.0, -5.5, -5.5], [1789230033, -5.5, 44.0, -5.5, -5.5], [1789230308, -5.5, 44.0, -5.5, -5.5], [1789230678, -5.5, 44.0, -5.5, -5.5], [1789311611, -6.0, 44.0, -6.0, -5.75]], "open": {"ts": 1789138829, "sp": -5.5, "tot": 44.5}, "now": {"ts": 1789311611, "sp": -6.0, "tot": 44.0, "sharp": -6.0, "public": -5.75}, "steam": [], "rlm": false, "bet": {"ts": 1789073958, "sp": -5.5, "tot": 44.5, "pick": "PHI -5.5", "play": "SPREAD"}}, "DAL@NYG": {"pts": [[1789138829, 3.0, 48.0, 3.0, 3.0], [1789225213, 3.0, 48.0, 3.0, 3.0], [1789230033, 3.0, 48.0, 3.0, 3.0], [1789230308, 3.0, 48.0, 3.0, 3.0], [1789230678, 3.0, 48.0, 3.0, 3.0], [1789311611, 3.0, 47.5, 3.0, 3.0]], "open": {"ts": 1789138829, "sp": 3.0, "tot": 48.0}, "now": {"ts": 1789311611, "sp": 3.0, "tot": 47.5, "sharp": 3.0, "public": 3.0}, "steam": [], "rlm": false}, "DEN@KC": {"pts": [[1789138829, -2.5, 43.5, -2.5, -2.5], [1789225213, -2.5, 43.5, -2.5, -2.5], [1789230033, -2.5, 43.5, -2.5, -2.5], [1789230308, -2.5, 43.5, -2.5, -2.5], [1789230678, -2.5, 43.5, -2.5, -2.5], [1789311611, -2.5, 43.5, -2.5, -2.5], [1789399444, -2.5, 43.5, -2.0, -2.5], [1789420418, -2.0, 42.75, -1.5, -2.5], [1789420444, -2.0, 42.75, -1.5, -2.5], [1789421371, -2.0, 42.75, -1.5, -2.5]], "open": {"ts": 1789138829, "sp": -2.5, "tot": 43.5}, "now": {"ts": 1789421371, "sp": -2.0, "tot": 42.75, "sharp": -1.5, "public": -2.5}, "steam": [], "rlm": true, "bet": {"ts": 1789073958, "sp": -2.5, "tot": 43.5, "pick": "DEN +2.5", "play": "SPREAD"}}, "DET@BUF": {"pts": [[1789138829, -3.0, 52.25, -3.0, -3.0], [1789225213, -3.0, 52.25, -3.0, -3.0], [1789230033, -3.0, 52.25, -3.0, -3.0], [1789230308, -3.0, 52.25, -3.0, -3.0], [1789230678, -3.0, 52.25, -3.0, -3.0], [1789311611, -3.5, 52.0, -3.5, -3.0], [1789399444, -4.0, 53.5, -4.5, -4.0], [1789420418, -4.5, 53.5, -4.5, -4.5], [1789420444, -4.5, 53.5, -4.5, -4.5], [1789421371, -4.5, 53.5, -4.5, -4.5], [1789484623, -4.5, 53.5, -4.5, -4.5], [1789505582, -4.5, 53.5, -4.5, -4.5], [1789505966, -4.5, 53.5, -4.5, -4.5], [1789571015, -4.5, 54.5, -5.0, -4.75], [1789667060, -5.5, 55.0, -5.5, -5.5], [1789669856, -5.5, 55.0, -5.5, -5.25]], "open": {"ts": 1789138829, "sp": -3.0, "tot": 52.25}, "now": {"ts": 1789669856, "sp": -5.5, "tot": 55.0, "sharp": -5.5, "public": -5.25}, "steam": [{"ts": 1789667060, "from": -4.5, "to": -5.5}], "rlm": false, "bet": {"ts": 1789505955, "sp": -4.5, "tot": 53.5, "pick": "BUF -4.5", "play": "SPREAD"}}, "CAR@ATL": {"pts": [[1789399444, 1.5, 44.0, 1.5, 1.0], [1789420418, 1.0, 44.0, 1.0, 1.0], [1789420444, 1.0, 44.0, 1.0, 1.0], [1789421371, 1.0, 44.0, 1.0, 1.0], [1789484623, 2.0, 43.5, 2.0, 1.75], [1789505582, 2.5, 43.5, 2.5, 2.5], [1789505966, 2.5, 43.5, 2.5, 2.5], [1789571015, 2.5, 44.0, 2.5, 2.5], [1789667060, 2.5, 43.75, 2.5, 2.5], [1789669856, 2.5, 43.75, 2.5, 2.5], [1789743632, 2.5, 43.75, 2.5, 2.5], [1789830035, 2.5, 43.5, 2.5, 3.0]], "open": {"ts": 1789399444, "sp": 1.5, "tot": 44.0}, "now": {"ts": 1789830035, "sp": 2.5, "tot": 43.5, "sharp": 2.5, "public": 3.0}, "steam": [{"ts": 1789484623, "from": 1.0, "to": 2.0}], "rlm": true, "bet": {"ts": 1789505955, "sp": 2.5, "tot": 43.5, "pick": "UNDER 43.5", "play": "TOTAL"}}, "NO@BAL": {"pts": [[1789399444, -8.5, 47.5, -9.0, -8.5], [1789420418, -8.5, 47.25, -9.0, -8.0], [1789420444, -8.5, 47.25, -9.0, -8.0], [1789421371, -8.5, 47.25, -9.0, -8.0], [1789484623, -8.5, 47.0, -9.0, -8.5], [1789505582, -8.5, 47.0, -9.0, -8.25], [1789505966, -8.5, 47.0, -9.0, -8.25], [1789571015, -8.5, 47.0, -9.0, -8.0], [1789667060, -8.0, 46.5, -9.0, -8.0], [1789669856, -8.0, 46.5, -9.0, -8.0], [1789743632, -8.0, 46.5, -9.0, -8.0], [1789830035, -8.5, 46.0, -9.0, -8.5]], "open": {"ts": 1789399444, "sp": -8.5, "tot": 47.5}, "now": {"ts": 1789830035, "sp": -8.5, "tot": 46.0, "sharp": -9.0, "public": -8.5}, "steam": [], "rlm": true, "bet": {"ts": 1789505955, "sp": -8.5, "tot": 47, "pick": "UNDER 47", "play": "TOTAL"}}, "MIN@CHI": {"pts": [[1789399444, -5.5, 49.5, -5.5, -5.5], [1789420418, -5.5, 49.5, -5.5, -5.5], [1789420444, -5.5, 49.5, -5.5, -5.5], [1789421371, -5.5, 49.5, -5.5, -5.5], [1789484623, -5.5, 48.5, -5.5, -5.5], [1789505582, -5.5, 48.5, -5.5, -5.5], [1789505966, -5.5, 48.5, -5.5, -5.5], [1789571015, -5.5, 48.25, -5.5, -5.5], [1789667060, -4.5, 48.0, -4.5, -4.5], [1789669856, -4.5, 48.0, -4.5, -4.5], [1789743632, -4.5, 48.25, -4.5, -4.5], [1789830035, -4.5, 48.5, -4.5, -4.5]], "open": {"ts": 1789399444, "sp": -5.5, "tot": 49.5}, "now": {"ts": 1789830035, "sp": -4.5, "tot": 48.5, "sharp": -4.5, "public": -4.5}, "steam": [{"ts": 1789667060, "from": -5.5, "to": -4.5}], "rlm": false, "bet": {"ts": 1789505955, "sp": -5.5, "tot": 48.5, "pick": "UNDER 48.5", "play": "TOTAL"}}, "CIN@HOU": {"pts": [[1789399444, -3.0, 46.5, -3.0, -3.0], [1789420418, -3.0, 46.5, -3.0, -3.0], [1789420444, -3.0, 46.5, -3.0, -3.0], [1789421371, -3.0, 46.5, -3.0, -3.0], [1789484623, -2.5, 46.5, -2.5, -3.0], [1789505582, -2.5, 46.5, -2.5, -3.0], [1789505966, -2.5, 46.5, -2.5, -3.0], [1789571015, -2.5, 46.5, -2.5, -2.5], [1789667060, -2.5, 46.0, -2.5, -2.5], [1789669856, -2.5, 46.0, -2.5, -2.5], [1789743632, -2.5, 45.5, -2.5, -2.5], [1789830035, -2.5, 45.5, -2.5, -2.5]], "open": {"ts": 1789399444, "sp": -3.0, "tot": 46.5}, "now": {"ts": 1789830035, "sp": -2.5, "tot": 45.5, "sharp": -2.5, "public": -2.5}, "steam": [], "rlm": false, "bet": {"ts": 1789505955, "sp": -2.5, "tot": 46.5, "pick": "UNDER 46.5", "play": "TOTAL"}}, "CLE@TB": {"pts": [[1789399444, -8.5, 41.0, -9.0, -8.25], [1789420418, -8.25, 41.0, -9.0, -8.0], [1789420444, -8.25, 41.0, -9.0, -8.0], [1789421371, -8.25, 41.0, -9.0, -8.0], [1789484623, -8.5, 41.0, -9.0, -8.5], [1789505582, -8.5, 41.5, -9.0, -8.5], [1789505966, -8.5, 41.5, -9.0, -8.5], [1789571015, -8.5, 41.5, -9.0, -8.5], [1789667060, -8.5, 41.5, -9.0, -8.5], [1789669856, -8.5, 41.5, -9.0, -8.5], [1789743632, -8.5, 41.5, -9.0, -8.5], [1789830035, -8.5, 41.5, -9.0, -8.5]], "open": {"ts": 1789399444, "sp": -8.5, "tot": 41.0}, "now": {"ts": 1789830035, "sp": -8.5, "tot": 41.5, "sharp": -9.0, "public": -8.5}, "steam": [], "rlm": true, "bet": {"ts": 1789505955, "sp": -8.5, "tot": 41.5, "pick": "CLE +8.5", "play": "SPREAD + TOTAL"}}, "GB@NYJ": {"pts": [[1789399444, 4.0, 44.5, 3.75, 4.25], [1789420418, 3.5, 44.5, 3.5, 4.0], [1789420444, 3.5, 44.5, 3.5, 4.0], [1789421371, 3.5, 44.5, 3.5, 4.0], [1789484623, 3.5, 44.5, 3.5, 4.0], [1789505582, 3.5, 44.5, 3.5, 3.5], [1789505966, 3.5, 44.5, 3.5, 3.5], [1789571015, 3.5, 44.5, 3.5, 3.5], [1789667060, 3.5, 44.5, 3.0, 3.5], [1789669856, 3.5, 44.5, 3.0, 3.5], [1789743632, 3.5, 44.5, 3.0, 3.5], [1789830035, 3.5, 44.5, 3.0, 3.5]], "open": {"ts": 1789399444, "sp": 4.0, "tot": 44.5}, "now": {"ts": 1789830035, "sp": 3.5, "tot": 44.5, "sharp": 3.0, "public": 3.5}, "steam": [], "rlm": true, "bet": {"ts": 1789505955, "sp": 3.5, "tot": 44.5, "pick": "UNDER 44.5", "play": "TOTAL"}}, "PIT@NE": {"pts": [[1789399444, -5.5, 42.0, -5.5, -5.5], [1789420418, -5.5, 41.5, -5.5, -5.5], [1789420444, -5.5, 41.5, -5.5, -5.5], [1789421371, -5.5, 41.5, -5.5, -5.5], [1789484623, -5.5, 41.5, -5.5, -5.5], [1789505582, -5.5, 41.5, -5.0, -5.5], [1789505966, -5.5, 41.5, -5.0, -5.5], [1789571015, -5.5, 41.5, -5.0, -5.5], [1789667060, -5.5, 41.5, -5.0, -5.5], [1789669856, -5.5, 41.5, -5.0, -5.5], [1789743632, -5.25, 41.5, -5.0, -5.25], [1789830035, -5.5, 41.5, -5.0, -5.5]], "open": {"ts": 1789399444, "sp": -5.5, "tot": 42.0}, "now": {"ts": 1789830035, "sp": -5.5, "tot": 41.5, "sharp": -5.0, "public": -5.5}, "steam": [], "rlm": true, "bet": {"ts": 1789505955, "sp": -5.5, "tot": 41.5, "pick": "UNDER 41.5", "play": "TOTAL"}}, "PHI@TEN": {"pts": [[1789399444, 7.0, 39.5, 7.0, 7.0], [1789420418, 7.0, 39.5, 7.0, 7.0], [1789420444, 7.0, 39.5, 7.0, 7.0], [1789421371, 7.0, 39.5, 7.0, 7.0], [1789484623, 7.0, 39.5, 7.0, 7.0], [1789505582, 7.0, 39.5, 7.0, 7.0], [1789505966, 7.0, 39.5, 7.0, 7.0], [1789571015, 7.0, 39.5, 7.0, 7.0], [1789667060, 7.0, 39.5, 7.0, 7.0], [1789669856, 7.0, 39.5, 7.0, 7.0], [1789743632, 7.0, 39.5, 7.0, 7.0], [1789830035, 7.0, 39.5, 7.5, 7.0]], "open": {"ts": 1789399444, "sp": 7.0, "tot": 39.5}, "now": {"ts": 1789830035, "sp": 7.0, "tot": 39.5, "sharp": 7.5, "public": 7.0}, "steam": [], "rlm": true, "bet": {"ts": 1789505955, "sp": 7, "tot": 39.5, "pick": "UNDER 39.5", "play": "TOTAL"}}, "JAX@DEN": {"pts": [[1789399444, -2.5, 44.5, -3.0, -2.5], [1789420418, -2.5, 44.5, -3.0, -2.5], [1789420444, -2.5, 44.5, -3.0, -2.5], [1789421371, -2.5, 44.5, -3.0, -2.5], [1789484623, -2.5, 44.5, -2.5, -2.5], [1789505582, -2.5, 45.0, -2.5, -2.5], [1789505966, -2.5, 45.0, -2.5, -2.5], [1789571015, -2.5, 45.5, -2.5, -2.5], [1789667060, -2.5, 45.5, -2.5, -2.5], [1789669856, -2.5, 45.5, -2.5, -2.5], [1789743632, -2.5, 45.5, -2.5, -2.5], [1789830035, -2.5, 45.5, -2.5, -2.5]], "open": {"ts": 1789399444, "sp": -2.5, "tot": 44.5}, "now": {"ts": 1789830035, "sp": -2.5, "tot": 45.5, "sharp": -2.5, "public": -2.5}, "steam": [], "rlm": false, "bet": {"ts": 1789505955, "sp": -2.5, "tot": 45, "pick": "DEN -2.5", "play": "SPREAD + TOTAL"}}, "LV@LAC": {"pts": [[1789399444, -7.0, 43.5, -7.0, -7.0], [1789420418, -7.0, 43.5, -7.0, -7.0], [1789420444, -7.0, 43.5, -7.0, -7.0], [1789421371, -7.0, 43.5, -7.0, -7.0], [1789484623, -7.0, 43.5, -7.0, -7.0], [1789505582, -7.0, 43.5, -7.0, -7.0], [1789505966, -7.0, 43.5, -7.0, -7.0], [1789571015, -6.5, 43.5, -6.5, -6.5], [1789667060, -6.5, 43.5, -6.5, -6.5], [1789669856, -6.5, 43.5, -6.5, -6.5], [1789743632, -6.5, 43.5, -6.5, -6.5], [1789830035, -6.5, 43.5, -6.5, -6.5]], "open": {"ts": 1789399444, "sp": -7.0, "tot": 43.5}, "now": {"ts": 1789830035, "sp": -6.5, "tot": 43.5, "sharp": -6.5, "public": -6.5}, "steam": [], "rlm": false, "bet": {"ts": 1789505955, "sp": -7, "tot": 43.5, "pick": "UNDER 43.5", "play": "TOTAL"}}, "SEA@ARI": {"pts": [[1789399444, 4.5, 41.0, 4.0, 4.5], [1789420418, 4.5, 41.0, 4.0, 4.5], [1789420444, 4.5, 41.0, 4.0, 4.5], [1789421371, 4.5, 41.0, 4.0, 4.5], [1789484623, 4.5, 41.5, 4.0, 4.5], [1789505582, 4.5, 41.0, 4.0, 4.5], [1789505966, 4.5, 41.0, 4.0, 4.5], [1789571015, 4.0, 41.0, 4.0, 4.0], [1789667060, 4.0, 41.0, 4.0, 4.0], [1789669856, 4.0, 41.0, 4.0, 4.0], [1789743632, 4.0, 41.0, 4.0, 4.0], [1789830035, 4.0, 41.0, 4.0, 4.0]], "open": {"ts": 1789399444, "sp": 4.5, "tot": 41.0}, "now": {"ts": 1789830035, "sp": 4.0, "tot": 41.0, "sharp": 4.0, "public": 4.0}, "steam": [], "rlm": false, "bet": {"ts": 1789505955, "sp": 4.5, "tot": 41, "pick": "SEA -4.5", "play": "SPREAD + TOTAL"}}, "WAS@DAL": {"pts": [[1789399444, -3.5, 50.5, -3.0, -3.5], [1789420418, -3.5, 50.5, -3.5, -3.5], [1789420444, -3.5, 50.5, -3.5, -3.5], [1789421371, -3.5, 50.5, -3.5, -3.5], [1789484623, -3.5, 50.5, -3.5, -4.0], [1789505582, -4.0, 50.5, -4.0, -4.0], [1789505966, -4.0, 50.5, -4.0, -4.0], [1789571015, -4.0, 50.5, -4.0, -4.0], [1789667060, -4.0, 50.5, -4.0, -4.0], [1789669856, -4.0, 50.5, -4.0, -4.0], [1789743632, -4.0, 50.5, -4.0, -4.0], [1789830035, -4.0, 50.5, -4.0, -4.0]], "open": {"ts": 1789399444, "sp": -3.5, "tot": 50.5}, "now": {"ts": 1789830035, "sp": -4.0, "tot": 50.5, "sharp": -4.0, "public": -4.0}, "steam": [], "rlm": false, "bet": {"ts": 1789505955, "sp": -4, "tot": 50.5, "pick": "DAL -4.0", "play": "SPREAD + TOTAL"}}, "MIA@SF": {"pts": [[1789399444, -13.0, 45.5, -13.0, -13.0], [1789420418, -13.5, 45.5, -13.5, -13.5], [1789420444, -13.5, 45.5, -13.5, -13.5], [1789421371, -13.5, 45.5, -13.5, -13.5], [1789484623, -13.0, 45.5, -13.5, -13.25], [1789505582, -13.5, 45.5, -13.5, -13.5], [1789505966, -13.5, 45.5, -13.5, -13.5], [1789571015, -13.5, 45.5, -13.0, -13.5], [1789667060, -13.5, 45.0, -13.0, -13.5], [1789669856, -13.5, 45.0, -13.0, -13.5], [1789743632, -13.5, 45.0, -13.0, -13.25], [1789830035, -13.5, 45.0, -13.0, -13.5]], "open": {"ts": 1789399444, "sp": -13.0, "tot": 45.5}, "now": {"ts": 1789830035, "sp": -13.5, "tot": 45.0, "sharp": -13.0, "public": -13.5}, "steam": [], "rlm": true, "bet": {"ts": 1789505955, "sp": -13.5, "tot": 45.5, "pick": "UNDER 45.5", "play": "TOTAL"}}, "IND@KC": {"pts": [[1789399444, -6.5, 47.5, -6.5, -6.5], [1789420418, -6.5, 47.5, -6.5, -6.5], [1789420444, -6.5, 47.5, -6.5, -6.5], [1789421371, -6.5, 47.5, -6.5, -6.5], [1789484623, -6.5, 47.5, -6.5, -6.5], [1789505582, -6.5, 47.0, -6.5, -6.5], [1789505966, -6.5, 47.0, -6.5, -6.5], [1789571015, -6.5, 46.5, -6.5, -6.5], [1789667060, -6.5, 46.5, -6.5, -6.5], [1789669856, -6.5, 46.5, -6.5, -6.5], [1789743632, -6.5, 46.5, -6.5, -6.5], [1789830035, -6.5, 46.5, -6.5, -6.5]], "open": {"ts": 1789399444, "sp": -6.5, "tot": 47.5}, "now": {"ts": 1789830035, "sp": -6.5, "tot": 46.5, "sharp": -6.5, "public": -6.5}, "steam": [], "rlm": false, "bet": {"ts": 1789505955, "sp": -6.5, "tot": 47, "pick": "UNDER 47", "play": "TOTAL"}}, "NYG@LAR": {"pts": [[1789484623, -7.0, 48.5, -7.0, -7.0], [1789505582, -7.0, 48.0, -7.0, -7.0], [1789505966, -7.0, 48.0, -7.0, -7.0], [1789571015, -7.0, 48.0, -7.0, -7.0], [1789667060, -7.0, 48.0, -7.0, -7.0], [1789669856, -7.0, 48.0, -7.0, -7.0], [1789743632, -7.0, 48.0, -7.0, -7.0], [1789830035, -7.0, 48.0, -7.0, -7.0], [1790012841, -7.0, 47.5, -7.0, -6.5], [1790018519, -6.5, 47.5, -7.0, -6.5], [1790022707, -6.5, 47.5, -7.0, -6.5]], "open": {"ts": 1789484623, "sp": -7.0, "tot": 48.5}, "now": {"ts": 1790022707, "sp": -6.5, "tot": 47.5, "sharp": -7.0, "public": -6.5}, "steam": [], "rlm": true, "bet": {"ts": 1789505955, "sp": -7, "tot": 48, "pick": "LAR -7.0", "play": "SPREAD + TOTAL"}}, "ATL@GB": {"pts": [[1789743632, -6.5, 46.0, -6.5, -6.5], [1789830035, -6.5, 45.5, null, -6.5], [1790012841, -7.0, 44.0, -7.0, -7.0], [1790018519, -7.0, 44.0, -7.0, -7.0], [1790022707, -7.0, 44.0, -7.0, -7.0], [1790084070, -6.5, 44.5, -6.5, -6.25], [1790089225, -6.5, 44.5, -6.5, -6.25], [1790092457, -6.5, 44.5, -6.5, -6.25]], "open": {"ts": 1789743632, "sp": -6.5, "tot": 46.0}, "now": {"ts": 1790092457, "sp": -6.5, "tot": 44.5, "sharp": -6.5, "public": -6.25}, "steam": [], "rlm": false, "bet": {"ts": 1790089212, "sp": -6.5, "tot": 44.5, "pick": "GB -6.5", "play": "SPREAD"}}, "LAC@BUF": {"pts": [[1790012841, -7.0, 50.5, -7.0, -7.0], [1790018519, -7.0, 50.5, -7.0, -7.0], [1790022707, -7.0, 50.5, -7.0, -7.0], [1790084070, -7.0, 50.0, -7.0, -7.0], [1790089225, -7.0, 50.0, -7.0, -7.0], [1790092457, -7.0, 50.0, -7.0, -7.0]], "open": {"ts": 1790012841, "sp": -7.0, "tot": 50.5}, "now": {"ts": 1790092457, "sp": -7.0, "tot": 50.0, "sharp": -7.0, "public": -7.0}, "steam": [], "rlm": false}, "CAR@CLE": {"pts": [[1790012841, 3.0, 42.0, 3.0, 3.0], [1790018519, 3.0, 42.0, 3.0, 3.0], [1790022707, 3.0, 42.0, 3.0, 3.0], [1790084070, 3.0, 42.0, 3.0, 3.0], [1790089225, 3.0, 42.0, 3.0, 3.0], [1790092457, 3.0, 42.0, 3.0, 3.0]], "open": {"ts": 1790012841, "sp": 3.0, "tot": 42.0}, "now": {"ts": 1790092457, "sp": 3.0, "tot": 42.0, "sharp": 3.0, "public": 3.0}, "steam": [], "rlm": false}, "CIN@PIT": {"pts": [[1790012841, 3.5, 42.5, 3.5, 3.5], [1790018519, 3.5, 42.5, 3.5, 3.5], [1790022707, 3.5, 42.5, 3.5, 3.5], [1790084070, 3.5, 42.5, 3.5, 3.5], [1790089225, 3.5, 42.5, 3.5, 3.5], [1790092457, 3.5, 42.5, 3.5, 3.5]], "open": {"ts": 1790012841, "sp": 3.5, "tot": 42.5}, "now": {"ts": 1790092457, "sp": 3.5, "tot": 42.5, "sharp": 3.5, "public": 3.5}, "steam": [], "rlm": false}, "NYJ@DET": {"pts": [[1790012841, -6.5, 48.0, -6.5, -6.5], [1790018519, -6.5, 47.5, -6.5, -6.5], [1790022707, -6.5, 47.75, -6.5, -6.5], [1790084070, -6.5, 48.0, -6.5, -6.5], [1790089225, -6.5, 48.0, -6.5, -6.5], [1790092457, -6.5, 48.0, -6.5, -6.5]], "open": {"ts": 1790012841, "sp": -6.5, "tot": 48.0}, "now": {"ts": 1790092457, "sp": -6.5, "tot": 48.0, "sharp": -6.5, "public": -6.5}, "steam": [], "rlm": false}, "HOU@IND": {"pts": [[1790012841, 3.0, 44.0, 3.0, 3.0], [1790018519, 3.0, 43.5, 3.0, 3.0], [1790022707, 2.5, 44.0, 3.0, 2.75], [1790084070, 2.5, 43.5, 3.0, 2.5], [1790089225, 2.5, 43.5, 3.0, 2.5], [1790092457, 2.5, 43.5, 3.0, 2.5]], "open": {"ts": 1790012841, "sp": 3.0, "tot": 44.0}, "now": {"ts": 1790092457, "sp": 2.5, "tot": 43.5, "sharp": 3.0, "public": 2.5}, "steam": [], "rlm": true}, "NE@JAX": {"pts": [[1790012841, -3.0, 45.0, -3.0, -3.0], [1790018519, -3.0, 45.0, -3.0, -3.0], [1790022707, -3.0, 45.0, -3.0, -3.0], [1790084070, -3.0, 45.5, -3.0, -3.0], [1790089225, -3.0, 45.5, -3.0, -3.0], [1790092457, -3.0, 45.5, -3.0, -3.0]], "open": {"ts": 1790012841, "sp": -3.0, "tot": 45.0}, "now": {"ts": 1790092457, "sp": -3.0, "tot": 45.5, "sharp": -3.0, "public": -3.0}, "steam": [], "rlm": false}, "KC@MIA": {"pts": [[1790012841, 11.5, 45.5, 11.5, 10.75], [1790018519, 11.5, 45.5, 11.5, 10.75], [1790022707, 11.5, 45.5, 11.5, 10.75], [1790084070, 11.5, 46.0, 11.5, 11.5], [1790089225, 11.5, 46.0, 11.5, 11.5], [1790092457, 11.5, 46.0, 11.5, 11.5]], "open": {"ts": 1790012841, "sp": 11.5, "tot": 45.5}, "now": {"ts": 1790092457, "sp": 11.5, "tot": 46.0, "sharp": 11.5, "public": 11.5}, "steam": [], "rlm": false}, "TEN@NYG": {"pts": [[1790012841, -6.0, 43.0, -6.0, -6.0], [1790018519, -6.0, 43.0, -6.0, -6.0], [1790022707, -6.0, 43.0, -6.0, -6.0], [1790084070, -3.5, 40.5, -3.5, -3.0], [1790089225, -3.0, 40.5, -3.5, -3.0], [1790092457, -3.0, 40.5, -3.0, -3.0]], "open": {"ts": 1790012841, "sp": -6.0, "tot": 43.0}, "now": {"ts": 1790092457, "sp": -3.0, "tot": 40.5, "sharp": -3.0, "public": -3.0}, "steam": [{"ts": 1790084070, "from": -6.0, "to": -3.5}], "rlm": false}, "SEA@WAS": {"pts": [[1790012841, 6.5, 40.0, 6.5, 6.5], [1790018519, 6.5, 40.0, 7.0, 6.5], [1790022707, 6.5, 40.0, 7.0, 6.5], [1790084070, 7.0, 40.0, 7.0, 7.0], [1790089225, 7.0, 40.0, 7.0, 7.0], [1790092457, 7.0, 40.0, 7.0, 7.0]], "open": {"ts": 1790012841, "sp": 6.5, "tot": 40.0}, "now": {"ts": 1790092457, "sp": 7.0, "tot": 40.0, "sharp": 7.0, "public": 7.0}, "steam": [], "rlm": false}, "ARI@SF": {"pts": [[1790012841, -8.5, 47.5, -9.0, -8.5], [1790018519, -8.5, 47.5, -9.0, -8.0], [1790022707, -8.5, 47.5, -9.0, -8.0], [1790084070, -8.25, 47.5, -9.0, -8.0], [1790089225, -8.5, 47.5, -9.0, -8.5], [1790092457, -8.5, 47.5, -9.0, -8.5]], "open": {"ts": 1790012841, "sp": -8.5, "tot": 47.5}, "now": {"ts": 1790092457, "sp": -8.5, "tot": 47.5, "sharp": -9.0, "public": -8.5}, "steam": [], "rlm": true}, "MIN@TB": {"pts": [[1790012841, 1.5, 43.0, 1.5, 1.5], [1790018519, 2.0, 43.0, 1.5, 2.0], [1790022707, 2.0, 43.0, 1.5, 2.0], [1790084070, 1.5, 42.5, 1.5, 1.5], [1790089225, 1.5, 42.5, 1.5, 1.5], [1790092457, 1.5, 42.5, 1.5, 1.5]], "open": {"ts": 1790012841, "sp": 1.5, "tot": 43.0}, "now": {"ts": 1790092457, "sp": 1.5, "tot": 42.5, "sharp": 1.5, "public": 1.5}, "steam": [], "rlm": false}, "BAL@DAL": {"pts": [[1790012841, 3.0, 52.5, 3.0, 3.0], [1790018519, 3.0, 52.5, 3.0, 3.0], [1790022707, 3.0, 52.5, 3.0, 3.0], [1790084070, 3.0, 52.5, 3.0, 3.0], [1790089225, 3.0, 52.5, 3.0, 3.0], [1790092457, 3.0, 52.5, 3.0, 3.0]], "open": {"ts": 1790012841, "sp": 3.0, "tot": 52.5}, "now": {"ts": 1790092457, "sp": 3.0, "tot": 52.5, "sharp": 3.0, "public": 3.0}, "steam": [], "rlm": false}, "LV@NO": {"pts": [[1790012841, -3.0, 43.5, -3.0, -3.0], [1790018519, -3.0, 43.5, -3.0, -3.0], [1790022707, -3.0, 43.5, -3.0, -3.0], [1790084070, -3.25, 43.5, -3.0, -3.0], [1790089225, -3.0, 44.0, -3.0, -3.0], [1790092457, -3.0, 44.0, -3.0, -3.0]], "open": {"ts": 1790012841, "sp": -3.0, "tot": 43.5}, "now": {"ts": 1790092457, "sp": -3.0, "tot": 44.0, "sharp": -3.0, "public": -3.0}, "steam": [], "rlm": false}, "LAR@DEN": {"pts": [[1790012841, 2.5, 45.5, 2.5, 2.5], [1790018519, 2.5, 45.5, 2.5, 2.5], [1790022707, 2.5, 45.5, 2.5, 2.5], [1790084070, 2.5, 45.5, 1.5, 2.5], [1790089225, 2.5, 45.5, 1.5, 2.5], [1790092457, 2.5, 45.5, 1.5, 2.5]], "open": {"ts": 1790012841, "sp": 2.5, "tot": 45.5}, "now": {"ts": 1790092457, "sp": 2.5, "tot": 45.5, "sharp": 1.5, "public": 2.5}, "steam": [], "rlm": true}, "PHI@CHI": {"pts": [[1790084070, 3.0, 44.0, 3.0, 3.0], [1790089225, 3.0, 44.0, 3.0, 3.0], [1790092457, 3.0, 43.5, 3.0, 3.0]], "open": {"ts": 1790084070, "sp": 3.0, "tot": 44.0}, "now": {"ts": 1790092457, "sp": 3.0, "tot": 43.5, "sharp": 3.0, "public": 3.0}, "steam": [], "rlm": false}};
+/* ================= LINE MOVEMENT CHARTS ================================== */
+/* LH is keyed "AWAY@HOME"; each point is
+   [unix_ts, consensus_spread, consensus_total, sharp_spread, public_spread] */
+function lhKey(row){
+  var t=(row||'').match(/([A-Z]{2,3})\s*@\s*([A-Z]{2,3})/);
+  return t?t[1]+'@'+t[2]:null;
+}
+function lhSpark(g,w,h){
+  var v=g.pts.map(function(p){return p[1]}).filter(function(x){return x!==null});
+  if(v.length<2) return '';
+  var lo=Math.min.apply(null,v), hi=Math.max.apply(null,v), r=(hi-lo)||1;
+  var d=v.map(function(x,i){return (i?'L':'M')+(i/(v.length-1)*w).toFixed(1)+','+
+    (h-2-((x-lo)/r)*(h-4)).toFixed(1)}).join(' ');
+  // toward the home favourite (more negative) is a move on the home side
+  var col=v[v.length-1]<v[0]?'#5ef2a5':(v[v.length-1]>v[0]?'#ff8d8d':'#8fa8c0');
+  return '<svg class="spark" viewBox="0 0 '+w+' '+h+'" preserveAspectRatio="none">'+
+         '<path d="'+d+'" stroke="'+col+'"/></svg>';
+}
+function lhChart(g){
+  var P=g.pts, W=300,H=84,L=6,R=6,T=8,B=14;
+  var vals=[];
+  P.forEach(function(p){[1,3,4].forEach(function(i){if(p[i]!==null) vals.push(p[i]);});});
+  if(g.bet&&g.bet.sp!==null&&g.bet.sp!==undefined) vals.push(g.bet.sp);
+  if(vals.length<2) return '';
+  var lo=Math.min.apply(null,vals), hi=Math.max.apply(null,vals), pad=((hi-lo)||1)*0.25;
+  lo-=pad; hi+=pad;
+  var t0=P[0][0], t1=P[P.length-1][0], span=(t1-t0)||1;
+  function X(t){return L+(t-t0)/span*(W-L-R);}
+  function Y(v){return T+(hi-v)/(hi-lo)*(H-T-B);}
+  function line(idx){
+    var d='',on=false;
+    P.forEach(function(p){ if(p[idx]===null||p[idx]===undefined){on=false;return;}
+      d+=(on?'L':'M')+X(p[0]).toFixed(1)+','+Y(p[idx]).toFixed(1)+' '; on=true;});
+    return d;
+  }
+  var svg='<svg viewBox="0 0 '+W+' '+H+'">'+
+    '<line class="axis" x1="'+L+'" y1="'+(H-B)+'" x2="'+(W-R)+'" y2="'+(H-B)+'"/>'+
+    '<path class="pub" d="'+line(4)+'"/><path class="shp" d="'+line(3)+'"/>'+
+    '<path class="mkt" d="'+line(1)+'"/>';
+  // where you would have got it
+  if(g.bet&&typeof g.bet.sp==='number'){
+    var bx=X(Math.max(t0,Math.min(t1,g.bet.ts))), by=Y(g.bet.sp);
+    svg+='<line class="betl" x1="'+L+'" y1="'+by.toFixed(1)+'" x2="'+(W-R)+'" y2="'+
+         by.toFixed(1)+'"/><circle class="betd" cx="'+bx.toFixed(1)+'" cy="'+by.toFixed(1)+
+         '" r="3"/><text class="lab" x="'+Math.min(W-30,bx+6).toFixed(1)+'" y="'+
+         (by-5).toFixed(1)+'" fill="#ffcf5c">YOUR NUMBER</text>';
+  }
+  var last=P[P.length-1];
+  svg+='<circle class="dot" cx="'+X(last[0]).toFixed(1)+'" cy="'+Y(last[1]).toFixed(1)+'" r="3"/>'+
+    '<text class="lab" x="'+L+'" y="'+(H-4)+'">OPENED '+(P[0][1]>0?'+':'')+P[0][1]+'</text>'+
+    '<text class="lab" x="'+(W-R)+'" y="'+(H-4)+'" text-anchor="end">NOW '+
+    (last[1]>0?'+':'')+last[1]+'</text></svg>';
+  return svg;
+}
+function lhBlock(key){
+  var g=LH&&LH[key]; if(!g||!g.pts||g.pts.length<2) return '';
+  var move=(g.now.sp!==null&&g.open.sp!==null)?(g.now.sp-g.open.sp):0;
+  var tags='';
+  if(g.steam&&g.steam.length) tags+='<span class="tag steam">STEAM '+
+    (g.steam.length>1?g.steam.length+'×':'')+'</span>';
+  if(g.rlm) tags+='<span class="tag rlm">SHARP SPLIT</span>';
+  if(g.bet&&typeof g.bet.sp==='number'&&g.now.sp!==null&&/SPREAD/.test(g.bet.play||'')){
+    // Did the number improve or run away after the play posted?
+    // Backing the home side you want the spread LESS negative than it is now
+    // (you laid fewer points); backing the away side it's the other way round.
+    var d=g.now.sp-g.bet.sp,
+        home=(g.bet.pick||'').indexOf(key.split('@')[1])===0,
+        beat=home?d<0:d>0;
+    tags+='<span class="tag '+(Math.abs(d)<0.25?'hold':(beat?'good':'bad'))+'">'+
+      (Math.abs(d)<0.25?'LINE HELD':(beat?'YOU BEAT IT ':'MOVED AGAINST ')+
+      Math.abs(d).toFixed(1))+'</span>';
+  }
+  return '<div class="lh"><div class="hd"><span>Since it opened</span>'+
+    '<b>'+(g.open.sp>0?'+':'')+g.open.sp+' → '+(g.now.sp>0?'+':'')+g.now.sp+
+    ' ('+(move>0?'+':'')+move.toFixed(1)+')</b>'+tags+'</div>'+lhChart(g)+
+    '<div class="key"><span><i style="background:#5ec8ff"></i>Consensus</span>'+
+    '<span><i style="background:#5ef2a5"></i>Sharp books</span>'+
+    '<span><i style="background:#8fa8c0"></i>Retail books</span></div></div>';
+}
+
+setTimeout(function(){
+  if(typeof LH!=='object'||!LH) return;
+
+  /* ---- full chart inside each slate drawer ---- */
+  var tb=document.querySelector('#slate table');
+  if(tb){
+    tb.addEventListener('click',function(){
+      setTimeout(function(){
+        var dr=tb.querySelector('tr.dr'); if(!dr||dr.querySelector('.lh')) return;
+        var row=dr.previousElementSibling; if(!row) return;
+        var lab=row.querySelector('.gm span:last-child')||row.querySelector('td b');
+        var k=lhKey(lab?lab.textContent:'');
+        // logos-only rows have no text left, so fall back to the two crests
+        if(!k){var c=row.querySelectorAll('.badge em');
+          if(c.length>1) k=c[0].textContent+'@'+c[1].textContent;}
+        var html=k?lhBlock(k):'';
+        if(html) dr.querySelector('.drawer').insertAdjacentHTML('beforeend',html);
+      },30);
+    });
+  }
+
+  /* ---- the same chart on the featured play and each pick card ---- */
+  document.querySelectorAll('.feat .fin, .slip .inner').forEach(function(box){
+    var sub=box.querySelector('.meta')||box.querySelector('.sub'); if(!sub) return;
+    var k=lhKey(sub.textContent);
+    if(!k){var c=box.querySelectorAll('.matchup .badge em, .vs .badge em');
+      if(c.length>1) k=c[0].textContent+'@'+c[1].textContent;}
+    var html=k?lhBlock(k):'';
+    if(!html) return;
+    var why=box.querySelector('.why');
+    if(why) why.insertAdjacentHTML('beforebegin',html); else box.insertAdjacentHTML('beforeend',html);
+  });
+
+  /* ---- sparkline on every line-movement row ---- */
+  document.querySelectorAll('#slate table tr, .view table tr').forEach(function(r){
+    var td=r.querySelectorAll('td'); if(td.length<3) return;
+    if(r.querySelector('.spark')) return;
+    var lab=r.querySelector('.gm span:last-child')||r.querySelector('td b');
+    var k=lhKey(lab?lab.textContent:'');
+    if(!k){var c=r.querySelectorAll('.badge em'); if(c.length>1) k=c[0].textContent+'@'+c[1].textContent;}
+    var g=k&&LH[k]; if(!g) return;
+    // only the movement table (it has an arrow in the first data cell)
+    if(!/→/.test(td[1].textContent||'')) return;
+    var sp=lhSpark(g,78,22); if(!sp) return;
+    td[1].innerHTML='<span class="sparkcell">'+sp+td[1].innerHTML+'</span>';
+  });
+},0);
+
+/* ================= ANIMATED MESH HERO ==================================== */
+setTimeout(function(){
+  var f=document.querySelector('.feat'); if(!f) return;
+  var c1=f.style.getPropertyValue('--t1')||'#1f4f8f',
+      c2=f.style.getPropertyValue('--t2')||'#5ef2a5';
+  var cv=document.createElement('canvas'); cv.className='mesh';
+  f.insertBefore(cv,f.firstChild);
+  var ctx=cv.getContext('2d'), W=0,H=0, SC=0.34;           // half-res on purpose
+  function size(){var r=f.getBoundingClientRect();
+    W=cv.width=Math.max(60,Math.round(r.width*SC));
+    H=cv.height=Math.max(60,Math.round(r.height*SC));}
+  size(); addEventListener('resize',size);
+
+  function mix(a,b,t){a=a.replace('#','');b=b.replace('#','');
+    var o='#';for(var i=0;i<3;i++){var x=parseInt(a.substr(i*2,2),16),
+      y=parseInt(b.substr(i*2,2),16),v=Math.round(x+(y-x)*t);
+      o+=('0'+v.toString(16)).slice(-2);}return o;}
+  var blobs=[
+    {c:c1,   r:.62,x:.22,y:.30,sx:.00021,sy:.00013,px:0,py:2.1},
+    {c:c2,   r:.52,x:.78,y:.26,sx:.00017,sy:.00019,px:1.4,py:0.6},
+    {c:mix(c1,'#ffffff',.30),r:.42,x:.55,y:.72,sx:.00024,sy:.00011,px:3.1,py:1.7},
+    {c:mix(c2,'#000000',.25),r:.58,x:.12,y:.80,sx:.00013,sy:.00022,px:0.7,py:4.0},
+    {c:mix(c1,c2,.5),r:.36,x:.88,y:.68,sx:.00026,sy:.00016,px:2.2,py:3.3}
+  ];
+  function frame(t){
+    ctx.clearRect(0,0,W,H);
+    ctx.globalCompositeOperation='lighter';
+    blobs.forEach(function(b){
+      var x=(b.x+Math.sin(t*b.sx+b.px)*0.16)*W,
+          y=(b.y+Math.cos(t*b.sy+b.py)*0.18)*H,
+          r=b.r*Math.max(W,H)*0.55;
+      var g=ctx.createRadialGradient(x,y,0,x,y,r);
+      g.addColorStop(0,b.c); g.addColorStop(1,'rgba(0,0,0,0)');
+      ctx.fillStyle=g; ctx.beginPath(); ctx.arc(x,y,r,0,6.2832); ctx.fill();
+    });
+  }
+  frame(0);
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  var run=true, vis=true, raf=null;
+  function loop(ts){ if(!run||!vis){raf=null;return;} frame(ts); raf=requestAnimationFrame(loop); }
+  function kick(){ if(run&&vis&&!raf) raf=requestAnimationFrame(loop); }
+  document.addEventListener('visibilitychange',function(){vis=!document.hidden; kick();});
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(es){run=es[0].isIntersecting; kick();},
+      {threshold:0}).observe(f);
+  }
+  kick();
+},0);
+
+/* ================= INTERACTIVE POWER RATINGS MAP ========================= */
+setTimeout(function(){
+  var sec=document.getElementById('power'); if(!sec) return;
+  var tbl=sec.querySelector('table'); if(!tbl) return;
+
+  var teams=[];
+  [].slice.call(tbl.querySelectorAll('tr')).forEach(function(r){
+    var td=r.querySelectorAll('td'); if(td.length<5) return;
+    var b=td[1].querySelector('b'); if(!b) return;
+    var t=(b.textContent||'').trim();
+    var qb=(td[1].querySelector('small')||{}).textContent||'';
+    teams.push({t:t, qb:qb, rank:parseInt(td[0].textContent)||0,
+                p:parseFloat(td[2].textContent)||0,
+                o:parseFloat(td[3].textContent)||0,
+                d:parseFloat(td[4].textContent)||0});
+  });
+  if(teams.length<8) return;
+
+  var W=340,H=300,PAD=26;
+  var ox=teams.map(function(t){return t.o}), dx=teams.map(function(t){return t.d});
+  var oMax=Math.max(1,Math.max.apply(null,ox.map(Math.abs)))*1.15;
+  var dMax=Math.max(1,Math.max.apply(null,dx.map(Math.abs)))*1.15;
+  var X=function(o){return PAD+((o+oMax)/(2*oMax))*(W-2*PAD);};
+  var Y=function(d){return H-PAD-((d+dMax)/(2*dMax))*(H-2*PAD);};
+
+  var wrap=document.createElement('div'); wrap.className='mapwrap';
+  var bar=document.createElement('div'); bar.className='mapbar';
+  bar.innerHTML='<button class="on" data-z="fit">Fit</button>'+
+    '<button data-z="in">Zoom +</button><button data-z="out">Zoom −</button>'+
+    '<span class="hint">drag to pan · pinch to zoom · tap a team</span>';
+
+  var svg='<svg viewBox="0 0 '+W+' '+H+'">'+
+    '<g class="grid">';
+  for(var i=1;i<6;i++){
+    svg+='<line x1="'+(PAD+i*(W-2*PAD)/6)+'" y1="'+PAD+'" x2="'+(PAD+i*(W-2*PAD)/6)+
+         '" y2="'+(H-PAD)+'"/><line x1="'+PAD+'" y1="'+(PAD+i*(H-2*PAD)/6)+'" x2="'+(W-PAD)+
+         '" y2="'+(PAD+i*(H-2*PAD)/6)+'"/>';
+  }
+  svg+='<line class="mid" x1="'+X(0)+'" y1="'+PAD+'" x2="'+X(0)+'" y2="'+(H-PAD)+'"/>'+
+       '<line class="mid" x1="'+PAD+'" y1="'+Y(0)+'" x2="'+(W-PAD)+'" y2="'+Y(0)+'"/></g>'+
+    '<text class="quad" x="'+(W-PAD-4)+'" y="'+(PAD+10)+'" text-anchor="end">COMPLETE TEAMS</text>'+
+    '<text class="quad" x="'+(PAD+4)+'" y="'+(PAD+10)+'">DEFENSE CARRIES THEM</text>'+
+    '<text class="quad" x="'+(W-PAD-4)+'" y="'+(H-PAD-5)+'" text-anchor="end">SHOOTOUTS</text>'+
+    '<text class="quad" x="'+(PAD+4)+'" y="'+(H-PAD-5)+'">UGLY GAMES</text>'+
+    '<text class="axl" x="'+(W/2)+'" y="'+(H-6)+'" text-anchor="middle">OFFENSE →</text>'+
+    '<text class="axl" x="10" y="'+(H/2)+'" text-anchor="middle" transform="rotate(-90 10 '+
+      (H/2)+')">DEFENSE →</text>'+
+    '<g class="pan">';
+  teams.forEach(function(t){
+    var c=(window.TC&&TC[t.t])||['#24405f','#5ef2a5'];
+    svg+='<g class="node" data-t="'+t.t+'" transform="translate('+X(t.o).toFixed(1)+','+
+      Y(t.d).toFixed(1)+')"><circle class="bg" r="10" stroke="'+c[0]+'"/>'+
+      '<image href="logos/'+t.t.toLowerCase()+'.png" x="-8.5" y="-8.5" width="17" height="17"/>'+
+      '<text y="2.4" class="fb">'+t.t+'</text></g>';
+  });
+  svg+='</g></svg>';
+
+  wrap.innerHTML=svg+'<div class="mapcard"><span class="x">×</span>'+
+    '<b></b><div class="r"></div></div>';
+  var h2=document.createElement('h2'); h2.textContent='The league, mapped';
+  tbl.parentNode.insertBefore(h2,tbl);
+  tbl.parentNode.insertBefore(bar,tbl);
+  tbl.parentNode.insertBefore(wrap,tbl);
+  var tl=document.createElement('h2'); tl.textContent='Every team';
+  tbl.parentNode.insertBefore(tl,tbl);
+
+  // a logo that fails to load leaves the team code showing instead
+  wrap.querySelectorAll('.node').forEach(function(n){
+    var im=n.querySelector('image'), tx=n.querySelector('text');
+    im.addEventListener('load',function(){tx.style.display='none';});
+    im.addEventListener('error',function(){im.remove();});
+  });
+
+  /* ---- pan + zoom ---- */
+  var g=wrap.querySelector('.pan'), svgEl=wrap.querySelector('svg');
+  var z=1, tx0=0, ty0=0;
+  function apply(){g.setAttribute('transform','translate('+tx0.toFixed(1)+','+ty0.toFixed(1)+
+    ') scale('+z.toFixed(3)+')');}
+  function zoomAt(f,cx,cy){
+    var nz=Math.max(1,Math.min(6,z*f));
+    tx0=cx-(cx-tx0)*(nz/z); ty0=cy-(cy-ty0)*(nz/z); z=nz;
+    if(z===1){tx0=0;ty0=0;}
+    apply();
+  }
+  function pt(e){var r=svgEl.getBoundingClientRect();
+    return {x:(e.clientX-r.left)/r.width*W,y:(e.clientY-r.top)/r.height*H};}
+
+  var drag=null;
+  svgEl.addEventListener('pointerdown',function(e){
+    drag={p:pt(e),tx:tx0,ty:ty0,moved:0}; svgEl.setPointerCapture(e.pointerId);});
+  svgEl.addEventListener('pointermove',function(e){
+    if(!drag||pinch) return;
+    var p=pt(e); tx0=drag.tx+(p.x-drag.p.x); ty0=drag.ty+(p.y-drag.p.y);
+    drag.moved+=Math.abs(p.x-drag.p.x)+Math.abs(p.y-drag.p.y); apply();});
+  svgEl.addEventListener('pointerup',function(){drag=null;});
+  svgEl.addEventListener('wheel',function(e){
+    e.preventDefault(); var p=pt(e); zoomAt(e.deltaY<0?1.15:1/1.15,p.x,p.y);},{passive:false});
+
+  var pinch=null;
+  svgEl.addEventListener('touchstart',function(e){
+    if(e.touches.length===2){
+      var a=pt(e.touches[0]),b=pt(e.touches[1]);
+      pinch={d:Math.hypot(a.x-b.x,a.y-b.y),c:{x:(a.x+b.x)/2,y:(a.y+b.y)/2}};}},{passive:true});
+  svgEl.addEventListener('touchmove',function(e){
+    if(pinch&&e.touches.length===2){
+      var a=pt(e.touches[0]),b=pt(e.touches[1]),d=Math.hypot(a.x-b.x,a.y-b.y);
+      zoomAt(d/pinch.d,pinch.c.x,pinch.c.y); pinch.d=d;}},{passive:true});
+  svgEl.addEventListener('touchend',function(e){if(e.touches.length<2) pinch=null;},{passive:true});
+
+  bar.addEventListener('click',function(e){
+    var b=e.target.closest('button'); if(!b) return;
+    [].forEach.call(bar.querySelectorAll('button'),function(x){x.classList.remove('on')});
+    b.classList.add('on');
+    var k=b.dataset.z;
+    if(k==='fit'){z=1;tx0=0;ty0=0;apply();}
+    else zoomAt(k==='in'?1.4:1/1.4,W/2,H/2);
+  });
+
+  /* ---- tap a team ---- */
+  var card=wrap.querySelector('.mapcard');
+  wrap.addEventListener('click',function(e){
+    if(e.target.classList.contains('x')){card.classList.remove('on');
+      wrap.querySelectorAll('.node').forEach(function(n){n.classList.remove('dim')}); return;}
+    var n=e.target.closest('.node');
+    if(!n||(drag&&drag.moved>6)) return;
+    var t=teams.filter(function(x){return x.t===n.dataset.t})[0]; if(!t) return;
+    wrap.querySelectorAll('.node').forEach(function(x){x.classList.toggle('dim',x!==n)});
+    card.querySelector('b').textContent=t.t+(t.qb?' · '+t.qb:'');
+    card.querySelector('.r').innerHTML='<span>Rank <i>#'+t.rank+'</i></span>'+
+      '<span>Power <i>'+(t.p>0?'+':'')+t.p.toFixed(1)+'</i></span>'+
+      '<span>Off <i>'+(t.o>0?'+':'')+t.o.toFixed(1)+'</i></span>'+
+      '<span>Def <i>'+(t.d>0?'+':'')+t.d.toFixed(1)+'</i></span>';
+    card.classList.add('on');
+  });
+},0);
+
+/* ================= HOLOGRAPHIC TILT ====================================== */
+setTimeout(function(){
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var cards=[].slice.call(document.querySelectorAll('.slip.tm, .feat'));
+  if(!cards.length) return;
+
+  cards.forEach(function(c){
+    c.classList.add('holo');
+    ['foil','glare','edge'].forEach(function(k){
+      var d=document.createElement('i'); d.className=k; c.appendChild(d);});
+  });
+
+  // one shared frame: every card is written once per rAF, never per event
+  var want=new Map(), pending=false;
+  function paint(){
+    pending=false;
+    want.forEach(function(v,c){
+      // px,py are -1..1 across the card; the hero tilts less than a pick card
+      var max=c.classList.contains('feat')?4:11;
+      c.style.transform='perspective(900px) rotateY('+(v.px*max).toFixed(2)+
+        'deg) rotateX('+(-v.py*max).toFixed(2)+'deg) scale('+(v.on?1.012:1)+')';
+      c.style.setProperty('--fx',(50+v.px*50).toFixed(1)+'%');
+      c.style.setProperty('--fy',(50+v.py*50).toFixed(1)+'%');
+      c.style.setProperty('--gx',(50+v.px*45).toFixed(1)+'%');
+      c.style.setProperty('--gy',(50-v.py*45).toFixed(1)+'%');
+      var mag=Math.min(1,Math.hypot(v.px,v.py)), hero=c.classList.contains('feat');
+      c.style.setProperty('--fo',(hero?0.07+mag*0.13:0.26+mag*0.40).toFixed(2));
+      c.style.setProperty('--go',(hero?0.18+mag*0.22:0.32+mag*0.45).toFixed(2));
+    });
+    want.clear();
+  }
+  function set(c,px,py,on){
+    c.classList.toggle('live',!!on);
+    if(!on){c.style.transform=''; return;}
+    want.set(c,{px:Math.max(-1,Math.min(1,px)),py:Math.max(-1,Math.min(1,py)),on:on});
+    if(!pending){pending=true; requestAnimationFrame(paint);}
+  }
+
+  /* ---- desktop: follow the cursor over each card ---- */
+  cards.forEach(function(c){
+    c.addEventListener('mousemove',function(e){
+      var r=c.getBoundingClientRect();
+      set(c,(e.clientX-r.left)/r.width*2-1,(e.clientY-r.top)/r.height*2-1,true);
+    });
+    c.addEventListener('mouseleave',function(){set(c,0,0,false);});
+  });
+
+  /* ---- phone: tilt with the device itself ---- */
+  var lastB=null,lastG=null;
+  function orient(e){
+    var b=e.beta, g=e.gamma;                       // front-back, left-right
+    if(b===null||g===null) return;
+    // hold the phone at a natural ~45 deg and call that flat
+    lastB=(b-45)/32; lastG=g/32;
+    cards.forEach(function(c){
+      var r=c.getBoundingClientRect();
+      if(r.bottom<0||r.top>innerHeight){set(c,0,0,false);return;}  // off-screen: rest
+      set(c,lastG,lastB,true);
+    });
+  }
+  function listen(){addEventListener('deviceorientation',orient);}
+
+  var DOE=window.DeviceOrientationEvent;
+  if(!DOE) return;
+  if(typeof DOE.requestPermission!=='function'){ listen(); return; }
+
+  // iOS only hands out motion data after an explicit tap, so ask once, politely
+  if(sessionStorage.getItem('tilt')==='no') return;
+  var ask=document.createElement('div'); ask.className='tiltask';
+  ask.innerHTML='<b>✦</b>Tap for holographic cards';
+  document.body.appendChild(ask);
+  ask.addEventListener('click',function(){
+    DOE.requestPermission().then(function(r){
+      if(r==='granted') listen(); else try{sessionStorage.setItem('tilt','no');}catch(e){}
+    }).catch(function(){}).then(function(){ask.remove();});
+  });
+  setTimeout(function(){if(ask.parentNode) ask.remove();},9000);
+},0);
+
 /* ---------------- theme the app with the featured team ------------------- */
 /* deferred: the featured hero is built further down this file */
 setTimeout(function(){
